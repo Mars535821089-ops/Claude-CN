@@ -1,0 +1,10 @@
+{
+  "name": "claude-cn-localization-audit",
+  "version": "4.29.0",
+  "private": true,
+  "description": "Optional locale ICU and changed JavaScript verification tools",
+  "dependencies": {
+    "@formatjs/icu-messageformat-parser": "3.5.22",
+    "acorn": "8.19.0"
+  }
+}

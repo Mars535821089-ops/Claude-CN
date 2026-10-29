@@ -1,23 +1,41 @@
 # Claude-CN
 
-Claude macOS 桌面端简体中文界面补丁。本项目针对 Claude Desktop 4.29.0，修改桌面应用的界面资源；不修改 Claude Code CLI。
+Claude macOS 桌面端简体中文界面资源与上游变更检查工具；不修改 Claude Code CLI。
 
-## 安装与检查
+## 官方本地化能力与安全边界
 
-可以双击“安装-Claude-中文界面.command”，也可以在 macOS 上运行：
+当前仓库针对的 Claude Desktop 4.29.0 没有可由本项目使用的官方外置中文语言包接口。现有中文界面依赖修改 Electron ASAR、前端资源及语言白名单；即使重签名后能运行，也会改变官方应用包的签名，且官方更新会替换这些修改。该机制并非更新兼容的官方扩展点。
 
-    python3 scripts/repair_macos_429.py
+因此，双击“安装-Claude-中文界面.command”现在只做上游资源检查，不会修改、替换或重签 Claude.app。仓库仍保留旧版安装器，供明确接受这些限制的用户手动使用；它只严格支持 4.29.0：
+
     python3 scripts/repair_macos_429.py --apply
 
-第一条仅检查当前版本、资源覆盖与语言配置；第二条会制作应用副本、补齐桌面壳层和前端中文资源、校验完整性与签名，再备份官方应用并安装。旧备份会保留。安装前请先保存 Claude 中尚未发送的草稿。
+旧安装器会复制并替换整个 Claude.app、重签应用、改变原始签名状态。请先退出 Claude 并保存草稿；它不属于低维护方案，不会自动套用到新版本。不要对未知版本强行安装。
 
-支持版本严格限定为 4.29.0。官方自动更新保持启用；升级会覆盖补丁。升级后先运行检查命令，如版本变化，必须按新版本更新资源与补丁，不要强行套用旧包。
+## 建立更新基线并自动检查
 
-补丁不会打包或上传 Claude.app、用户配置、会话、密钥。公开仓库只存补丁源码、翻译资源和验收说明。
+更新检查器只读取官方签名应用中的英文桌面壳层和前端消息目录，不读取用户会话、设置或凭据，也不会更改应用文件。首次使用时记录本机官方版本的资源基线：
+
+    python3 scripts/update_guard.py --record-baseline
+
+每次检查会报告版本、资源指纹、汉化覆盖情况，以及相对本机基线新增、删除或英文内容变化的消息 ID。发现变化时只生成差异，不会更新基线或安装补丁。检查后人工审阅差异，再明确接受新基线：
+
+    python3 scripts/update_guard.py --json
+    python3 scripts/update_guard.py --accept-current
+
+若希望在 Claude 自动更新后定时检查，可在已记录基线后安装每小时运行一次的 macOS LaunchAgent；变化或检查失败会显示通知并记录到 `~/Library/Application Support/Claude-CN/update-monitor.log`。LaunchAgent 调用此仓库中的脚本；仓库移动或删除后需重新安装监控：
+
+    python3 scripts/update_guard.py --install-monitor
+    python3 scripts/update_guard.py --remove-monitor
+
+更新检查器不自动翻译新消息、不自动修改 Claude.app，也不会自动接受未知版本。它的资源基线保存在用户本机 `~/Library/Application Support/Claude-CN/upstream-baseline.json`，不要提交该文件。版本或资源改变时，维护者仍需人工审阅、更新翻译资源和显式版本适配；若 Claude 改变资源格式、签名状态或内部路径，检查器会停止并报告，不尝试修复或覆盖。
+
+补丁源码、翻译资源、检查器和测试均在本仓库。不会将 Claude.app、用户配置、会话、密钥或本机检查基线上传。
 
 ## 资源结构
 
 - scripts/repair_macos_429.py：版本检查、桌面应用补丁、校验和保留备份的安装事务。
+- scripts/update_guard.py：只读官方资源指纹与逐消息差异检查、显式基线管理及定时检查器。
 - scripts/upstream_patch_lib.py：基于 javaht/claude-desktop-zh-cn 的 ASAR、资源和签名补丁函数。
 - resources/frontend-zh-CN.json：前端简体中文消息表。
 - resources/desktop-zh-CN.json：桌面壳层简体中文消息表。
@@ -39,7 +57,7 @@ Claude macOS 桌面端简体中文界面补丁。本项目针对 Claude Desktop 
     npm ci --ignore-scripts
     python3 scripts/audit_localization.py --official-backup /path/to/official/Claude.app
 
-Python 标准库足够安装；Node.js 依赖只用于可选的严格 ICU 与 JavaScript 语法验收。运行事务回归测试：
+Python 标准库足够运行检查器；Node.js 依赖只用于可选的严格 ICU 与 JavaScript 语法验收。运行事务和更新检查器回归测试：
 
     python3 -m unittest discover -s tests -v
 

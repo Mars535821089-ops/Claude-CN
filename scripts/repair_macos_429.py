@@ -21,6 +21,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import upstream_patch_lib as patch
+from ui_html import patch_html_bundle
 
 ROOT = Path(__file__).resolve().parent.parent
 RESOURCES = ROOT / "resources"
@@ -108,6 +109,7 @@ def patch_desktop_asar(app: Path) -> None:
         patch.extract_asar(asar, directory, unpacked)
         target = directory / "resources/i18n/zh-CN.json"
         target.write_text(json.dumps(zh, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        patch_reviewed_ui(directory, "app.asar")
         patch.build_asar(directory, temporary, unpacked)
         os.replace(temporary, asar)
         patch.update_electron_asar_integrity(app, "Resources/app.asar", asar)
@@ -120,7 +122,16 @@ def patch_desktop_asar(app: Path) -> None:
             shutil.rmtree(extra_unpacked)
 
 
+def patch_reviewed_ui(root: Path, bundle: str) -> None:
+    subprocess.run(
+        ["node", str(ROOT / "scripts/ui_localization.cjs"), str(root), bundle, "--apply"],
+        check=True,
+    )
+    patch_html_bundle(root, bundle, RESOURCES)
+
+
 def build_stage(original: Path, staged: Path) -> None:
+    subprocess.run(["node", "-e", "require('acorn')"], cwd=ROOT, check=True)
     patch.copy_app(original, staged)
     frontend = patch.prepare_frontend_target(staged)
     try:
@@ -135,6 +146,7 @@ def build_stage(original: Path, staged: Path) -> None:
         patch.install_statsig_locale(staged, "zh-CN")
         patch.install_dynamic_locale(staged, "zh-CN")
         patch.install_desktop_locale(staged, "zh-CN")
+        patch_reviewed_ui(staged / patch.FRONTEND_DIR_REL, "ion-dist.asar")
         patch_desktop_asar(staged)
         patch.finalize_frontend_target(staged, frontend)
     finally:

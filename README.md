@@ -40,7 +40,35 @@ Claude macOS 桌面端简体中文界面资源与上游变更检查工具；不�
 - resources/frontend-zh-CN.json：前端简体中文消息表。
 - resources/desktop-zh-CN.json：桌面壳层简体中文消息表。
 - resources/frontend-hardcoded-zh-CN.json：经上下文保护的可见硬编码文案。
+- resources/ui-reviewed-zh-CN.json：人工审阅的 UI 硬编码译文，包括权限说明、无障碍标签和原生弹窗。
+- resources/ui-patch-manifest.json：逐文件 SHA-256、逐上下文匹配次数及预期输出指纹；不包含完整上游源码。
+- scripts/audit_ui_sources.py、audit_ui.cjs：对两个 ASAR 中的 JavaScript、HTML 和可执行内联脚本进行只读扫描。
+- scripts/ui_localization.cjs、ui_html.py：仅在临时解包目录中应用经过审阅的精确补丁。
 - 其他 resources 文件：动态文案、菜单、原生 macOS 文案。
+
+## 从 UI 源码检查漏译
+
+仅核对消息 ID 会漏掉硬编码按钮、提示和权限弹窗。新增扫描器使用 Acorn 解析 JavaScript，识别渲染文案、按钮、占位符、无障碍属性、DOM 文本和原生弹窗说明；HTML 扫描覆盖静态文案、属性及可执行内联脚本。不会把图标名、消息 ID、条件判断中的状态字符串或翻译人员备注直接当作可替换文案。
+
+先安装锁定的 Node.js 依赖，再对本机应用做只读扫描。完整候选报告保留在本机，不要把包含上游源码片段的报告提交到仓库：
+
+    npm ci --ignore-scripts
+    python3 scripts/audit_ui_sources.py --output /tmp/claude-ui-candidates.json
+    python3 scripts/audit_ui_sources.py --verify-manifest --output /tmp/claude-ui-verification.json
+
+当前 4.29.0 样本扫描了 4,508 个 JavaScript 文件、12 个可执行内联脚本和 12 个 HTML 页面，全部可解析；找到 7,422 个英文 JavaScript 候选及 19 个 HTML 候选。候选不是漏译计数：其中也有日志、工具描述、技术字符串、产品名和历史更新说明。759 条经审阅的译文形成了 118 个文件的精确补丁，共 948 处替换（JavaScript 935 处，HTML/内联脚本 13 处）。补齐的类别包括 Google Drive 连接/重新连接、复制/换行操作、计划审批提示、文件夹授权及“不再询问”选项、原生通知、设置、诊断和错误页面；同时修正 VS Code、PowerPoint、Chrome 被误译为普通词语的问题。
+
+补丁以“文件指纹 + UI 上下文 + 原文 + 预期出现次数”定位，不全局替换 `Copy` 等可能兼作图标或枚举的字符串。JavaScript 修改后再次解析并比较 AST，保留标识符、调用、条件判断、模板表达式及其顺序；HTML 保留原始排版并转义译文。重复应用已匹配输出指纹的补丁不会重复修改。未知指纹、缺失文件、次数变化、路径越界、符号链接、语法或占位符异常都会显式失败；安装器只在临时应用副本中执行这些步骤，失败时不会替换已安装应用。
+
+**基线限制：**本次可用样本是已经汉化的 4.29.0，而不是全新官方安装包。新增指纹针对旧补丁之后的源码，已接入旧安装器的相应阶段，但尚未从纯净官方包验证完整的打包、签名和安装流程。若官方来源或旧补丁产物与该基线不同，应停止并复核，不能移除指纹检查来强行安装。验证本次新增补丁没有改动 `/Applications/Claude.app`。
+
+**仍有边界：**这不是“所有界面已无英文”的证明。当前仍保留 701 条英文历史更新说明，以及未审阅的候选；动态拼接出的操作值（例如文件访问弹窗中的 `preview` / `open`）、服务端返回、实验性页面和用户内容不保证被静态字面量扫描覆盖。协议错误、模型使用的工具描述和技术标识不会仅因包含英文而替换。后续发现新的可见文案时，需要审阅其实际调用上下文，不能直接把全部候选交给全局翻译。
+
+维护者在确认上游版本、来源及所有新增文案后，才可显式重新生成规则，并复核版本、匹配次数和指纹差异；生成失败不会覆盖现有输出文件：
+
+    python3 scripts/audit_ui_sources.py --generate-manifest --output /tmp/ui-patch-manifest.json
+
+确认规则后更新仓库中的清单，再运行上述只读验证。重新生成清单本身并不证明新版本兼容。
 
 ## 来源与许可
 
@@ -48,7 +76,9 @@ Claude macOS 桌面端简体中文界面资源与上游变更检查工具；不�
 
 ## 验收
 
-本机 4.29.0 已验证：前端 39,482 条消息 ID、桌面壳层 947 条消息 ID、动态资源 49 条消息 ID 均完整覆盖；400 个修改后的 JavaScript 文件语法解析通过。ICU 占位符和富文本标签校验通过；ASAR 完整性与本地签名校验通过。实际首页和 macOS 原生菜单已验证中文，重新启动后语言保持。
+原有安装版本的验收记录：本机 4.29.0 前端 39,482 条消息 ID、桌面壳层 947 条消息 ID、动态资源 49 条消息 ID 均完整覆盖；400 个修改后的 JavaScript 文件语法解析通过。ICU 占位符和富文本标签、ASAR 完整性与本地签名校验通过；实际首页和 macOS 原生菜单已验证中文，重新启动后语言保持。这些历史记录不代表本次新增补丁已经安装。
+
+本次 UI 补丁已在内存中逐文件验证预期输出，并从本机应用提取目标文件到临时目录，通过安装器实际入口执行两个 ASAR 的补丁、重复应用和指纹核对；118 个目标文件均与清单一致。只读验证前后已安装 ASAR 的 SHA-256 不变。仓库译文的三组消息 ID、ICU 参数和富文本标签也重新通过校验。
 
 “消息 ID 完整覆盖”不等于逐一触发了所有权限、错误、远程内容和实验性界面。产品名、模型名、技术名词和用户内容会保留必要的原文；未触发的条件页面仍可能需要后续修正。此项目不承诺汉化能跨官方更新自动保留。
 
@@ -57,9 +87,12 @@ Claude macOS 桌面端简体中文界面资源与上游变更检查工具；不�
     npm ci --ignore-scripts
     python3 scripts/audit_localization.py --official-backup /path/to/official/Claude.app
 
-Python 标准库足够运行检查器；Node.js 依赖只用于可选的严格 ICU 与 JavaScript 语法验收。运行事务和更新检查器回归测试：
+更新检查器只需 Python 标准库。新增 UI 审计、精确补丁和显式旧版安装需要 Node.js 及锁定依赖，必须先运行 `npm ci --ignore-scripts`。运行事务、更新检查器、UI/HTML 精确替换和拒绝异常输入的回归测试：
 
     python3 -m unittest discover -s tests -v
+    node --test tests/*.cjs
+
+仓库的 GitHub Actions 会运行同样的离线回归测试；CI 不包含 Claude 应用，不代表完成真实应用安装验收。
 
 ## 恢复官方版本
 

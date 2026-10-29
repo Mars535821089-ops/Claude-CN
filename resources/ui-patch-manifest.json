@@ -1,0 +1,4861 @@
+{
+  "version": "4.29.0",
+  "files": {
+    "app.asar/.vite/renderer/main_window/assets/clawdQuestEngine-uq7dBrqR.js": {
+      "sha256": "b75a374e1d2587d0fcfbb012b18564002aca0bce3ae9761efb45432b9fda5a69",
+      "patched_sha256": "fb10a9b4fee7f0b352452cde1da9105226694bbefd5edc13910ee1480de32bb7",
+      "rules": [
+        {
+          "context": "aria-label",
+          "source": "Sound",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Controls",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Lives",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Move left",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Move right",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Sprint (hold, slide right to jump)",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Ultra Mode",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/renderer/local_exec_consent/assets/main-Xs_A-Hws.js": {
+      "sha256": "d045836891e20023f9fd31fa4be538fc770708f77338f509c9f1f39f08d17af5",
+      "patched_sha256": "001eb9be4877df1c4f34d82f65eda7754fc703a6df089112d8d0ea5082c01157",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Disconnect from {…}?",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Let this app use {…}?",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Connect to {…}?",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Apply settings from your organization?",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "Only allow these if you trust your organization's IT and expect them to be configured. If you quit, none of your organization's settings are applied and Claude asks again the next time it opens.",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-5yb1znih.js": {
+      "sha256": "59fa043baa05f28f1b48cc7eb223c801d49d3d91c66cfbd34dfd4b6d202c7263",
+      "patched_sha256": "bdf2a1a57e45d854399e5628123ce7d60c83d43f0ffdaa25bdda13c05f0be679",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Change with Claude…",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-BOT0QU4q.js": {
+      "sha256": "c5e3a6d7eee51d8323a0506189a1c989069485c5236ac34e63b5b39494b0ec16",
+      "patched_sha256": "fb258f7cab634be64f611e309fb3aa888e3f09bb5860d549059eb8b0e287c201",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Design",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Slides",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-BQKuVLwZ.js": {
+      "sha256": "42c05d01684b1fcaf659b540f243524316c129fdd38506c0ee2587f07cd1cd3d",
+      "patched_sha256": "a40cc4af5a367e418dcd89686dc57c9cc1df5fc173df0f0427528cbb4a7e4e17",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Untitled session",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Terminal session",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-BXgMtrMZ.js": {
+      "sha256": "8fc0e8eb77641e7348940b21ca29d02eb61578f5dbf6213452699cf4c78f32c6",
+      "patched_sha256": "d855790347d69bb650cf3beddfdd9ac8009253a53c24fb7495ab124b70f4fefa",
+      "rules": [
+        {
+          "context": "buttons",
+          "source": "Reconnect",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "Cancel",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-BaALgXPu.js": {
+      "sha256": "e827a977ce212a86f421f5f87d67338ff8928dc60aa81bad17e8516f749408a9",
+      "patched_sha256": "7434a49643d8bc38900a5758c02ec7886e46ed5fab72746c4171d93d5c3a0fd7",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Auto-archive sessions when their pull request closes",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Archive inactive sessions",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Branch prefix",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Permission request notifications",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Question notifications",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Task complete notifications",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Connect new sessions to Remote Control",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Output style",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-BasKx3OI.js": {
+      "sha256": "65e5f68307e36c9594ac304e03bd2bc039f2acf2cc9e28e54e43d9a892958c1f",
+      "patched_sha256": "7f0acb03a54f8f4a60525966d817fda26f594166adb69b289d90efe93e72c4c4",
+      "rules": [
+        {
+          "context": "title",
+          "source": "(title withheld)",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-BbMIW0DP.js": {
+      "sha256": "378f4d76622567e8c9161222ec8a4a70b91629440af38da15b73c5d29d171ed3",
+      "patched_sha256": "bdb06966a997546c757bfd15b2c0f63ab8c9cd7db4886a9dcb6a7b67c4766a1c",
+      "rules": [
+        {
+          "context": "title",
+          "source": "New task",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Proposed task",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-Bjj6o2rj.js": {
+      "sha256": "b40b1d8ead037b1e3d50963868e9cc7c2c301977efa63b4294a2543f404cacbf",
+      "patched_sha256": "041f9318552c1cc1450f136d25e8927ad11fdea32de5faafa830a54888b9efde",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Folder access request",
+          "expected": 1
+        },
+        {
+          "context": "dialog:message",
+          "source": "Allow Claude to access this folder?",
+          "expected": 1
+        },
+        {
+          "context": "dialog:message",
+          "source": "Allow Claude to access these {…} folders?",
+          "expected": 1
+        },
+        {
+          "context": "dialog:detail",
+          "source": "{…}\n\nClaude will be able to read and modify files here{…}, for this session, or for all future sessions on this device if you check the box below. {…}",
+          "expected": 1
+        },
+        {
+          "context": "checkboxLabel",
+          "source": "Don't ask again for this folder on this device",
+          "expected": 1
+        },
+        {
+          "context": "checkboxLabel",
+          "source": "Don't ask again for these folders on this device",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-C7NkbHFq.js": {
+      "sha256": "92e8f69fb04f151845edc56f4246a0d3a2d2f91b311cfdb26e4f64edc43819e0",
+      "patched_sha256": "6105ddea8cb2392bc2dd1c7e6692956bb59e5684674b0c58b7dfd625236da9a0",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Cowork plugins",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Claude Code plugins",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "GitHub repo",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Git URL",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Marketplace URL",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Web search",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Draw attention on notifications",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Notification sound",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Keep computer awake while Claude works",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Keep awake on battery power",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Prompt suggestions",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "Cancel",
+          "expected": 12
+        },
+        {
+          "context": "buttons",
+          "source": "Open",
+          "expected": 2
+        },
+        {
+          "context": "buttons",
+          "source": "Done",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Some models are currently unavailable.",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "Allow",
+          "expected": 4
+        },
+        {
+          "context": "text",
+          "source": "Allow once",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Paste and Match Style",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Zoom In (numpad)",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Zoom Out (numpad)",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Actual Size (numpad)",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude scheduled a task: \"{…}\"",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude updated scheduled task \"{…}\"",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude deleted scheduled task \"{…}\"",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude started watching for \"{…}\"",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude stopped watching for \"{…}\"",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Not supported",
+          "expected": 2
+        },
+        {
+          "context": "title",
+          "source": "Headers helper failed",
+          "expected": 2
+        },
+        {
+          "context": "title",
+          "source": "OAuth not applicable",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Connection failed",
+          "expected": 3
+        },
+        {
+          "context": "title",
+          "source": "Claude.ai sign-in required",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Secure storage unavailable",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Client secret helper failed",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Timed out listing tools",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Connection timed out",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Server returned {…}",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Connection test failed",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Invalid configuration",
+          "expected": 7
+        },
+        {
+          "context": "title",
+          "source": "Not in managed configuration",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Nothing to test",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Managed configuration unreadable",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Blocked address",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Account not confirmed",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Paused: {…}",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude archived: {…}",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude archived a session",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude deleted: {…}",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude deleted a session",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude deleted {…} sessions",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude unarchived: {…}",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude unarchived a session",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude stopped: {…}",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude stopped a session",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude asked to stop: {…}",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude asked a session to stop",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude cleared: {…}",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude cleared a session",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude moved to top level: {…}",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude moved a session to top level",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude turned on Remote Control: {…}",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude turned on Remote Control for a session",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude asked to turn on Remote Control: {…}",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude asked to turn on Remote Control for a session",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude turned off Remote Control: {…}",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude turned off Remote Control for a session",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude asked to turn off Remote Control: {…}",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude asked to turn off Remote Control for a session",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude changed the {…} for: {…}",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Claude changed a session's {…}",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-CQanmmjD.js": {
+      "sha256": "bfea3c9b14577274cd9802bf32875a9b540195af365e0292e3eed17c523350ed",
+      "patched_sha256": "abba1e93532376899780c01dfc9f2a87769f91dfbd95513eeb8dbb4e874dee46",
+      "rules": [
+        {
+          "context": "title",
+          "source": "File Access Request",
+          "expected": 1
+        },
+        {
+          "context": "dialog:message",
+          "source": "Allow Claude to {…} this file?",
+          "expected": 1
+        },
+        {
+          "context": "dialog:detail",
+          "source": "{…}\n\nThis will allow Claude to {…} the file{…}.",
+          "expected": 1
+        },
+        {
+          "context": "dialog:detail",
+          "source": " with your default application",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-CTJoyd_Q.js": {
+      "sha256": "99c4d59336c33ca553a1683e9060b87c973d8e7899f1c1437c72bf924a9b1c7a",
+      "patched_sha256": "5c4452219067633ff429b1c5d8cf07bbf67ec5441d18d1324748b1d0e30ff34a",
+      "rules": [
+        {
+          "context": "buttons",
+          "source": "Cancel",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "Allow",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "File access request",
+          "expected": 1
+        },
+        {
+          "context": "dialog:message",
+          "source": "Allow Claude to open this file?",
+          "expected": 1
+        },
+        {
+          "context": "dialog:detail",
+          "source": "{…}\n\nThis will open the file with your default application.",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-CZ_eybjC.js": {
+      "sha256": "c72e82975f616e80e11d99e2f15046a599ecd7ba62dd4780d2bad522c499e4d8",
+      "patched_sha256": "d6e56e04724fe491b9f9a7f79c72c5c4ae83df8ec647b628283dbb69b4b30bea",
+      "rules": [
+        {
+          "context": "label",
+          "source": "App & system info",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Deployment mode",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "OS build and updates",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Configuration",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "MCP servers",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Plugin marketplaces",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Organization sharing endpoint",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "History import",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Inference provider status",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Model and effort selection",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Skill scans",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Network reachability",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Auto-update status",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Session host",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Main process log",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Main process log (other profile)",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Main view log",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "MCP log",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "MCP server logs",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Setup window log",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Cowork VM log",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Cowork VM service log",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Cowork VM guest log",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Cowork EDR integration",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Claude Code diagnostics log",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Built-in MCP incidents",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Crash report list",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-Cg2TVGQ3.js": {
+      "sha256": "57e47628027ae6d5d53975204086f87caa5704aec4f26feda4ac2cfce91c2a30",
+      "patched_sha256": "3a80deeb0100e0a7087b33ba781aa51832718ddaca9353eaacff3db8da021df1",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Folder access for a scheduled task",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Trusted folder",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-D-0ap4A1.js": {
+      "sha256": "869a698be45e59915c2cabe45887c7916871c9512886c7db0896e584ab9d4bd7",
+      "patched_sha256": "f54a735547fb4f34972978c9ca81cfded472614a257850ad1a44291d9d15b264",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Choose a Claude data folder",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Imported conversation",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-DGfT4aPY.js": {
+      "sha256": "f77f87b0c0f5c6751d6c29e33cb75e5aa4ab720ecd8803931835ee2cf52923f0",
+      "patched_sha256": "8021326e459ab51d46903395e74d87dd54411a0418526453eb911509d66a6284",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Display {…}",
+          "expected": 2
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-DbQxWNiw.js": {
+      "sha256": "e42d65017647f1a1b2fc2d48d831475ad039b67b394bd585ea5a24f152b4b1c2",
+      "patched_sha256": "6ba1ff9265f0bbf03b35105db4ba063bab38f009c4d2183857d81c88ec20ed77",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Allow access to your folder",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Folder access request",
+          "expected": 1
+        },
+        {
+          "context": "dialog:message",
+          "source": "Allow Claude to access this folder?",
+          "expected": 1
+        },
+        {
+          "context": "dialog:message",
+          "source": "Allow Claude to access these {…} folders?",
+          "expected": 1
+        },
+        {
+          "context": "dialog:detail",
+          "source": "If you didn't ask Claude to do this, click Cancel.\n\n{…}\n\n",
+          "expected": 1
+        },
+        {
+          "context": "dialog:detail",
+          "source": "Claude will be able to read and modify files {…}",
+          "expected": 1
+        },
+        {
+          "context": "dialog:detail",
+          "source": "here",
+          "expected": 1
+        },
+        {
+          "context": "dialog:detail",
+          "source": "in these folders",
+          "expected": 1
+        },
+        {
+          "context": "dialog:detail",
+          "source": ", for this session",
+          "expected": 1
+        },
+        {
+          "context": "dialog:detail",
+          "source": ", or for all future sessions on this device if you check the box below",
+          "expected": 1
+        },
+        {
+          "context": "dialog:detail",
+          "source": "\n\nClaude's reason: {…}",
+          "expected": 1
+        },
+        {
+          "context": "checkboxLabel",
+          "source": "Don't ask again for this folder on this device",
+          "expected": 1
+        },
+        {
+          "context": "checkboxLabel",
+          "source": "Don't ask again for these folders on this device",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-DnuheOZd.js": {
+      "sha256": "a27948784ed9f9bbdb79af894378de558d390a9cade6b7c8ef76daa31b79a238",
+      "patched_sha256": "d5ca2144992a515b7c4255ad830f1d8a6b08a0722542aecee1589c8639c94434",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Untitled session",
+          "expected": 2
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-EuAz26tx.js": {
+      "sha256": "46cad41bdde1c205de1a98a2fe648491a0790fd92151fbba998891540215d473",
+      "patched_sha256": "7debbe85b345519798578c1df392005f6c8f120e1b394324cadae833dc637f5f",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Share screen",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-W3PWfdEh.js": {
+      "sha256": "6e932719a0ce13d0fe9539c3b9be35c5c01a7b372c0bb77142a01288c764fbd2",
+      "patched_sha256": "d01088f9f49c3a4977d9c76b7b57a27b0bc9c13ae13c4dcd454cbbc024426a20",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Built-in Display",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-pGHu85Pm.js": {
+      "sha256": "06ff9962ae2c435fa913df33a536f3ce9cdc145c3c39267b4bf1d7579aef2be8",
+      "patched_sha256": "4a4934fcdf0c4f82e6bfc31272bb380ba67fa2e00ddbdfe831925070cea2f403",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Cowork workspace disk full",
+          "expected": 3
+        },
+        {
+          "context": "dialog:message",
+          "source": "Cowork's workspace disk is nearly full ({…} free of {…}).",
+          "expected": 3
+        },
+        {
+          "context": "dialog:detail",
+          "source": "Working files could not be cleaned up automatically.",
+          "expected": 1
+        },
+        {
+          "context": "dialog:detail",
+          "source": "No working files can be cleaned up automatically. The space is held by sessions that are currently running or belong to other accounts.",
+          "expected": 1
+        },
+        {
+          "context": "dialog:detail",
+          "source": "Cleaning up {…} will free ~{…} of working files from Claude's workspace:\n\n{…}\n\nYour session history and output files will remain, but continuing these sessions may result in some unexpected behavior due to missing working files. To choose yourself, delete sessions you no longer need.",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-smg-p8oI.js": {
+      "sha256": "d6e46c63f50461adcff20730b80f93da3beaa1709f1434b3a98b67704ac01fbb",
+      "patched_sha256": "94c482dbc2a4035b64b6a5adf89098489602bfe00f4d4ad28a043011c60235b1",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Untitled task",
+          "expected": 5
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.pre.js": {
+      "sha256": "89716a69a48019df6d68336d56f870aadbce21b9b85b80b0c3bc82e456ce5104",
+      "patched_sha256": "b0dd6648d1078b8c5c27cc43ba01341d8937dfade3b626c1e5f5b6c8b3709eaa",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Cowork plugins",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Claude Code plugins",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "GitHub repo",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Git URL",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Marketplace URL",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Web search",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c029a409d-B6rke2Wk.js": {
+      "sha256": "b86b3c9b43c18f0d10ee10e72268c35a54d9b5223f0599591b320ac026203acb",
+      "patched_sha256": "4911f9e23730c507554285f0cb17483c0084d0ab3e7ab589c04ee9909d7037ca",
+      "rules": [
+        {
+          "context": "alt",
+          "source": "Clawd the crab",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c05b96c7f-DwSHsn_E.js": {
+      "sha256": "b88f4b3673762e99b379eff81d1a57f54abc2cdb0aaada138ac8e28d6aafe53f",
+      "patched_sha256": "849572ec82696c5d758f07d5eb2236574e375fbee83f581b6cd97cb8cabb0784",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Draft",
+          "expected": 1
+        },
+        {
+          "context": "text",
+          "source": "Thinking",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c0d9175fe-CnJN2HpJ.js": {
+      "sha256": "83bd31e9427a68938150322f9787bc8bd73e7434af14d10344f4c747e3238222",
+      "patched_sha256": "425fdbc9abb002350a06210d7a8c03157021547a93919f97151814a1bf4ecb7c",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Card",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Loading...",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c10f0af0c-YXcfI2n4.js": {
+      "sha256": "efa2f1a0dd388c7fadc09a536b1edf8ddbdc7c3168850c86e3d4333f0fb02012",
+      "patched_sha256": "37a11ff69053f3fe05df4c3026b09db3bca6d87ef68b084c7c0c2d9e0147558a",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Needs attention",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Routines",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Artifacts",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c1373296b-DaG9ft9j.js": {
+      "sha256": "bf1ea16e23d2f2902a33e89ff8f2813c428d796060daee974b2a1a8709adbee0",
+      "patched_sha256": "5b896d9c76f1ea6250b82a5f79f35c98c8f324c914f210f32ae04e8bc964b28b",
+      "rules": [
+        {
+          "context": "buttonText",
+          "source": "Connect",
+          "expected": 1
+        },
+        {
+          "context": "buttonText",
+          "source": "Reconnect",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c22168c79-GX3ab5Oo.js": {
+      "sha256": "d4979292040550ce1079544d7f4e5072e11c58d3c21cdad50678c7e2ac000fee",
+      "patched_sha256": "a142c3d0549fffc9d3eb838da4c1cb530ab7f9dd6102e6bc5688d214025322bc",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Republish {…}",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c2879f9ce-CbzI-lap.js": {
+      "sha256": "765e274526269465a30fe85420115539448541295ef7a9ffed97e4d8b2a0d976",
+      "patched_sha256": "3e410aa11c2f305ab4bf4f34002a5d45b8e9413ed6997c6e70960d04c67da9d9",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Artifact failed to load",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Error running artifact",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "File not found",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Error in Claude completion",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Error accessing shared data",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c2923ee12-FqBpcJDk.js": {
+      "sha256": "19268445525928127ad5c4ed32eda1fe1d61e0013eb66a6e861583220ddd7392",
+      "patched_sha256": "efa9c5eed3f80ffe356a0f1e2fee684be85dda8ee99d3217da6406682e8cacd6",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Limit increase requests",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c2a6d07ee-UDMfTYHs.js": {
+      "sha256": "4c80af72b8ba71043fb46e8cde8520523205c459c3f060b7d59e3142d382cedf",
+      "patched_sha256": "b9bbbd98f75f9a7a93d5bb214f916827970e6d0008f360b4fcccb3acea61efc9",
+      "rules": [
+        {
+          "context": "label",
+          "source": "from",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c2f1a3e62-B8cfl2qK.js": {
+      "sha256": "6969b088f5d2008cd3317d5368d9289165b7242e6782ab158318665350b73c94",
+      "patched_sha256": "5263b8742f2449eee211f88106c1b5a12b38847210be965dcc6ba683e2570655",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Teach Claude your way of working using skills",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c36734a81-BZGOzZGT.js": {
+      "sha256": "f533ad091b74f09ea96e464caecbad5f05fbaade1f53b88e2b72efa0fce6c510",
+      "patched_sha256": "62236b8f0d359b2ae7be7bb3011013aa21bada1b451639553d9423fdc9ca5e6b",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Allowed sites",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c3cc77624-CqaB8sv5.js": {
+      "sha256": "83bde2b61c0e492fb7b937ec4eb5a7431ab6970f27025cb1d1335408dcb32564",
+      "patched_sha256": "a4b6beafbe16c4f917df402a039ec9a7309845d46694347794c2278fb6eeb35b",
+      "rules": [
+        {
+          "context": "text",
+          "source": "Done",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "{…} · from {…}",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Session",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c43c83380-Cbf8eF-j.js": {
+      "sha256": "68ea70097571728f9e1ce66f2d421831f366b8c2d3f9bfc5c8418acddfb6b414",
+      "patched_sha256": "023fbc55802eabb1c35a3a96f55b51228f2738d4db4bf6b3f62f4a2aabc4e360",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Artifact comments: {…}",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js": {
+      "sha256": "d3280339bd2731a84812b6acc712ac6e9e052ae5645672d00c7e14ea4b23443b",
+      "patched_sha256": "154ddf2139c7cfe829b8419b97c47b3bcf28ac5166873442a0cd2edb2aa81e72",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Quote",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Open link",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Indent",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Outdent",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Code block",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Image",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Selection",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Code block actions",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "Copy",
+          "expected": 2
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Copy code",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "Wrap",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Toggle line wrap",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Editor actions",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "Dismiss",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Dismiss import fidelity notes",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": " ({…} occurrences)",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "Show",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Show the affected content: {…}{…}",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "Show ({…}/{…})",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Show the affected content: {…}{…} — showing {…} of {…}",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "Showing occurrence {…} of {…}",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c4a931512-CtBG6hUy.js": {
+      "sha256": "e66c7fa9ced12718c8c2a23017a4417b8695b474ff549d1ff686a27d99fc32b4",
+      "patched_sha256": "1b98b8f3c57c75608dd5c6eec5e9365d3f4723c8718c1305c50b64fc1d818d02",
+      "rules": [
+        {
+          "context": "label",
+          "source": " ({…} of {…})",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c4e63a189-Cgw_DqR5.js": {
+      "sha256": "6b73870700e2fac184a49aa471fad0404250c2c86b64db0782fb3f2cb1c9a31b",
+      "patched_sha256": "a13225fa3004ee1fc1d958a6d0bffe67a7687c8c53a5b55ff2d563b116fed03a",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Free",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "User",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Admin",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Owner",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Primary owner",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c5a5d8e85-VuzBvGAu.js": {
+      "sha256": "bbc705a69c40ada2fe601e2efd791a4b35ec5b5b364f488a66542586a7ac17b7",
+      "patched_sha256": "5cc9cba46bcc0727b4d2cabec7149c08ce8ffedee219826fc336a687e0a4c0f0",
+      "rules": [
+        {
+          "context": "children",
+          "source": "cache_depth not available",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "read (actual)",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "uncached (fresh compute): {…}",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "billed read: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " tokens",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "tool_search savings",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " tokens deferred (",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " tools)",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "(deferred)",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "{…} saved",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " tools",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": " (def)",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Context window",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " until compaction",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " used",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " total · threshold",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "(next msg: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "prompt: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "cache break: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " tokens lost",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "· tools ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " cached",
+          "expected": 2
+        },
+        {
+          "context": "children",
+          "source": "of ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " input",
+          "expected": 2
+        },
+        {
+          "context": "children",
+          "source": "billed ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " total",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Output",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Uncached",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "⚡ cache break — sections below were writes",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Empty section (0 tokens)",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Prompt content not available",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "global (cached)",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "account",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Prompt sections (",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " read (",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " write",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " uncached",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Prompt content not available — the prompt store is only accessible on staging and preview.claude.ai",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Cache break: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " tokens lost · tools",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Overview",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Send feedback",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Feedback description",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Sending…",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Send feedback",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Feedback sent. Reference ID: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Failed to load debug information: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Loading",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c6206e91f-Dm9t3KCa.js": {
+      "sha256": "ebfe30051a9186438e87ffb78a84f6cc69b5033e47e35efe932e137d080390f1",
+      "patched_sha256": "3cff03be4ff7d89ee3763a48df286b98259a2c24631cc228a3c2577c80fd053d",
+      "rules": [
+        {
+          "context": "subheading",
+          "source": "Please try again.",
+          "expected": 1
+        },
+        {
+          "context": "subheading",
+          "source": "This will remove Claude’s access. You can reconnect at any time.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Disconnect",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c62da1b56-iE_M1wCN.js": {
+      "sha256": "0e3ee7950469966b5b9c59a92e6ff368f692e842e66336b0daa5dfb6e708e4e5",
+      "patched_sha256": "68f73731ecc6230e572f49c5ae3d3555acc469f3ac74adfc4f94c504ca3e8162",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Phase {…}",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c632c9594-lRKI45HN.js": {
+      "sha256": "91052591c76dd9bc3377a4e25ba5d092405573cd3c2e26212cfb54b0c09f65d2",
+      "patched_sha256": "28edd441fc05290f1cecad519e29ee44a5943b9678f93d6d5f4b173924e5fbef",
+      "rules": [
+        {
+          "context": "subheading",
+          "source": "Close this window and try again.",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c667b4aab-DAW5gJc7.js": {
+      "sha256": "01813ca872130222b0d9a21380980fc28a2bc82858f57416178a502115e3be47",
+      "patched_sha256": "c960db729994241e75d2beb71697a38525bcf2607730228bbf73941ba0557fd8",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Chat about {…}",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c69399c21-CWI_q7r8.js": {
+      "sha256": "a7bd62caea0c35bd9549418cb34bebc0b6811d0e8cfffcc963c8f908bcc58a2f",
+      "patched_sha256": "195aedb31cbfb1da0fc285d9a21b7f7310638d683458d8cbbfd195dad748f107",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Untitled design",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c6f6cf4c2-BOCdKNwN.js": {
+      "sha256": "1112ded78c53f4dfd683117abecc3e24ac57349c8824323d990504064af904d5",
+      "patched_sha256": "ec28d228467aba7d80a671e8fc047c4240bb1d57555001bba29ca3f51ba59707",
+      "rules": [
+        {
+          "context": "label",
+          "source": "GitHub repo",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Git URL",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Marketplace URL",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c71860c77-BNSt6BK9.js": {
+      "sha256": "01fd1860d2dec1939c24d3d8c89ba0e64f51fff9064bd7215165238668de20bb",
+      "patched_sha256": "da4b1ded48b748e997dadd5a18ecf192042f17fbf333f46f123af8b234d97b2b",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Organization",
+          "expected": 3
+        },
+        {
+          "context": "hint",
+          "source": "Find it in the Claude Console → Settings → Organization.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " credit",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " discount",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "About {…}",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Claude.ai: log in, open ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": ", and copy the",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "API: log in to the",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Claude Console",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": ", open ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": ", and copy the Organization ID.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Provide the 12-digit AWS account ID (",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": ") for Marketplace or Bedrock. If you manage multiple linked accounts, provide the parent ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " — see the",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "AWS managed-entitlements FAQ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Provide the 18-character Vertex ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "billing account ID",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "). If you’re purchasing Provisioned Throughput, also tell your account executive the Project Number and Region.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Find your EA enrollment number in the Azure portal under Cost Management + Billing → your enrollment; MCA accounts use the long GUID form. Microsoft’s guide:",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "locate your billing account ID",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Your Azure ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "tenant (Entra) ID",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " is in the Azure portal under Microsoft Entra ID → Overview.",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Seats",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Assigned",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " seats × ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "seats are included in your agreement",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "total commitment",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "{…} assigned, {…} more than the {…} on your agreement",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "{…} of {…} seats assigned",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Assigned ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Left {…}",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Above {…}",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Over {…}",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " seats ×",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " assigned",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Seats on your agreement ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " · assigned",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Seats",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Today",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "Seats",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Add organization",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Add {…} account",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "You can add ",
+          "expected": 3
+        },
+        {
+          "context": "children",
+          "source": "organization",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "organizations",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "account",
+          "expected": 2
+        },
+        {
+          "context": "children",
+          "source": "accounts",
+          "expected": 2
+        },
+        {
+          "context": "children",
+          "source": "per certification — contact your account executive to include more.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " per certification — contact your account executive to include more.",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Platform",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Platform",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Your account team didn’t include a billing account for the tenants below. Add your Azure billing account ID and admin contact here. If you answer No on a tenant instead, your account executive will follow up.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Tenants you add below are billed through this account.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Set once — tenants you add below are billed through this account. Any billing account on your Azure agreement works.",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Admin contact (optional)",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "tenant",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "tenants",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Your account executive will review added tenants before they’re provisioned.",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Tenant ID",
+          "expected": 4
+        },
+        {
+          "context": "children",
+          "source": "Usage type",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "About usage type",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Usage type",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "You have changed this organization to Passthrough. Follow the",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "integration guide",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "to ensure you setup the organization correctly in your console org.",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Yes",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "No",
+          "expected": 2
+        },
+        {
+          "context": "children",
+          "source": "confirmed",
+          "expected": 2
+        },
+        {
+          "context": "children",
+          "source": "declined",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Confirm this organization",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Confirm this account",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "If only the usage type is wrong, choose Yes and change the usage type.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "added by you",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "changed by you",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "to be created",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "12-digit AWS account ID",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "payer",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Owner",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "Email",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Enter a valid email address.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "The private plan is issued to the billing ID; the tenant ID identifies where Foundry runs.",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Tenant ID (optional)",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "GUID (optional)",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "EA enrollment",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "MCA billing",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "7–10 digit number",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "{…} first name",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "First name",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "{…} last name",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "Last name",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "{…} email",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "{…} first name (provided)",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "{…} last name (provided)",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "{…} email (provided)",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "Select platform",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "Choose product…",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Select a platform.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Select a product.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Your account executive will review this addition before it’s provisioned.",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Exemption certificate",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Tax IDs",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Tax ID type{…}",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Tax ID number{…}",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Remove tax ID{…}",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Billing portal requests should be sent to",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "PO number",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Billing details",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Billing details",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "added",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "on record",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "reason: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "moving from: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Usage type: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " (was {…})",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Admin contact: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Owner: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Submitted",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Certifying as ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Review your billing details and certify your platform IDs",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Certify your platform IDs",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "First name",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Last name",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Back",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "This link has expired",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Something went wrong",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Try again",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Verify it’s you",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "A code was sent to ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": ". Enter it below.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Verification code",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Verify",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Codes expire after 15 minutes.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "{…} re-sends remaining.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Send a new code",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "The code goes to the contact on file — not to whoever opened the link. If this should be assigned to you instead, ask your Anthropic account executive to re-issue the link to your email.",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Verification code",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Request received",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "If your team's contact for this agreement has changed, ask your Anthropic account executive or email ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Step ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " of 3 · ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Confirm billing details and platform IDs for your agreement",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Confirm the platform IDs for your agreement",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Confirm the details for your agreement",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Loading",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Add at least one account to continue.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Complete the highlighted items to continue: {…} still missing.",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c71860c77-BqE2dIiy.js": {
+      "sha256": "1af366837b7c3e656f5a236bb16e4595d262b417ab34fbdcd486d93a50421c83",
+      "patched_sha256": "67abd900079b2af00e0b52a679114b53694d43019721f333a4689758ff2d2ff3",
+      "rules": [
+        {
+          "context": "aria-label",
+          "source": "Unreachable",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c71860c77-BxASVdAG.js": {
+      "sha256": "b63414bc66ee393a028fc2440db856582e28f635981c27fec2577dc28fe2d5d7",
+      "patched_sha256": "1ec990085ab40c9fea9b92532cfd4ea107639311b03f3a765897574f83ce5c9c",
+      "rules": [
+        {
+          "context": "children",
+          "source": "1m ago",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Reply...",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c71860c77-CedUFKNh.js": {
+      "sha256": "a4fe6daabb9ba6f4d75734623be3bf8092f638d9e76c4c343b3a468bb7d56c49",
+      "patched_sha256": "520e7c5bab8470db2768ca83c67e10ca16bd36c94410eb6edd485550e9d9567d",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Loading",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c71860c77-Ci957Gbq.js": {
+      "sha256": "d6d710d551e692d598488f7b1f974c8bf559cf9b5958330cb7a13aee296998d4",
+      "patched_sha256": "5c8e834df12b6b532447caac908928e1f343580bffb140566158b2e0e8e11086",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Standard",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Premium",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c71860c77-DX9saSif.js": {
+      "sha256": "2b376434f885940589d0aba7d6dba0e4f5c741942f449fe14498a979937f8bd9",
+      "patched_sha256": "7b007297ad19ac41f9c25de08dd078bb74c1c3dfcc0b83598f378bef0ff5ebfb",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Claude Platform on AWS, through AWS Marketplace",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Not sure",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Vertex AI (Google managed)",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Claude Models on Google Cloud (Anthropic managed)",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Request a review of a restriction",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c71860c77-Dd9UzhJo.js": {
+      "sha256": "cc1d2cf746d0160036a14fd0f93c3c3a677118ad1f2a18e1e7321f2256927393",
+      "patched_sha256": "c939854b158b9e4942f2a82933d51159bc57211e02b9b9d12a92eb261fb2f7e6",
+      "rules": [
+        {
+          "context": "placeholder",
+          "source": "Leave blank to keep current",
+          "expected": 2
+        },
+        {
+          "context": "placeholder",
+          "source": "Min 20 characters",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c78520679-BW4cMn5Y.js": {
+      "sha256": "8b7541030e6fb51c18b1ff9e64786450a0cf5bbf7bff95edffc0c9a5c62e9f44",
+      "patched_sha256": "6cb8d26d9b35ec756251c36ea55b039536f6210ccbb330751038d738aa2d3002",
+      "rules": [
+        {
+          "context": "children",
+          "source": "· {…} kept",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c788b5dbe-aTpk2pXo.js": {
+      "sha256": "aff99130a543d68144084c40b52072361c3054cd86eb5f999dd0fdea031084eb",
+      "patched_sha256": "9a6a38a170f297f808b2689298babf81993f1cb26cd5b44acefebe4fd67aeb1f",
+      "rules": [
+        {
+          "context": "confirm",
+          "source": "Do you want to navigate to {…}?\n\nWARNING: This link could potentially be dangerous",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c7e61d863-CaMrpwJc.js": {
+      "sha256": "7b4bc754054413f072750ab0d18e9ccb3f87864309a2eb8ba0ef95b2eabf76b3",
+      "patched_sha256": "d32859003957e615afcbe63c5c0b3321f032025837794e47cc0ccda8f0cdffbd",
+      "rules": [
+        {
+          "context": "label",
+          "source": "US EIN",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c80476347-CrU4RRp3.js": {
+      "sha256": "2a1a4e3ca66f200d7b8dc5569c19720073f2aa2fb0c709ca220c6a1532615595",
+      "patched_sha256": "088ced95caac827a991454092aa8e9ad892285b987d5949fb9c23c9519929816",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Artifact",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c8ccf33b2-BQLAINkD.js": {
+      "sha256": "29585051418b5abe546259f4a21a6423b0d61670840ccf0950d418b3913bb878",
+      "patched_sha256": "10b7ddeff3fd9efa4778d2f67b7f421bf46e9294fd1e3d3b7fabaea0b255488e",
+      "rules": [
+        {
+          "context": "label",
+          "source": "an Anthropic API key",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "a Stripe API key",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "an API key",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "a GitHub token",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "a GitLab token",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "a Slack token",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "an AWS access key",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "a Google API key",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "a Google OAuth client secret",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "an Authorization header",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c93fde636-MkHqq5MX.js": {
+      "sha256": "0ce3fff45a7249cf9dbea27308e42889a0e0d02114b92dabfbad8334002072f1",
+      "patched_sha256": "1d32ffea5c36d759d77624dc31f070a55d94d35f4f1d146daa335cfd15d48d3e",
+      "rules": [
+        {
+          "context": "aria-label",
+          "source": "Remove {…} from suggestions",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "Add override by feature name…",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c9500abe8-Di45CNx6.js": {
+      "sha256": "7f18d8838be5f599be91e6e4794eca082a84db157fdac24b9db7996fe765bec6",
+      "patched_sha256": "1fa9263ce40f5ddaae6d08c5a969cbcb14063e7f69a62cb1940f4ce8bcb33f53",
+      "rules": [
+        {
+          "context": "placeholder",
+          "source": "Default",
+          "expected": 1
+        },
+        {
+          "context": "alt",
+          "source": "Claude Code Terminal interface",
+          "expected": 1
+        },
+        {
+          "context": "alt",
+          "source": "VS Code IDE with Claude Code extension",
+          "expected": 1
+        },
+        {
+          "context": "alt",
+          "source": "Claude Code web interface",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c9675fdeb-JdQ57-kf.js": {
+      "sha256": "19b97d0ab6aad8e66fbd6774fbe5054d4beee5e1e789bb27780f8b5b9cd148ab",
+      "patched_sha256": "07b2a0e9b1d6095b89a98d1cb43f0e5e6d1abce2ccdf496ee9182824839ac435",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Remove this group’s access to",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Group",
+          "expected": 3
+        },
+        {
+          "context": "label",
+          "source": "Custom role",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Applies to",
+          "expected": 4
+        },
+        {
+          "context": "label",
+          "source": "Monthly limit",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Member ID",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Member IDs, in the order above",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Group ID",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Group IDs, in the order above",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Removes {…} spend limit",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Approve",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Seat",
+          "expected": 3
+        },
+        {
+          "context": "label",
+          "source": "Requester",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Plugin",
+          "expected": 4
+        },
+        {
+          "context": "label",
+          "source": "Plugin name",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Marketplace",
+          "expected": 6
+        },
+        {
+          "context": "label",
+          "source": "Skill",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Marketplace name",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Action",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Sync automatically",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Add repository",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Access",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Connector",
+          "expected": 3
+        },
+        {
+          "context": "label",
+          "source": "Source",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Host",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Add to allowlist",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Tool name",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Email domains",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Total monthly limit increase",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/ca31fdde5-B6NBdB0G.js": {
+      "sha256": "8b19e266492627c0b553dd888ccab8b52ce2d880cded84dfed575f38ed4e7220",
+      "patched_sha256": "c12d74c1ac2df7661e8f16b3f1537930fd1d19fb8f695fccb215e706f26db9d9",
+      "rules": [
+        {
+          "context": "label",
+          "source": "from",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/ca768caa9-D7A8Fhi_.js": {
+      "sha256": "7fedf4031413d2830ff61db4bbf9f225d1f02f1b1f76cf05008500efba8a063a",
+      "patched_sha256": "603423a519cadc98fbc8f5018854d905ffa1642aa0da6cdac64a32d72ad7f2be",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Adoption",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Cost",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Features",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Seats",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Compare",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "PRs with CC",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "LOC with CC",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Users",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Sessions",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "LOC without CC",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "PRs without CC",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Lines of code accepted",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Suggestion accept rate",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Excessive Bash approval prompts for `npm test`",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "16 users haven't tried the deploy skill",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "47% of users have permanently approved Bash",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Daily active users",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Value",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Chats",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cb23947a7-Cofu8DTv.js": {
+      "sha256": "3a222749746aa01967dafa92033799e3c2a87042cd48f2677704bd38e1f0767c",
+      "patched_sha256": "b7f45273e22e06ab0c6b37efb32c87ff2a47a091dd83f41c222159e185f7d848",
+      "rules": [
+        {
+          "context": "label",
+          "source": "GCP access token (with Service Account Key)",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "GCP IAP (with Service Account Key)",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "OAuth 2.0 JWT bearer",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "OAuth 2.0 client credentials",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "OAuth 2.0 authorization code (3-legged)",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "MCP Connector",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cb6930dae-sPKXCqSB.js": {
+      "sha256": "4652c6542e05d47265a66f2d6a4eb0229fac4e74510a2506f131dcaafd91159b",
+      "patched_sha256": "cb435e828af215292f248fc2e366b892ce72cb06f41ec57a37f6bdbda74648db",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Open in Slack",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cbbbe68ed-avD-3JR9.js": {
+      "sha256": "129cf421463d191e3bef30c2ace2adf6a280933e35c32631e1bb469827245ead",
+      "patched_sha256": "ecd6b1bac49513bf9a3739dd03f22ec5fd10780dada30e824c6f7dacd8430a21",
+      "rules": [
+        {
+          "context": "alt",
+          "source": "Cowork preview",
+          "expected": 1
+        },
+        {
+          "context": "alt",
+          "source": "Claude Code preview",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cc011544b-Be_ev9xv.js": {
+      "sha256": "b46e79f98f6a87c4b7d9375be493d1b408502986a278e3071c1627776e00695e",
+      "patched_sha256": "920d081ca62e4084162978c43b2dd66e7aa1ff85f9415f08f16bb39043a49264",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Open",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cc1aae219-DkjC7ZzV.js": {
+      "sha256": "b67017407c9ccd692b29c2b75a1bfc017f7f0425b2d6280629e2927ce232f3e1",
+      "patched_sha256": "292c26be3acc13488828d419bcefae794330edf2b1d4bd04f85d3c7b041572e0",
+      "rules": [
+        {
+          "context": "alt",
+          "source": "Attached image",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Response",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Request",
+          "expected": 2
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cc20c35ef-DCLsoS4j.js": {
+      "sha256": "d6c1f515b98e60f13dfebb344f252331a10ddb5d25139161af418aad91db38e9",
+      "patched_sha256": "cd039f50a24c42f118a1e2e522d3cf75eab518eed1776fd3c853a6d401f89d95",
+      "rules": [
+        {
+          "context": "alt",
+          "source": "Warning icon",
+          "expected": 2
+        },
+        {
+          "context": "alt",
+          "source": "Guidance illustration",
+          "expected": 8
+        },
+        {
+          "context": "alt",
+          "source": "Interface preview",
+          "expected": 1
+        },
+        {
+          "context": "alt",
+          "source": "Product interface preview",
+          "expected": 4
+        },
+        {
+          "context": "label",
+          "source": "Plant",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Microphone",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Headphones",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Cat",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Camera",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Coffee",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "ONBOARDING",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Search",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Paste ",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Insert",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Delete",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Format",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Sort &\nFilter",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Find &\nSelect",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Add-ins",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cc334e1a3-CKd5pysY.js": {
+      "sha256": "bfdc17eb69f1878ef1ad734575f015de783048929b0eb1e2a96fd1fe6f676575",
+      "patched_sha256": "3d49ee93e67273d6c82fe168eee03a1e2ade1e0a035d761113ca8b0ccd4d9d43",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Proteomics",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cc8af9271-D-y4iloH.js": {
+      "sha256": "2ede148a49aadb65526189ec65255094b115afd384c4dc91b9289b10acabb05e",
+      "patched_sha256": "f5f78d52317c272c19494086b505f498eb82fdf058ced29613bb283a56582684",
+      "rules": [
+        {
+          "context": "textContent",
+          "source": "Insert",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "Replace",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Accept",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Reject",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Generating new name suggestions",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Cancel generating new name suggestions",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/ccc68ce7f-CNhEcRn7.js": {
+      "sha256": "4cf0b7ecdb3680ee4f89a734161b71b141196d1e7573acffa8772444a5f8359e",
+      "patched_sha256": "833a77776d8dd71123e22d4ef0460ce1effab51294b4dd5db8d67feda50447c1",
+      "rules": [
+        {
+          "context": "label",
+          "source": "(unknown)",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "(browser default)",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/ccd3f68fe-BukJg0M0.js": {
+      "sha256": "2d8fe8c16b0aecdfecdc42efc385600f4d778328e8a10a91ac8fca431e39a321",
+      "patched_sha256": "7d528d521efb31a0100c139300f2b63d2cf9bd2cfeccb45cd65f1fd1b84fe7ab",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Today’s brief",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "5 completed",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "2 still open",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "in 45 min",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "3 post ideas",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cd30666f2-DI2NXRzS.js": {
+      "sha256": "841f51089adb555a3f22fc6ff371c3531a9b52bef21fe8054718408184199658",
+      "patched_sha256": "115f706a94b52cd18e830967cce2cfa1be43a57b4cc0ee07d436a0d39fe75b77",
+      "rules": [
+        {
+          "context": "children",
+          "source": "view on GitHub",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cd9350303-Dfl62CGe.js": {
+      "sha256": "e92fbc8ec64e9ef2c5d037bc918dac12a9b19354c26ec5295519892a4375ddf9",
+      "patched_sha256": "064d50c1c0be28e0ca44cd964668ab999d6bae0b74c01c98547523c95a166f8d",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Default method",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "OAuth client",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Client ID",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Client ID",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Client secret",
+          "expected": 2
+        },
+        {
+          "context": "title",
+          "source": "OAuth sign-in",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Request headers",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Static headers",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Introduction",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cda6b7bca-BqUTgQMr.js": {
+      "sha256": "f53b42c720ed981c62bbd894982de59806a938c29b3b16ec54a663a5da22362e",
+      "patched_sha256": "a473008004cc891b2b1e616fc207ba8add9846953a68bf6a44dc21a56e197b61",
+      "rules": [
+        {
+          "context": "label",
+          "source": "added",
+          "expected": 2
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cdb9af701-DRqAqOM7.js": {
+      "sha256": "c34f52b5b6b1ac88800d05f4e5f0af9d0d058ce88bcbf3b553c02ef505efdfeb",
+      "patched_sha256": "0d88d6a91748c782cb58169230e38a8d5b74e2406e2de34434054a2fc6ee3326",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Canadian QST number (Québec)",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Hungary tax number (adószám)",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Japanese Registered Foreign Businesses’ Registration Number",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "KRA PIN",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Slovenia tax number (davčna številka)",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cde03b773--ra4Wczw.js": {
+      "sha256": "c86c7c106237ca544f875c89113825db627f5aee8835525ef6df6e68eff741bb",
+      "patched_sha256": "1622dd8a0d6b47e71a901884be275e57227ad3f6ed21c23eab59dbf040278318",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Default model",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Default effort level",
+          "expected": 2
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/ce0b4c6c4-BAc0U1GT.js": {
+      "sha256": "d36a1940aea25bd47d4b11e3075f2666bdab57e58ee94feceec1cbadfa30babc",
+      "patched_sha256": "b0b8df7b47df0c1d231db2475844c36623e59b4813d4b3572a9467b26dc80d85",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Try again",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/ce78157a2-C1lqjnls.js": {
+      "sha256": "4721fe8ffb35ffb29f10ac470c5e7626aeabffd6c7034bc5e058f978926f545a",
+      "patched_sha256": "1cc54197f974440cdb11101694b029f146a96e78bad603986d2aac5a44ef0b3f",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Let's build an 8-bit Clawd video game",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Update src/game.js",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "CLICK HERE",
+          "expected": 4
+        },
+        {
+          "context": "alt",
+          "source": "Install Claude Code",
+          "expected": 1
+        },
+        {
+          "context": "alt",
+          "source": "Open a project",
+          "expected": 1
+        },
+        {
+          "context": "alt",
+          "source": "Start a conversation",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/ce9196168-DWfbBP0y.js": {
+      "sha256": "035bd31c346978444198b9d8cf8084124b2496861fd392e3a5b66b733c5c76c5",
+      "patched_sha256": "7da5bf4082329ffb61a92ea73ac4e1603f6630df5ccda20c3edc6158d8392606",
+      "rules": [
+        {
+          "context": "label",
+          "source": "(unprintable)",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cf27efc81-D2LRdMF1.js": {
+      "sha256": "6aa90f5586688b482033e85176a016973166eb11ee96c5b546e3713f9a3549a2",
+      "patched_sha256": "426b29d1eb2b1b612d139c10fb2bbb7e7f3cbba75d1d1e28eea8f4d16559a046",
+      "rules": [
+        {
+          "context": "helpText",
+          "source": "Paste a personal API key issued for your Linear workspace.",
+          "expected": 1
+        },
+        {
+          "context": "helpText",
+          "source": "Paste an internal-integration auth token from Sentry.",
+          "expected": 1
+        },
+        {
+          "context": "helpText",
+          "source": "Paste a PagerDuty REST API key — read-only is enough for triage.",
+          "expected": 1
+        },
+        {
+          "context": "helpText",
+          "source": "Paste your Datadog API key. The application key is optional but required for read-side queries.",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "DD API key (32 hex chars)",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "DD application key (40 hex chars)",
+          "expected": 1
+        },
+        {
+          "context": "helpText",
+          "source": "Paste a fine-grained personal access token or a classic PAT with the repo scopes you want Claude to reach.",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Personal access token",
+          "expected": 3
+        },
+        {
+          "context": "helpText",
+          "source": "Paste a personal access token with the api scope (or read_api for read-only access).",
+          "expected": 1
+        },
+        {
+          "context": "helpText",
+          "source": "Paste a restricted or secret API key. A read-only restricted key is enough for lookups.",
+          "expected": 1
+        },
+        {
+          "context": "helpText",
+          "source": "Paste a bot or user OAuth token from your Slack app's OAuth & Permissions page.",
+          "expected": 1
+        },
+        {
+          "context": "helpText",
+          "source": "Paste an internal integration secret from your Notion integration settings, then share the relevant pages with that integration.",
+          "expected": 1
+        },
+        {
+          "context": "helpText",
+          "source": "Paste a Vercel access token from your account settings.",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Access token",
+          "expected": 1
+        },
+        {
+          "context": "helpText",
+          "source": "Paste a personal access token from your Asana developer console.",
+          "expected": 1
+        },
+        {
+          "context": "helpText",
+          "source": "Paste a private app access token from your HubSpot developer settings.",
+          "expected": 1
+        },
+        {
+          "context": "helpText",
+          "source": "Paste a Gong API access key and secret. A Gong technical administrator can create them under Company settings → Ecosystem → API.",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cf400e6a4-CnwXYNfx.js": {
+      "sha256": "1c5ff61a0ec0250a0a1b6600c1868c30e11df80bda87fde844ec40756999e09a",
+      "patched_sha256": "76aeaaeaf1b3364cf24ea8e67aab6eb48b181cb2244987419e3abeccc2a6436c",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Admin Console",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Set automatically",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Not available",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "AWS service identity",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "GCP access token (with Service Account Key)",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "GCP IAP (with Service Account Key)",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "OAuth 2.0 JWT bearer",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "OAuth 2.0 client credentials",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "OAuth 2.0 authorization code (3-legged)",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "MCP Connector",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "added",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cf580efe9-CxvY25bu.js": {
+      "sha256": "748ee6ed045bb727ee3831313a59f3aed24e696a922a4c6151c2edb485a79868",
+      "patched_sha256": "dc7ce4544820c5ac5719b19e2e0a8ed4c6760aeca5573e21b6bab18c45aaf8c5",
+      "rules": [
+        {
+          "context": "caption",
+          "source": "The dev server stopped. Restart it, or close the preview.",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Browse with Claude",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Dev server failed to start",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cf69ee56c-CMV43QI8.js": {
+      "sha256": "3036d1989f215d1d9c4de693e7d59ed9a2e33cfad3522d84f7051cbdfab90098",
+      "patched_sha256": "e3ac4b26ea7c7926b84c824093af78ef4ac7dfeae557a29c582e3def822f0a40",
+      "rules": [
+        {
+          "context": "aria-label",
+          "source": "Copy to clipboard",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cf6c0e3a1-tokZ4Qx1.js": {
+      "sha256": "e2a7778143cb3a12094067503d70078ed5c79426c43ac1660da4581f3ffa7fed",
+      "patched_sha256": "cbee37f98d3d9444a228cf93887b551b115e0035355ebffba4df8190ae9e218f",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Memory",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Use your saved memory in this panel’s replies. Fixed once the chat starts.",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Tool input",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Claude wants to use",
+          "expected": 2
+        },
+        {
+          "context": "children",
+          "source": "from",
+          "expected": 2
+        },
+        {
+          "context": "children",
+          "source": "Waiting for the full tool request…",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "vote",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "votes",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " this session",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Replay last prompt in a new chat",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Chat actions",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "About the same",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Prefer {…}",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "You’re giving feedback on a new version of Claude.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Clear",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Change",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cfd6e692d-DzECmKpS.js": {
+      "sha256": "368bab39ee0bafef66f758b1683feae5ac9c35e448f25486b59efa59da0afa5f",
+      "patched_sha256": "b739bb8988e2cf5f2eb14d861a0a9b6c1563168aa8500d99d2f79f9f16ab8b1b",
+      "rules": [
+        {
+          "context": "textContent",
+          "source": "WebGL appears to be disabled.",
+          "expected": 1
+        },
+        {
+          "context": "alert",
+          "source": "Wrong PDB ID",
+          "expected": 1
+        },
+        {
+          "context": "alert",
+          "source": "Wrong Compound ID",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cff9e0245-DwdRHITi.js": {
+      "sha256": "bb3a19b87d135d6fc5459b06007ba9d9b9bf823ce2ec9566f6fa7b97b80e78ea",
+      "patched_sha256": "3169a5254dc3e0241a41100db0102124e65df2c868e000ecad262f54ddac444d",
+      "rules": [
+        {
+          "context": "createElement:children",
+          "source": "Error: AuthFailure",
+          "expected": 1
+        },
+        {
+          "context": "createElement:children",
+          "source": "A problem with your API key prevents the map from rendering correctly. Please make sure the value of the ",
+          "expected": 1
+        },
+        {
+          "context": "createElement:children",
+          "source": " prop is correct. Check the error-message in the console for further details.",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/frame-connect-DrBckW96.js": {
+      "sha256": "7656498895ace53171b6d8706b43e4df697d5b23a4019f8bb340180c5cc2739e",
+      "patched_sha256": "351a3ae30c46ef3904bb3433d726fbed925d5350fc3b6962d85ad2f2512efe20",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Not now",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Allow",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/frame-manage-DwvHuNPQ.js": {
+      "sha256": "561aefc575e84011a12de0c45510e5eee3f55278396993d71cbaf192d6ed24f8",
+      "patched_sha256": "ea853626a4de39179c5675737adc22df757ff224c3fa6eee1dfa9eccf85a2df2",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Done",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/frame-shell-Dl_mN2Pv.js": {
+      "sha256": "bb3bf8058d2896f5bb613c7cbdb95216ccba2f3c2f3fa4220c81e3f287a2a88e",
+      "patched_sha256": "f26f20383fb16926a0a68a2d3d49e18a71c8253dc459ab631a0f3a8e2c30145f",
+      "rules": [
+        {
+          "context": "title",
+          "source": "User-generated artifact content",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "You don't have access to this artifact.",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/frame-shell-broker-DG484IC9.js": {
+      "sha256": "3d9a9752c96d7430e423185f9134e2f0b8d4bf77dd0d75daad8091cc57a2637c",
+      "patched_sha256": "770858a93c81dd2c47daf163696c27dc4ccd0b4bd13f70395851f7b910034009",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Let this artifact use your {…}?",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Let this artifact send messages to Claude?",
+          "expected": 1
+        },
+        {
+          "context": "description",
+          "source": "Its editors control what it sends, and you can turn this off later in Permissions.",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/frame-shell-chrome-Cat-wJ9f.js": {
+      "sha256": "8ce52aee6402962ea7f1abb4f8077bd80fd17eaf7001eb753ec287570735de3e",
+      "patched_sha256": "2ab5aeaaffb4f374ee46f0227fec2922a5220f61a533246c8c0ab3db71091b7b",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Let this artifact read your documents?",
+          "expected": 1
+        },
+        {
+          "context": "description",
+          "source": "After you allow it, this artifact can read any document you can open in Claude Docs. It won’t ask again, even after this artifact is updated.",
+          "expected": 1
+        },
+        {
+          "context": "withClaude",
+          "source": "Claude may decide when this artifact reads documents.",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Let this artifact change your documents?",
+          "expected": 1
+        },
+        {
+          "context": "description",
+          "source": "After you allow it, this artifact can change any document you can edit in Claude Docs, in your name. It won’t ask again, even after this artifact is updated.",
+          "expected": 1
+        },
+        {
+          "context": "withClaude",
+          "source": "Claude may decide when this artifact changes documents.",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Camera",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Microphone",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Location",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "MIDI devices",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Dictation",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Read aloud",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Read artifact metadata",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "This artifact reads metadata of other artifacts",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Send messages to Claude",
+          "expected": 1
+        },
+        {
+          "context": "detail",
+          "source": "Editable copy in your Google Drive",
+          "expected": 2
+        },
+        {
+          "context": "detail",
+          "source": "New page in your Notion workspace",
+          "expected": 1
+        },
+        {
+          "context": "tooltip",
+          "source": "Org default ({…})",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Submitting this report will send the entire current conversation to Anthropic for future improvements to our models. Submitting feedback will also submit the comments and additions of other users active in the Artifact.",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "{…}{…}: options",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Unknown member",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Stop reading aloud",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Stop",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Turn off for this artifact",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "session…",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "session live",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "session offline",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Message",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Fetching the session’s pending plan…",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "The plan changed in the session since this was shown — nothing was sent. Reopen to fetch the current plan.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Plan approved",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Plan rejected",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "— sent to the session.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Close",
+          "expected": 2
+        },
+        {
+          "context": "children",
+          "source": "Plan too large to show in full — open the session to read the rest. Approval is disabled for truncated plans.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "This plan contains nothing reviewable — it is empty or holds only hidden or blank characters (shown as �) — so approval can’t be tied to meaningful content. Approve it from the session instead. Rejecting from here still works.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "This plan has no bindable content, so approval can’t be tied to what’s shown — approve it from the session instead. Rejecting from here still works.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Reject…",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "Steer the session…",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Delivery failed — try again.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Send",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Something else",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/frame-shell-deferred-B6WTQtqH.js": {
+      "sha256": "0837a0d78cc19905cb18304613742363b516ca4f7949f953d1604ceb6c8197ff",
+      "patched_sha256": "1050a8b372f2e8ef774d321ce61688eeea67641007cb25665f4b5d3c07a91594",
+      "rules": [
+        {
+          "context": "textContent",
+          "source": "Sign in with a different account",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/frame-window-CSWc4lQL.js": {
+      "sha256": "3cc59a079921da49253c9fec6cf4424a2031afdc73596d5e8fe96150085c97d3",
+      "patched_sha256": "6d2cf9ebf39e52ba1016467d505fd006cde0f50c125b9821eac640744f6ab04d",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Sign in to continue",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Open in Claude ↗",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "You’re signed in to Claude with a different account than this artifact tab. Switch accounts in Claude, then try again from the artifact.",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "This link has expired",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Something went wrong",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Couldn’t load this page. Go back to the artifact and try again.",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Loading",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Returning to the artifact…",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/shared-1-DDeifkko.js": {
+      "sha256": "297bbe804d7a168551850f5bf1e767728eba5497a3dbd08b50d926a7892bd5d1",
+      "patched_sha256": "4355b3f1b125d4664ef69e2480bf9e2a46eeab264d9fb1b53cbc06a10c3a9207",
+      "rules": [
+        {
+          "context": "text",
+          "source": "declined",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/shared-11-Bk1bOUNd.js": {
+      "sha256": "faca4477d74ecd7f3ea3c3f7898250b5b6d8f0bc7d27e4573537b8c250db4685",
+      "patched_sha256": "fe1ea5c125cc78dd10b9e3e78bfea4b01c5b70aa8df721e1e221dd493b0d114c",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Untitled session",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/shared-182-C35swRGA.js": {
+      "sha256": "412c7ef5c7e58c3200067f6961c633b483c0cc94953b745d9464bf5615f1c89d",
+      "patched_sha256": "49b6477b0f7929c24033b42480a11ed2c13c8ea53c70f19f9429dab21c7ef6cd",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Web search",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/shared-19-xqQFiFqV.js": {
+      "sha256": "c93770bbb144161a14e7c97f6dd20259bf8bfdca3931db4eebf557965ff5f61b",
+      "patched_sha256": "68663365a79ea05b75fa293226c8ef199e205d090598e9b10e0cfb74382118b5",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Retry",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": " This panel is hosted by the Claude Chrome extension, but it didn't respond. Reload the side panel, or check that the extension is enabled.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Reload",
+          "expected": 2
+        },
+        {
+          "context": "children",
+          "source": " Sign in to claude.ai in this browser, then reload this panel. If you're already signed in, the extension may not have permission to access claude.ai — check chrome://extensions → Claude → Site access.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "This panel is signed in as ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": ", but the Claude extension is signed in as a different account. Browser actions run as the extension's account, so the side panel can't be used here. Sign in to claude.ai as the extension's account and reload the side panel.",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/shared-21-BcoB9l5V.js": {
+      "sha256": "d65fd428525a937a49f4ee4207d428003e49c1d36467a81e8a653f37e853b592",
+      "patched_sha256": "18ab3cbfd681b2432a58f3d898144b3abe8fb03348779e1ed018918e3d2cdb7a",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Dispatch",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/shared-23-g2ehcoiA.js": {
+      "sha256": "db9ffa9d71d30f81aa53709087f4edca24414a60a1eab65f2052a2e74ff74a3d",
+      "patched_sha256": "c27696d84cec6b6f78492731062677d5a711f0a47da5ba980853bf3805f1a00e",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Check your connection, then reload.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Reload to continue.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "On a work or school network, a security filter may be blocking part of Claude. If reloading doesn’t help, ask your IT team to allow all files from {…}.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Reload to continue. If it keeps happening, check",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Reload",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Home",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Still not working? You can reach out to",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "support",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "with this error code:",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Page not found",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Claude can help with many things, but finding this page isn’t one of them.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Go back home",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/shared-24-DYb4iEw5.js": {
+      "sha256": "b4cfe6729156583998d449e513b629e8b601caa915be31a9f2effa1731efcd69",
+      "patched_sha256": "019cf944d6e0f4f9fd24c5c01ae83170a110c4e25fba287abb2b14d22c1701f6",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Settings",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Plugins",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Customize",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Create project",
+          "expected": 2
+        },
+        {
+          "context": "title",
+          "source": "Cowork",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Artifacts",
+          "expected": 2
+        },
+        {
+          "context": "title",
+          "source": "Design",
+          "expected": 2
+        },
+        {
+          "context": "title",
+          "source": "Admin settings",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Analytics",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Skills",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Artifact",
+          "expected": 5
+        },
+        {
+          "context": "title",
+          "source": "Upgrade",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Artifact invitation",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/shared-3-DQY7fO_s.js": {
+      "sha256": "2a42d1e020e8cc0ad759ffe7402baad5fc5891d9226efcfdd1293944e6fad978",
+      "patched_sha256": "c7f9c4afef57904e102bd7bc3b12feab1afb8f1db1d8de624a74c7470ebaf2d3",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Allow once",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Deny",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/shared-50-xxLRrwSO.js": {
+      "sha256": "673c31849e884a0b681638c360618d3e2b162212e66f675a5724bf9585205735",
+      "patched_sha256": "e4d314323c57e64e9e7c44aeab1fe23b16dcc6566f2353b83371b84ffac1f877",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Claude content",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/shared-52-JcfRCCiW.js": {
+      "sha256": "b1956169410a487e2d04247790b12de035492250c6f33529333c54c6e427df6d",
+      "patched_sha256": "f6cc6fbe896f34c9415b3b5ce74657f53b770b4b39cc03e3c0b8c285778ca605",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Code",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Databases",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Servers & cloud",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Logs & errors",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Files & documents",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "AI models & agents",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Websites",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Finances",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Tickets & tasks",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Email & messages",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Designs & media",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Reference docs",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Dependencies & packages",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Notes & memory",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Books",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Contacts & leads",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "APIs",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Claude history",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Claude settings",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Trips",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Engineering",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "Data",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "IT & security",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Product",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Design",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Marketing",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Sales",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Customer support",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Finance",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Legal",
+          "expected": 2
+        },
+        {
+          "context": "label",
+          "source": "HR",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Operations",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Financial services",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Education",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Nonprofit",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Retail & e-commerce",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Travel & hospitality",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Media & entertainment",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Government",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Energy",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Manufacturing",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Utilities",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Agriculture",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Mining",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Construction",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Telecommunications",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Insurance",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Events",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Travel",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Research",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Health",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Fitness",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Music",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Food",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Shopping",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Sports",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Home",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Learning",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Faith",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Family & relationships",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Games",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Writing",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "News",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Social media",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Cars",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Medicine",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Science",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Maths",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Languages",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "History",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Law",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Economics",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Psychology",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Geography",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/shared-frame-Bk9NoDRy.js": {
+      "sha256": "e8d12a84ba174b796968dfe427b52f23d3bc294dba39a2219f5f80b9e153d4cf",
+      "patched_sha256": "c2aa0157bc03e9e23537c30d4e1d9a252f5230987eacf9dd40933fb6cbb6cfd9",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Export",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/shared-frame-boot-BeclWIbB.js": {
+      "sha256": "92b072942a95189e4fb60e3f5a38e1a61ce838a2f904a300a71e5326fce2bc80",
+      "patched_sha256": "7ab093e17da83426d120b2644eb22ce120c10b09a29ef244b5347b0c57227c14",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Personal",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/vendor-frame-BMru44jc.js": {
+      "sha256": "ff35288b6656f0352ca556b98be354dccbb4829cfbf2b124acb2fae9d4fc49d2",
+      "patched_sha256": "14547a325560e93c3652b9ab66d13fa0405b35320acd68c1a08854363c4730b8",
+      "rules": [
+        {
+          "context": "aria-label",
+          "source": "Dismiss",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/vendor-router-DDV3aeOk.js": {
+      "sha256": "46245f419c8f90c9753ea81cbb080494fbb3cbb3881a169b12267a4d762ef8df",
+      "patched_sha256": "8c8b8f9780033c69c23538b84a8a115343a10dbe6e10f514efee9ab21b6917dc",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Hide Error",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Show Error",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/vendor-tiptap-H35jRDyw.js": {
+      "sha256": "6d7b589b3256e02a629177c31e8ec2f4a7737eb1098c1b332b7dda1584f79e9e",
+      "patched_sha256": "15c254d5951f0e3eddaac67a68613deb9c1cde2377dc832e696d97e8b75c5611",
+      "rules": [
+        {
+          "context": "placeholder",
+          "source": "Write something …",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/renderer/quick_window/quick-window.html": {
+      "sha256": "6a64f2c2b9845faf88e597f18ff7914cfa43445f3ff2f44d90652c5b43414c5e",
+      "patched_sha256": "8d4ef6547ec1533ebc1c06330e01f58cd56159206002422257d21c296d8f7f7e",
+      "rules": [
+        {
+          "context": "html:placeholder",
+          "source": "What can I help you with today?",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/renderer/local_exec_consent/localExecConsent.html": {
+      "sha256": "1e508ca4951c4a3ecb796c5201000347e04158b2029d39180e8a731e9e65e0b6",
+      "patched_sha256": "9f908902cbae5c9081c52850b2ed62a3468d9ca3cea715490c52bb52d1a88e68",
+      "rules": [
+        {
+          "context": "html:text",
+          "source": "Disconnecting clears the stored credentials for this connector on\n            this device.",
+          "expected": 1
+        },
+        {
+          "context": "html:text",
+          "source": "Cancel",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/renderer/file_viewer/fileViewer.html": {
+      "sha256": "95a28933965778c9bc4532bf5c9ef8e99015e780ba730139e7ef9067507f7075",
+      "patched_sha256": "b780b3be4cbdc3b5437c9064a48dd824c88e613a5e381113d691ddc3f964f717",
+      "rules": [
+        {
+          "context": "html:text",
+          "source": "Preview",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/frame-connect.html": {
+      "sha256": "cb0cb331d16d50c93f0846258218d9c56ca2ed93a4b5ee03df8c1d44ae8ed49a",
+      "patched_sha256": "a3ae1348e431aa076c2271955884346d355195458b7f6140f08fae8aafc76b7f",
+      "rules": [
+        {
+          "context": "html:text",
+          "source": "Connect",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/frame-manage.html": {
+      "sha256": "861308ac5caade03f441833c93c939f468c98d38e7258e27f25b4f3378f71a9f",
+      "patched_sha256": "cee68ec5dc6bb5f1baaa46b0c2c73d135030c68da940491baa9207bc363dd9bb",
+      "rules": [
+        {
+          "context": "html:text",
+          "source": "Share",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/frame-shell.html": {
+      "sha256": "da5b8c37aac07ccd71b06f290fd863b21589da69a4f263930cf541749bf05b17",
+      "patched_sha256": "704289912c8afb366da8373479a90d70ff8ed3a7841a4c4db904535578dc12f0",
+      "rules": [
+        {
+          "context": "html:text",
+          "source": "Artifact",
+          "expected": 1
+        },
+        {
+          "context": "html:aria-label",
+          "source": "Artifact controls",
+          "expected": 1
+        },
+        {
+          "context": "html:text",
+          "source": "Content is user-generated and unverified.",
+          "expected": 1
+        },
+        {
+          "context": "html:aria-label",
+          "source": "Loading",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/index.html": {
+      "sha256": "1e497208b07c7ebf61ea5ccdbc5ce6554ce57e22e88466728787b2662f1fab22",
+      "patched_sha256": "bbb8eb21a013be1724a1c0f3240c4891bc474174bb26e327232399bdac362b7c",
+      "rules": [
+        {
+          "context": "html:placeholder",
+          "source": "How can I help you today?",
+          "expected": 1
+        },
+        {
+          "context": "html:aria-label",
+          "source": "Write your prompt to Claude",
+          "expected": 1
+        }
+      ],
+      "inline_scripts": {
+        "4": {
+          "sha256": "5c1d890ac8afaaba38be9abdcf8fbc90e1034aaa53598232ff8e536af56720ed",
+          "patched_sha256": "eb80e0fb071d1a7c91c9eb5d2b7dd7809567c975ddf85f1c18e7b0ba5081e624",
+          "rules": [
+            {
+              "context": "textContent",
+              "source": "This page can’t be shown because your browser or device software is out of date.",
+              "expected": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+[
+  "/opt/example/bin/status-line",
+  "#!/bin/bash\nnpm install",
+  "{value} {label}"
+]

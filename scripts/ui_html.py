@@ -91,7 +91,8 @@ def apply_html(source: str, rules: list[dict], dictionary: dict[str, str],
             number = int(index)
             if number >= len(scanner.scripts) or number < 0:
                 raise ValueError(f"HTML inline script missing: {index}")
-            payload.append({"file": f"inline-{index}", "source": scanner.scripts[number], "spec": spec})
+            payload.append({"file": f"inline-{index}", "source": scanner.scripts[number],
+                            "spec": spec, "translations": dictionary})
         result = subprocess.run(
             ["node", str(Path(__file__).with_name("ui_localization.cjs")), "--patch-inline"],
             input=json.dumps(payload), text=True, capture_output=True, check=True,
@@ -111,6 +112,8 @@ def apply_html(source: str, rules: list[dict], dictionary: dict[str, str],
 
 def patch_html_bundle(root: Path, bundle: str, resources: Path) -> None:
     manifest = json.loads((resources / "ui-patch-manifest.json").read_text())
+    if manifest.get("preview_only"):
+        raise ValueError("Review-only HTML manifest cannot be applied")
     dictionary = json.loads((resources / "ui-reviewed-zh-CN.json").read_text())
     prepared = []
     for name, spec in manifest["files"].items():

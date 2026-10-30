@@ -16,6 +16,7 @@ from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import repair_macos_429 as repair
+from official_release import compare_latest, fetch_latest
 
 FORMAT_VERSION = 1
 MONITOR_LABEL = "com.claude-cn.update-guard"
@@ -62,19 +63,50 @@ def catalog_fingerprint(catalog: dict[str, str]) -> str:
     return hashlib.sha256(canonical).hexdigest()
 
 
+def require_official_signature(app: Path) -> None:
+    try:
+        result = subprocess.run(["codesign", "-dv", "--verbose=4", str(app)],
+                                capture_output=True, text=True, check=True)
+        if not {"TeamIdentifier=Q6L2SF6YDW",
+                "Authority=Developer ID Application: Anthropic PBC (Q6L2SF6YDW)",
+                "Identifier=com.anthropic.claudefordesktop"} <= set(result.stderr.splitlines()):
+            raise ValueError("Claude does not have the official Anthropic Developer ID signature")
+        subprocess.run(["codesign", "--verify", "--deep", "--strict", str(app)],
+                       capture_output=True, text=True, check=True)
+    except subprocess.CalledProcessError as error:
+        raise ValueError(f"Claude official signature verification failed: {error.stderr}") from error
+
+
+def bundle_identity(app: Path) -> dict[str, Any]:
+    with (app / "Contents/Info.plist").open("rb") as source:
+        info = plistlib.load(source)
+    if not all(isinstance(info.get(key), str) and info[key].strip()
+               for key in ("CFBundleShortVersionString", "CFBundleVersion")):
+        raise ValueError("Claude version/build metadata is missing")
+    archives = {}
+    for relative in (repair.APP_ASAR_REL, repair.patch.FRONTEND_ASAR_REL):
+        with (app / relative).open("rb") as source:
+            digest = hashlib.sha256()
+            for block in iter(lambda: source.read(1024 * 1024), b""):
+                digest.update(block)
+            archives[str(relative)] = digest.hexdigest()
+    return {"version": info["CFBundleShortVersionString"], "build": info["CFBundleVersion"],
+            "archives": archives}
+
+
 def make_snapshot(app: Path) -> dict[str, Any]:
     if not app.is_dir():
         raise ValueError(f"Claude app not found: {app}")
     version = repair.patch.bundle_version(app)
     if version == "0":
         raise ValueError(f"Cannot read Claude's bundle version: {app}")
-    if not repair.patch.is_officially_signed(app):
-        raise ValueError(
-            "Claude does not have its official signature; update inspection stopped"
-        )
+    require_official_signature(app)
+    identity = bundle_identity(app)
     catalogs = read_source_catalogs(app)
+    if bundle_identity(app) != identity:
+        raise ValueError("Claude changed during inspection; retry after the official update completes")
     return {
-        "version": version,
+        **identity,
         "captured_at": dt.datetime.now(dt.timezone.utc).isoformat(),
         "catalogs": catalogs,
         "fingerprints": {
@@ -164,6 +196,8 @@ def inspect(app: Path, baseline_path: Path) -> dict[str, Any]:
             "installer_compatible": current["version"] == repair.VERSION,
             "current": {
                 "version": current["version"],
+                "build": current.get("build"),
+                "archives": current.get("archives"),
                 "fingerprints": current["fingerprints"],
             },
             "translation_alignment": alignment,
@@ -178,6 +212,8 @@ def inspect(app: Path, baseline_path: Path) -> dict[str, Any]:
     changed = (
         previous.get("version") != current["version"]
         or previous.get("fingerprints") != current["fingerprints"]
+        or previous.get("build") != current.get("build")
+        or previous.get("archives") != current.get("archives")
     )
     return {
         "status": "changed" if changed else "unchanged",
@@ -185,10 +221,14 @@ def inspect(app: Path, baseline_path: Path) -> dict[str, Any]:
         "installer_compatible": current["version"] == repair.VERSION,
         "current": {
             "version": current["version"],
+            "build": current.get("build"),
+            "archives": current.get("archives"),
             "fingerprints": current["fingerprints"],
         },
         "previous": {
             "version": previous.get("version"),
+            "build": previous.get("build"),
+            "archives": previous.get("archives"),
             "fingerprints": previous.get("fingerprints"),
         },
         "diff": diffs,
@@ -205,6 +245,7 @@ def format_report(report: dict[str, Any]) -> str:
     lines = [
         f"Status: {report['status']}",
         f"Claude version: {report['current']['version']}",
+        f"Claude build: {report['current'].get('build')}",
         f"Legacy installer supports: {report['supported_installer_version']} "
         f"({'yes' if report['installer_compatible'] else 'no'})",
         report["message"],
@@ -253,10 +294,11 @@ def install_monitor(app: Path, state_dir: Path) -> Path:
     plist_path = launch_agents / f"{MONITOR_LABEL}.plist"
     if plist_path.exists():
         raise ValueError(f"Update monitor already exists; remove it first: {plist_path}")
-    log_path = absolute_state_dir / "update-monitor.log"
     script = Path(__file__).resolve()
     user_app = Path(os.path.expanduser(str(app)))
     absolute_state_dir = state_dir.expanduser().resolve()
+    absolute_state_dir.mkdir(parents=True, exist_ok=True)
+    log_path = absolute_state_dir / "update-monitor.log"
     configuration = {
         "Label": MONITOR_LABEL,
         "ProgramArguments": [
@@ -315,6 +357,8 @@ def main() -> int:
     action.add_argument("--remove-monitor", action="store_true")
     cli.add_argument("--notify", action="store_true")
     cli.add_argument("--json", action="store_true")
+    cli.add_argument("--check-latest", action="store_true",
+                     help="Also query the public official macOS release feed (no app update)")
     args = cli.parse_args()
     app = args.app.expanduser()
     state_dir = args.state_dir.expanduser().resolve()
@@ -339,14 +383,27 @@ def main() -> int:
         return 0
 
     result = inspect(app, baseline_path)
+    if args.check_latest:
+        result["official_latest"] = compare_latest(result["current"]["version"], fetch_latest())
+    if not result["installer_compatible"]:
+        result["message"] += (
+            f" The {repair.VERSION} installer cannot be used with this version; no app files were changed."
+        )
     print(
         json.dumps(result, ensure_ascii=False, indent=2)
         if args.json
-        else format_report(result)
+        else format_report(result) + (
+            f"\nOfficial latest: {result['official_latest']['version']} "
+            f"({result['official_latest']['status']})"
+            if "official_latest" in result else ""
+        )
     )
-    if args.notify and result["status"] in {"changed", "baseline_missing"}:
+    needs_attention = (result["status"] in {"changed", "baseline_missing"}
+                       or not result["installer_compatible"]
+                       or result.get("official_latest", {}).get("status", "current") != "current")
+    if args.notify and needs_attention:
         notify(result["message"])
-    return 2 if result["status"] in {"changed", "baseline_missing"} else 0
+    return 2 if needs_attention else 0
 
 
 if __name__ == "__main__":

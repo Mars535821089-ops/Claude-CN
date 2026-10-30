@@ -1,0 +1,23 @@
+{
+  "version": "4.4212.0",
+  "build": "4.4212.0",
+  "official_release_source": "https://downloads.claude.ai/releases/darwin/universal/RELEASES.json",
+  "archives": {
+    "Contents/Resources/app.asar": "ce90267cb07b08d1e09c99be0e78abf39be2c06742a92367e54086b96f08caa3",
+    "Contents/Resources/ion-dist.asar": "bdd0f5d61e8c234331b5bdbb7ddff296ad6b888ce762177fb6bfecc950c03266"
+  },
+  "catalogs": {
+    "desktop": {
+      "en": "6b2e44738f34a34c769f4dc17ed8e7043a7df18eaf98e92daf95fc4f32266f59",
+      "official_zh_Hans": "e3614b85e98f829202e2bc8da89d641011b20b70c9e5e442155b3bc294dac7ee"
+    },
+    "frontend": {
+      "en": "cad9840b356a54a1b71956ef10fda44c71b0a0457680da55650fbbc933536b8f",
+      "official_zh_Hans": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "dynamic": {
+      "en": "4d167ec9c60d181146ec71070312ffce7a3a15450ce7db0c6294d209eae3d6eb",
+      "official_zh_Hans": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    }
+  }
+}

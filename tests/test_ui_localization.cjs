@@ -37,6 +37,26 @@ test('native consent details are separate from programmatic error messages', () 
   ]);
 });
 
+test('localizes a native permission action alias only if every reference is display-only', () => {
+  const source = 'function ask(mode){let action=mode==="read"?"preview":"open";'
+    + 'dialog({title:"Permission",buttons:["Cancel"],message:`Allow ${action}`});'
+    + 'log.$ot.info(`Chose ${action}`)}';
+  const rules = [{ source: 'preview', context: 'dialog:action', expected: 1 },
+    { source: 'open', context: 'dialog:action', expected: 1 }];
+  const result = applyRules(source, 'fixture.js', rules, { preview: '预览', open: '打开' });
+  assert.match(result.source, /mode==="read"\?"预览":"打开"/);
+  assert.match(result.source, /message:`Allow \$\{action\}`/);
+  assert.deepEqual(structure(result.source), structure(source));
+  const unsafe = source.replace('log.$ot.info(`Chose ${action}`)', 'send(action)');
+  assert.equal(scan(unsafe, 'fixture.js').filter(item => item.context === 'dialog:action').length, 0);
+  const compared = source.replace('log.$ot.info(`Chose ${action}`)', 'if(action==="open")run()');
+  assert.equal(scan(compared, 'fixture.js').filter(item => item.context === 'dialog:action').length, 0);
+  const unreviewedLogger = source.replace('log.$ot.info', 'log.unknown.info');
+  assert.equal(scan(unreviewedLogger, 'fixture.js').filter(item => item.context === 'dialog:action').length, 0);
+  const currentLogger = source.replace('log.$ot.info', 'log.Yut.info');
+  assert.equal(scan(currentLogger, 'fixture.js').filter(item => item.context === 'dialog:action').length, 2);
+});
+
 test('only replaces reviewed exact UI values; programmatic strings stay untouched', () => {
   const source = 'f({children:"Copy",icon:"Copy",type:"Copy",id:"Copy",'
     + 'onClick:()=>send("Copy"),label:"copy"});const Copy="Copy"';
@@ -119,6 +139,12 @@ test('bundle path traversal is refused', () => {
   assert.throws(() => prepareBundle('/tmp/test', 'app.asar', {
     files: { 'app.asar/../escape.js': {} },
   }), /escapes its bundle/);
+});
+
+test('current-version review-only manifests cannot enter the installer', () => {
+  assert.throws(() => prepareBundle('/tmp/test', 'app.asar', {
+    version: '4.4212.0', preview_only: true, files: {},
+  }), /Review-only UI manifest cannot be applied/);
 });
 
 test('symlink targets are refused and a later fingerprint failure leaves earlier files unchanged', () => {

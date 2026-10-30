@@ -8,6 +8,7 @@ const UI_KEYS = new Set([
   'buttons', 'confirmLabel', 'cancelLabel', 'loadingText', 'errorMessage',
   'withClaude', 'heading', 'subheading', 'hint', 'caption', 'successMessage',
   'checkboxLabel',
+  'searchLanguages', 'noLanguagesFound', 'oneLanguageFound', 'nLanguagesFound',
 ]);
 
 function propertyName(node) {
@@ -27,10 +28,20 @@ function scan(source, filename) {
     allowReturnOutsideFunction: true,
   });
   const findings = [];
+  const actions = [];
   const stack = [{ node: tree, ancestors: [] }];
   while (stack.length) {
     const { node, ancestors } = stack.pop();
     const parent = ancestors.at(-1);
+    if (node.type === 'VariableDeclarator' && node.id.type === 'Identifier'
+      && node.init?.type === 'ConditionalExpression'
+      && node.init.test.type === 'BinaryExpression' && node.init.test.operator === '==='
+      && node.init.test.right.value === 'read'
+      && node.init.consequent.type === 'Literal' && node.init.consequent.value === 'preview'
+      && node.init.alternate.type === 'Literal' && node.init.alternate.value === 'open') {
+      const scope = ancestors.findLast(item => item.type === 'BlockStatement');
+      if (scope) actions.push({ node, scope });
+    }
     let value;
     if (node.type === 'Literal' && typeof node.value === 'string') value = node.value;
     if (node.type === 'TemplateLiteral') {
@@ -105,6 +116,46 @@ function scan(source, filename) {
         if (item && typeof item === 'object' && typeof item.type === 'string') {
           stack.push({ node: item, ancestors: [...ancestors, node] });
         }
+      }
+    }
+  }
+  for (const { node: declaration, scope } of actions) {
+    let safe = true, rendered = 0;
+    const pending = [{ node: scope, parent: null, grandparent: null }];
+    while (pending.length && safe) {
+      const { node, parent, grandparent } = pending.pop();
+      if (node.type === 'Identifier' && node.name === declaration.id.name
+        && node !== declaration.id
+        && !(parent?.type === 'MemberExpression' && parent.property === node && !parent.computed)
+        && !(parent?.type === 'Property' && parent.key === node && !parent.computed && !parent.shorthand)) {
+        const template = parent?.type === 'TemplateLiteral' && parent.expressions.includes(node);
+        const visible = template && findings.some(item => item.start === parent.start
+          && ['dialog:message', 'dialog:detail'].includes(item.context));
+        const logged = template && grandparent?.type === 'CallExpression'
+          && grandparent.arguments.includes(parent) && grandparent.callee.type === 'MemberExpression'
+          && grandparent.callee.property.name === 'info' && !grandparent.callee.computed
+          && grandparent.callee.object.type === 'MemberExpression'
+          && ['$ot', 'Yut'].includes(grandparent.callee.object.property.name)
+          && !grandparent.callee.object.computed;
+        if (visible) rendered++;
+        if (!visible && !logged) safe = false;
+      }
+      for (const child of Object.values(node)) {
+        for (const item of Array.isArray(child) ? child : [child]) {
+          if (item && typeof item === 'object' && typeof item.type === 'string') {
+            pending.push({ node: item, parent: node, grandparent: parent });
+          }
+        }
+      }
+    }
+    // A local preview/open alias may be localized only when every use is display-only.
+    if (safe && rendered > 0) {
+      for (const literal of [declaration.init.consequent, declaration.init.alternate]) {
+        findings.push({
+          file: filename, start: literal.start, end: literal.end, context: 'dialog:action',
+          text: literal.value, kind: 'Literal',
+          snippet: source.slice(Math.max(0, literal.start - 110), literal.end + 110),
+        });
       }
     }
   }

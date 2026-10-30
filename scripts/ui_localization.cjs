@@ -89,6 +89,7 @@ function checkedPath(root, relative) {
 }
 
 function prepareBundle(root, bundle, manifest) {
+  if (manifest.preview_only) throw new Error('Review-only UI manifest cannot be applied');
   const prepared = [];
   for (const [file, spec] of Object.entries(manifest.files)) {
     if (!file.startsWith(bundle + '/')) continue;
@@ -110,8 +111,8 @@ function prepareBundle(root, bundle, manifest) {
   return prepared;
 }
 
-async function generateManifest() {
-  const manifest = { version: '4.29.0', files: {} };
+async function generateManifest(version = '4.29.0', translations = dictionary, preview = false) {
+  const manifest = { version, ...(preview ? { preview_only: true } : {}), files: {} };
   for await (const line of readline.createInterface({ input: process.stdin, crlfDelay: Infinity })) {
     const { file, source } = JSON.parse(line);
     if (!file.startsWith('ion-dist.asar/assets/v1/')
@@ -121,7 +122,8 @@ async function generateManifest() {
     for (const finding of scan(source, file)) {
       // Error/protocol messages may also be consumed by code or by a model.
       if (finding.context === 'message' || finding.context === 'errorMessage') continue;
-      if (!Object.hasOwn(dictionary, finding.text)) continue;
+      if (['preview', 'open'].includes(finding.text) && finding.context !== 'dialog:action') continue;
+      if (!Object.hasOwn(translations, finding.text)) continue;
       const key = JSON.stringify([finding.context, finding.text]);
       const rule = groups.get(key) ?? { context: finding.context, source: finding.text, expected: 0 };
       rule.expected++;
@@ -129,7 +131,10 @@ async function generateManifest() {
     }
     if (groups.size) {
       const rules = [...groups.values()];
-      const patched = applyRules(source, file, rules);
+      const patched = applyRules(source, file, rules, translations);
+      if (scan(patched.source, file).some(finding => rules.some(
+        rule => rule.context === finding.context && rule.source === finding.text,
+      ))) throw new Error(`Reviewed English UI remains: ${file}`);
       manifest.files[file] = { sha256: sha256(source), patched_sha256: sha256(patched.source), rules };
     }
   }
@@ -182,9 +187,9 @@ function main() {
 
 function patchInline() {
   const items = JSON.parse(fs.readFileSync(0, 'utf8'));
-  const patched = items.map(({ file, source, spec }) => {
+  const patched = items.map(({ file, source, spec, translations = {} }) => {
     if (sha256(source) !== spec.sha256) throw new Error(`Unknown inline UI fingerprint: ${file}`);
-    const result = applyRules(source, file, spec.rules);
+    const result = applyRules(source, file, spec.rules, { ...dictionary, ...translations });
     if (sha256(result.source) !== spec.patched_sha256) throw new Error(`Inline UI output differs: ${file}`);
     return result.source;
   });
@@ -198,6 +203,14 @@ if (require.main === module) {
     process.exitCode = 1;
   };
   if (process.argv[2] === '--generate-manifest') generateManifest().catch(stopped);
+  else if (process.argv[2] === '--preview-manifest') {
+    const [version, resource] = process.argv.slice(3);
+    try {
+      if (!/^\d+\.\d+\.\d+$/.test(version) || !resource) throw new Error('Preview version/dictionary required');
+      const translations = { ...dictionary, ...JSON.parse(fs.readFileSync(resource, 'utf8')) };
+      generateManifest(version, translations, true).catch(stopped);
+    } catch (error) { stopped(error); }
+  }
   else if (process.argv[2] === '--verify-manifest') verifyManifest().catch(stopped);
   else if (process.argv[2] === '--patch-inline') {
     try { patchInline(); } catch (error) { stopped(error); }

@@ -84,6 +84,15 @@ class HTMLUITests(unittest.TestCase):
             self.assertEqual(first.read_text(), patched)
             self.assertEqual(second.read_text(), patched)
 
+    def test_current_review_manifest_is_not_an_installation_manifest(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "ui-patch-manifest.json").write_text(json.dumps({
+                "version": "4.4212.0", "preview_only": True, "files": {},
+            }))
+            with self.assertRaisesRegex(ValueError, "Review-only HTML manifest cannot be applied"):
+                patch_html_bundle(root, "app.asar", root)
+
     def test_reviewed_resources_have_no_duplicate_keys_and_valid_rules(self):
         def unique_pairs(pairs):
             result = {}

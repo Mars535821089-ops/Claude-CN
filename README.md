@@ -4,9 +4,35 @@ Claude macOS 桌面端简体中文界面资源与上游变更检查工具；不�
 
 ## 当前版本与更新状态
 
-2026-10-30 核对：本机安装版和 build 均为 **4.4212.0**，与[官方 macOS 通用版公开发布源](https://downloads.claude.ai/releases/darwin/universal/RELEASES.json)的 `currentRelease` 一致（该条目发布日期为 2026-10-29）。校验了 Anthropic Developer ID、Team ID `Q6L2SF6YDW`、bundle ID 和完整代码签名；应用目前保持官方签名。
+### 2026-10-31：4.4212.0 显式安装入口
 
-**安装器仍只支持 4.29.0，不能用于 4.4212.0。** 当前版的增量译文和源码补丁清单是独立的只读审阅产物，不会改变旧版安装器的门控。官方更新后的应用已不含旧补丁，不能把“软件已最新”误报为“汉化已安装且最新”。
+已增加独立的 `scripts/install_current.py`，只接受 `current-source.json` 中审阅过的版本、
+build、官方发行方及两份 ASAR 指纹。它重新生成预览并与仓库清单逐项比较，拒绝消息缺口、
+源码漂移、路径越界及符号链接；旧版安装器和预览拒绝保护不变。
+
+先构建并验证候选（`--review` 目录必须不存在且在仓库外；候选留在被忽略的 `work/`）：
+
+    python3 scripts/install_current.py --stage "$PWD/work/current-4.4212.0.app" --review /tmp/claude-cn-build-review-unique
+
+确认已保存 Claude 草稿、接受本地临时签名及退出 Claude 后，再显式安装：
+
+    python3 scripts/install_current.py --stage "$PWD/work/current-4.4212.0.app" --install
+
+安装器会退出 Claude，将原官方应用保留在 `work/backups/`，验证候选后替换应用，
+仅将已有的 `Claude` 和 `Claude-3p` 配置中的 locale 设为 `zh-CN`；不修改会话、
+供应商、模型映射或更新偏好。失败时恢复原应用与语言配置。安装器不自动重开应用，
+完成后从 `/Applications/Claude.app` 打开即可。源码可同步 GitHub，但应用、合并的官方
+消息目录、备份和本地检查回执不能上传。完整安装记录见 `docs/4.4212.0-validation.md`。
+
+本机已安装并目视确认当前会话、输入框、模型强度和原生菜单为中文；37 项 Python、
+17 项 Node 回归通过。未重启 Codex。此处不宣称所有实验页面、服务端错误、工具名称或
+历史内容完全无英文。后文的“预览未安装”是 10 月 30 日的历史边界，不代表本次部署状态。
+临时签名不是 Anthropic 官方签名；更新检查器仍会拒绝把修改后的应用当作纯净官方源。
+官方更新仍可能覆盖汉化，新版本必须重新适配，不能跳过指纹保护。
+
+2026-10-30 安装前核对：本机安装版和 build 均为 **4.4212.0**，与[官方 macOS 通用版公开发布源](https://downloads.claude.ai/releases/darwin/universal/RELEASES.json)的 `currentRelease` 一致（该条目发布日期为 2026-10-29）。校验了 Anthropic Developer ID、Team ID `Q6L2SF6YDW`、bundle ID 和完整代码签名；该官方源现以备份保留。
+
+**旧安装器 `repair_macos_429.py` 仍只支持 4.29.0，不能用于 4.4212.0。** 当前版使用上述独立入口，不改变旧版门控。不能把“软件已最新”误报为“汉化已安装且最新”。
 
 新版包含 724 条与当前英文消息 ID 匹配的官方桌面 `zh-Hans` 译文，但前端和动态消息没有对应的打包中文目录，默认前端语言列表也不含中文。它证明存在部分官方本地化资源，不证明完整原生中文已经可用，更不是第三方外置语言包接口。没有因此修改用户语言设置、实验开关或应用签名。
 

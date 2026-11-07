@@ -171,6 +171,27 @@ build、官方发行方及两份 ASAR 指纹。它重新生成预览并与仓库
 
 ## 翻译维护
 
+4.23118.0 的无损迁移目前处于审阅阶段，尚未成为安装基线。新增的
+`scripts/audit_migration.py` 只提取、比对和审计，不改应用、不切换语言、不重启。
+它先核对旧版英文目录与已审阅指纹，再验证新版 Anthropic 签名及版本；
+旧消息 ID 只有在英文原文完全相同时才能复用译文。歧义和未知原文保留为缺口。
+
+    python3 scripts/audit_migration.py \
+      --old-app /Applications/Claude.app \
+      --new-app /path/to/signed-4.23118.0/Claude.app \
+      --target-version 4.23118.0 \
+      --reviewed-additions resources/migration-4.23118.0-reviewed.json \
+      --output /path/outside/repository/new-review-directory
+
+补充表仅含人工编写的译文、消息 ID 和目标英文目录的 SHA-256，不提交提取的官方
+目录。版本或完整英文目录指纹变化时拒绝应用补充表；未知 ID、空译文和重复键
+均拒绝。所有复用及补充译文继续接受原有严格 ICU 变量、标签、选择分支校验。
+审阅目录含来源记录、未译原文与检查报告，应仅留本地，不上传 Git。
+
+本轮签名候选的桌面壳层 1,130 条、动态资源 51 条已无缺失，前端 42,695 条中
+仍有 2,756 条待审阅；全部暂定译文的严格 ICU 校验通过。此结果不包含新版硬编码
+界面完整审阅、安装器新基线、实际界面或客户端接入验收，不能据此覆盖现用汉化版。
+
 scripts/translate_missing.py 可通过本机 Ollama 处理公开 UI 文案：在独立目录准备 missing.json（消息 ID 到英文的映射）和可选的 memory.json（已有精确译文），然后运行：
 
     python3 scripts/translate_missing.py --directory /path/to/public-ui-messages --model your-local-model

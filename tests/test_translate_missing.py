@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import os
 import runpy
 import subprocess
@@ -123,6 +124,42 @@ class TranslationSafetyTests(unittest.TestCase):
         batches = list(chunks(icu))
         self.assertEqual([len(batch) for batch in batches], [8, 4])
         self.assertEqual({k for batch in batches for k in batch}, set(icu))
+
+    def test_icu_validation_allows_chinese_word_order_without_changing_branches(self):
+        original = "Edit the {period, select, daily {daily} other {monthly}} limit for {target}."
+        translated = "编辑 {target} 的{period, select, daily {每日} other {每月}}限额。"
+        self.assertEqual(self.load_parser()(json.dumps({"id": translated}), {"id": original}),
+                         {"id": translated})
+
+    def test_batch_icu_audit_reports_only_changed_branch_keys(self):
+        source = {"good": "Edit {period, select, daily {daily} other {monthly}} for {target}",
+                  "bad": "{count, plural, one {Draft} other {# Draft}}"}
+        translated = {"good": "编辑 {target} 的{period, select, daily {每日} other {每月}}",
+                      "bad": "{count, plural, few {草稿} other {# 草稿}}"}
+        env = os.environ.copy()
+        inherited_modules = ROOT.parents[1] / "node_modules"
+        if inherited_modules.is_dir():
+            env["NODE_PATH"] = str(inherited_modules)
+        proc = subprocess.run(["node", str(ROOT / "scripts/icu_literals.cjs")],
+                              input=json.dumps({"operation": "validate-batch", "source": source,
+                                                "translated": translated}),
+                              capture_output=True, text=True, env=env, timeout=10)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertEqual(json.loads(proc.stdout), {"checked": 2, "invalid": ["bad"]})
+
+    def test_versioned_claude_candidate_binds_all_catalog_bytes(self):
+        base = ROOT / "resources/candidates/claude-desktop-4.23118.0"
+        manifest = json.loads((base / "manifest.json").read_text())
+        self.assertEqual(manifest["status"], "locale_candidate_only_not_installed")
+        for name in ("desktop", "frontend", "dynamic"):
+            data = (base / f"{name}-zh-CN.json").read_bytes()
+            catalog = json.loads(data)
+            self.assertEqual(len(catalog), manifest[name]["message_ids"])
+            self.assertEqual(hashlib.sha256(data).hexdigest(), manifest[name]["candidate_sha256"])
+        frontend = json.loads((base / "frontend-zh-CN.json").read_text())
+        for file in ("icu-overrides-4.23118.0.json", "reused-icu-fixes-4.23118.0.json"):
+            for key, value in json.loads((ROOT / "resources" / file).read_text()).items():
+                self.assertEqual(frontend[key], value)
 
 
 if __name__ == "__main__":

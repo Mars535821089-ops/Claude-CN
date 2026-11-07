@@ -1,0 +1,5 @@
+{
+  "1VZuS/w8OJ": "{total, plural, one {{fixed}/# 个定时任务已设置为按 {zone} 时区运行。其余任务无法设置。} other {{fixed}/# 个定时任务已设置为按 {zone} 时区运行。其余任务无法设置。}}",
+  "7u3rMJ3Ck/": "{count, plural, other {由于以下设置已不再受支持，已从权限策略中移除 # 项：{names}。}}",
+  "8vPsOgLpRu": "{count, plural, other {由于以下设置已不再受支持，已从配置中移除 # 项：{names}。}}"
+}

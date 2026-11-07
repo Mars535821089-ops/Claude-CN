@@ -39,6 +39,17 @@ function structure(nodes) {
   });
 }
 
+function unorderedStructure(nodes) {
+  return nodes.flatMap(node => {
+    if (node.type === 0) return [];
+    if (node.options) return [[node.type, node.value,
+      Object.entries(node.options).sort(([a], [b]) => a.localeCompare(b))
+        .map(([key, branch]) => [key, unorderedStructure(branch.value)])]];
+    if (node.children) return [[node.type, node.value, unorderedStructure(node.children)]];
+    return [[node.type, node.value, node.style ?? null]];
+  }).sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+}
+
 function compose(source, replacements) {
   const spans = literals(source);
   if (!Array.isArray(replacements) || replacements.length !== spans.length ||
@@ -59,14 +70,34 @@ function compose(source, replacements) {
 if (require.main === module) {
   try {
     const request = JSON.parse(fs.readFileSync(0, "utf8"));
-    if (!request || typeof request.source !== "string") throw new Error("source required");
-    const result = request.operation === "segments"
+    let result;
+    if (request?.operation === "validate-batch") {
+      const source = request.source;
+      const translated = request.translated;
+      if (!source || !translated || Array.isArray(source) || Array.isArray(translated) ||
+          typeof source !== "object" || typeof translated !== "object" ||
+          Object.keys(source).length !== Object.keys(translated).length ||
+          Object.keys(source).some(key => typeof source[key] !== "string" ||
+            typeof translated[key] !== "string")) {
+        throw new Error("catalog key or value mismatch");
+      }
+      const invalid = [];
+      for (const [key, original] of Object.entries(source)) {
+        try {
+          if (JSON.stringify(unorderedStructure(parse(original))) !==
+              JSON.stringify(unorderedStructure(parse(translated[key])))) invalid.push(key);
+        } catch { invalid.push(key); }
+      }
+      result = { checked: Object.keys(source).length, invalid };
+    } else if (!request || typeof request.source !== "string") {
+      throw new Error("source required");
+    } else result = request.operation === "segments"
       ? { segments: literals(request.source) }
       : request.operation === "compose"
         ? { text: compose(request.source, request.replacements) }
         : request.operation === "validate" && typeof request.translated === "string"
-          ? { valid: JSON.stringify(structure(parse(request.source))) ===
-              JSON.stringify(structure(parse(request.translated))) }
+          ? { valid: JSON.stringify(unorderedStructure(parse(request.source))) ===
+              JSON.stringify(unorderedStructure(parse(request.translated))) }
         : (() => { throw new Error("unsupported operation"); })();
     process.stdout.write(JSON.stringify(result) + "\n");
   } catch (error) {

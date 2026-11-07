@@ -1,0 +1,14 @@
+{
+  "7MaQ1bte83": "编辑 {target} 的{period, select, daily {每日} weekly {每周} other {每月}}限额：{amount}",
+  "DZ70Q8SGn3": "<b>{n, number}</b> {n, plural, one {个会话} other {个会话}} <muted>· 总计 {size}</muted>",
+  "IAtga55fxx": "同时删除其中的{count, plural, one {会话} other {# 个会话}}",
+  "JhIkbMJyv5": "如何免费体验 {planName} {value, plural, one {一周} other {# 周}}",
+  "JlWKWpzn/P": "“{groupName}”将被移除，其中的{count, plural, one {会话} other {# 个会话}}将被永久删除。{hasOthers, select, yes {其中其他内容会保留。} other {}}",
+  "SJaNtJOQZi": "{count, plural, =1 {修改请求} one {# 条修改请求} other {# 条修改请求}}",
+  "WnIqSUKqaE": "当与 {question} 的量表分值差异{direction, select, more {大于} other {小于}} {gap} 分时，判定失败{reversed, select, yes {（反向量表）} other {}}",
+  "dVACoLyE+c": "如何免费体验 {planName} {value, plural, one {一天} other {# 天}}",
+  "deXXjRoL1z": "来自{from, select, paste {粘贴文本} other {{name}}} · 已读取 {count, plural, one {# 项设置} other {# 项设置}}",
+  "edxbi7K4+x": "如何免费体验 {planName} {value, plural, one {一个月} other {# 个月}}",
+  "nM7xQs06CY": "{named, select, true {{groups}} other {部分群组}}的成员将看到统一视图，即使权限策略关闭了聊天、协作或高级文件分析。",
+  "prwIGKa5eB": "移除 {target} 的{period, select, daily {每日} weekly {每周} other {每月}}限额？"
+}

@@ -116,10 +116,15 @@ def request(batch: dict[str, str]) -> tuple[dict[str, str], dict[str, str]]:
 def chunks(data: dict[str, str]):
     chunk: dict[str, str] = {}
     chars = 0
+    complex_chunk = False
     for key, value in data.items():
-        if chunk and (len(chunk) >= 45 or chars + len(value) > 2300):
+        complex_entry = bool(re.search(r"\{[\w.$-]+\s*,\s*(?:plural|select|selectordinal)\s*,", value))
+        if chunk and (complex_entry != complex_chunk or
+                      len(chunk) >= (8 if complex_chunk else 45) or
+                      chars + len(value) > 2300):
             yield chunk
             chunk, chars = {}, 0
+        complex_chunk = complex_entry
         chunk[key] = value
         chars += len(value)
     if chunk:

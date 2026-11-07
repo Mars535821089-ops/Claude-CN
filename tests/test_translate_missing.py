@@ -115,6 +115,15 @@ class TranslationSafetyTests(unittest.TestCase):
         self.assertEqual(result, "{first, select, yes {新章节} other {新章节 {n}}}")
         self.load_parser()(json.dumps({"id": result}), {"id": conditional})
 
+    def test_icu_translation_batches_are_bounded_below_plain_text_batches(self):
+        chunks = self.load_module()["chunks"]
+        plain = {f"p{i}": "Hello" for i in range(46)}
+        icu = {f"i{i}": "{count, plural, one {One} other {Many}}" for i in range(12)}
+        self.assertEqual([len(batch) for batch in chunks(plain)], [45, 1])
+        batches = list(chunks(icu))
+        self.assertEqual([len(batch) for batch in batches], [8, 4])
+        self.assertEqual({k for batch in batches for k in batch}, set(icu))
+
 
 if __name__ == "__main__":
     unittest.main()

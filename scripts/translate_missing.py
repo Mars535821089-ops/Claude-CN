@@ -28,7 +28,7 @@ def write_progress(data: dict[str, str]) -> None:
 
 def args_and_tags(value: str) -> tuple[list[str], list[str]]:
     args = sorted(re.findall(r"\{([\w.$-]+)(?:\s*[,}])", value))
-    tags = sorted(re.findall(r"</?([A-Za-z][\w.-]*)\b", value))
+    tags = sorted(re.findall(r"</?[A-Za-z][^>]*>", value))
     return args, tags
 
 
@@ -42,6 +42,8 @@ def parse_response(raw: str, batch: dict[str, str]) -> dict[str, str]:
     for key, zh in parsed.items():
         if not isinstance(zh, str) or not zh.strip():
             raise ValueError(f"empty or non-string translation: {key}")
+        if args_and_tags(zh) != args_and_tags(batch[key]):
+            raise ValueError(f"placeholders changed in translation: {key}")
     return parsed
 
 

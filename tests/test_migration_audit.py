@@ -1,8 +1,12 @@
 import importlib.util
+import hashlib
+import json
 from pathlib import Path
+import plistlib
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
@@ -105,6 +109,86 @@ class MigrationAuditTests(unittest.TestCase):
             path.write_text('{"catalogs":{"desktop":{"translations":{"id":"打开","id":"关闭"}}}}')
             with self.assertRaisesRegex(ValueError, "Duplicate"):
                 audit.load_review(path)
+
+    def test_tampered_old_localized_receipt_is_rejected_before_review_publication(self):
+        audit = self.implementation()
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            old, new, output, profile = (root / item for item in
+                                         ("old.app", "new.app", "review", "profile.json"))
+            for app, version in ((old, "4.4212.0"), (new, "4.23118.0")):
+                (app / "Contents").mkdir(parents=True)
+                (app / "Contents/Info.plist").write_bytes(plistlib.dumps({
+                    "CFBundleShortVersionString": version,
+                    "CFBundleIdentifier": "com.anthropic.claudefordesktop",
+                }))
+            catalog = {"en": {"a": "Open"}, "official": {}}
+            profile.write_text(json.dumps({"version": "4.4212.0", "catalogs": {
+                group: {"en": audit.catalog_fingerprint(catalog["en"])}
+                for group in audit.preview.PATHS
+            }}))
+            with (patch.object(audit.preview, "PROFILE", profile),
+                  patch.object(audit.preview, "load_catalogs", return_value={
+                      group: catalog for group in audit.preview.PATHS}),
+                  patch.object(audit.preview, "load_reviewed", return_value=({}, set())),
+                  patch.object(audit, "require_official_signature"),
+                  patch.object(audit.repair, "asar_json", return_value={"a": "打开"}),
+                  patch.object(audit.repair.patch, "read_frontend_entry",
+                               return_value='{"a":"打开"}')):
+                with self.assertRaisesRegex(ValueError, "tampered localized baseline"):
+                    audit.audit(old, new, output, "4.23118.0")
+            self.assertFalse(output.exists())
+
+    def test_exact_known_cowork_overlay_keeps_reviewed_locale_without_trusting_other_edits(self):
+        audit = self.implementation()
+        with tempfile.TemporaryDirectory() as directory:
+            app = Path(directory) / "Claude.app"
+            (app / "Contents/Resources").mkdir(parents=True)
+            custom = b"local-auto-compact-policy:v1"
+            (app / "Contents/Resources/app.asar").write_bytes(custom)
+            (app / "Contents/Info.plist").write_bytes(plistlib.dumps({
+                "CFBundleShortVersionString": "4.4212.0", "CFBundleVersion": "4.4212.0",
+                "CFBundleIdentifier": "com.anthropic.claudefordesktop",
+            }))
+            old_hash = "f" * 64
+            frontend_hash = "e" * 64
+            catalog = {"en": {"key": "Open"}, "official": {}}
+            chinese = {"key": "打开"}
+            def digest(value):
+                return hashlib.sha256(json.dumps(value, ensure_ascii=False,
+                                                  sort_keys=True).encode()).hexdigest()
+            profile = {"version": "4.4212.0", "build": "4.4212.0",
+                       "archives": {"official": "source"},
+                       "catalogs": {group: {"en": audit.catalog_fingerprint(catalog["en"])}
+                                    for group in audit.preview.PATHS}}
+            receipt = {"version": "4.4212.0", "source_archives": profile["archives"],
+                       "archives": {"Contents/Resources/app.asar": old_hash,
+                                    "Contents/Resources/ion-dist.asar": frontend_hash},
+                       "catalog_sha256": {group: digest(chinese)
+                                          for group in audit.preview.PATHS}}
+            (app / "Contents/Resources/claude-cn-install.json").write_text(json.dumps(receipt))
+            profile_path = Path(directory) / "profile.json"
+            profile_path.write_text(json.dumps(profile))
+            with (patch.object(audit.preview, "PROFILE", profile_path),
+                  patch.object(audit.preview, "load_catalogs", return_value={
+                      group: catalog for group in audit.preview.PATHS}),
+                  patch.object(audit.preview, "archive_hashes", side_effect=lambda current: {
+                      "Contents/Resources/app.asar": hashlib.sha256(
+                          (current / "Contents/Resources/app.asar").read_bytes()).hexdigest(),
+                      "Contents/Resources/ion-dist.asar": frontend_hash}),
+                  patch.object(audit.repair, "asar_json", return_value=chinese),
+                  patch.object(audit.repair.patch, "read_frontend_entry",
+                               return_value=json.dumps(chinese)),
+                  patch.object(audit.repair.patch, "verify"),
+                  patch.object(audit, "verify_installed_localized_app",
+                               side_effect=ValueError("Staged archive fingerprint changed")),
+                  patch.object(audit, "OLD_COWORK_PATCHED_ASAR_SHA256",
+                               hashlib.sha256(custom).hexdigest()),
+                  patch.object(audit, "OLD_BASE_ASAR_SHA256", old_hash)):
+                self.assertEqual(audit.verify_old_stage(app), "verified_cowork_hook")
+                (app / "Contents/Resources/app.asar").write_bytes(custom + b"other edit")
+                with self.assertRaisesRegex(ValueError, "unrecognized installed build"):
+                    audit.verify_old_stage(app)
 
 
 if __name__ == "__main__":

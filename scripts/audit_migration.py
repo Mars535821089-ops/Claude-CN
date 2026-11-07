@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -16,7 +17,17 @@ import tempfile
 
 import preview_current as preview
 import repair_macos_429 as repair
+from install_current import verify_stage as verify_installed_localized_app
 from update_guard import catalog_fingerprint, require_official_signature
+
+# Current installed 4.4212.0 has a session-scoped Cowork auto-compaction hook
+# added after the original localization receipt. The one-entry inverse ASAR
+# reconstruction was independently SHA-256-matched to the pre-hook receipt.
+# These exact bytes are allowlisted for reading translations ONLY. Porting the
+# hook to the new app remains a separate, required installation gate.
+OLD_BASE_ASAR_SHA256 = "97331448080f13f42ef0051bb289fe2898c30099ad029dec16d69b8758890819"
+OLD_COWORK_PATCHED_ASAR_SHA256 = "3a109f18e7e5e6aecfe068296a05b8683468af73b11a9d783bc2bf758e0afbcb"
+OLD_HOOK_MARKER = b"local-auto-compact-policy:v1"
 
 
 def merge_exact(
@@ -99,6 +110,52 @@ def load_review(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique_object)
 
 
+def verify_old_stage(app: Path) -> str:
+    # The local build is ad-hoc signed: its own installation receipt, official
+    # source fingerprint, all archive hashes and actual locales are the trust
+    # boundary for recycling previously translated messages.
+    try:
+        verify_installed_localized_app(app)
+        return "receipt_exact"
+    except (ValueError, OSError, KeyError) as error:
+        if str(error) != "Staged archive fingerprint changed":
+            raise ValueError("tampered localized baseline or unrecognized installed build") from error
+    try:
+        profile = json.loads(preview.PROFILE.read_text())
+        receipt = json.loads((app / "Contents/Resources/claude-cn-install.json").read_text())
+        info = plistlib.loads((app / "Contents/Info.plist").read_bytes())
+        archives = preview.archive_hashes(app)
+        old_asar = (app / repair.APP_ASAR_REL).read_bytes()
+        expected_archives = receipt["archives"]
+        if (info.get("CFBundleIdentifier") != "com.anthropic.claudefordesktop"
+                or info.get("CFBundleShortVersionString") != profile["version"]
+                or info.get("CFBundleVersion") != profile["build"]
+                or receipt["version"] != profile["version"]
+                or receipt["source_archives"] != profile["archives"]
+                or expected_archives["Contents/Resources/app.asar"] != OLD_BASE_ASAR_SHA256
+                or archives["Contents/Resources/app.asar"] != OLD_COWORK_PATCHED_ASAR_SHA256
+                or archives["Contents/Resources/ion-dist.asar"] !=
+                   expected_archives["Contents/Resources/ion-dist.asar"]
+                or old_asar.count(OLD_HOOK_MARKER) != 1):
+            raise ValueError("customized baseline hash, marker or identity changed")
+        catalogs = preview.load_catalogs(app)
+        for group in preview.PATHS:
+            if catalog_fingerprint(catalogs[group]["en"]) != profile["catalogs"][group]["en"]:
+                raise ValueError("reviewed English catalog changed: " + group)
+            relative = ("resources/i18n/zh-CN.json" if group == "desktop" else
+                        "i18n/" + ("dynamic/" if group == "dynamic" else "") + "zh-CN.json")
+            locale = (repair.asar_json(app, relative) if group == "desktop" else
+                      json.loads(repair.patch.read_frontend_entry(app, relative)))
+            digest = hashlib.sha256(json.dumps(locale, ensure_ascii=False,
+                                               sort_keys=True).encode()).hexdigest()
+            if locale.keys() != catalogs[group]["en"].keys() or digest != receipt["catalog_sha256"][group]:
+                raise ValueError("reviewed Chinese catalog changed: " + group)
+        repair.patch.verify(app, "zh-CN")
+    except (ValueError, OSError, KeyError, TypeError) as error:
+        raise ValueError("tampered localized baseline or unrecognized installed build") from error
+    return "verified_cowork_hook"
+
+
 def audit(old_app: Path, new_app: Path, output: Path, target_version: str,
           review_path: Path | None = None) -> dict:
     """Produce a private review, never a ready-to-install locale pack."""
@@ -107,6 +164,7 @@ def audit(old_app: Path, new_app: Path, output: Path, target_version: str,
             or output.resolve().is_relative_to(new_app.resolve())
             or output.resolve().is_relative_to(old_app.resolve())):
         raise ValueError("Review must be a new directory outside the apps and repository")
+    old_customization = verify_old_stage(old_app)
     # The current installed localized app is not Anthropic signed. Trust its
     # English source only when it matches our reviewed, pinned previous input.
     profile = json.loads(preview.PROFILE.read_text())
@@ -153,8 +211,13 @@ def audit(old_app: Path, new_app: Path, output: Path, target_version: str,
                              input=json.dumps(payload, ensure_ascii=False), text=True,
                              capture_output=True, check=False, timeout=180)
     validation = json.loads(checked.stdout)
+    if verify_old_stage(old_app) != old_customization:
+        raise ValueError("Localized baseline changed during audit")
+    require_official_signature(new_app)
     report = {"source_version": old_info["CFBundleShortVersionString"],
               "target_version": target_version, "candidate_signature": True,
+              "old_customization": old_customization,
+              "cowork_hook_ported_to_candidate": False,
               "groups": metadata, "icu_errors": validation["errors"],
               "validation_exit": checked.returncode,
               "status": "review_only_not_installable", "app_modified": False,

@@ -70,6 +70,19 @@ class TranslationSafetyTests(unittest.TestCase):
         self.assertEqual(output, {"good": "已保存", "bad": "{period, select, daily {每日} other {其他}}"})
         self.assertEqual(saved[0], {"good": "已保存"})
 
+    def test_remaining_queue_translates_plain_text_before_icu_without_dropping_entries(self):
+        order = self.load_module()["ordered_remaining"]
+        missing = {
+            "icu": "{count, plural, one {One} other {Many}}",
+            "used": "Already translated",
+            "short": "Hello",
+            "html": '<a href="https://example.org">Open</a>',
+            "long": "This is a longer plain interface message",
+        }
+        remaining = order(missing, {}, {"used": "已翻译"})
+        self.assertEqual(list(remaining), ["short", "long", "html", "icu"])
+        self.assertEqual(set(remaining), set(missing) - {"used"})
+
 
 if __name__ == "__main__":
     unittest.main()

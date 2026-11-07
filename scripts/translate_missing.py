@@ -98,6 +98,18 @@ def chunks(data: dict[str, str]):
         yield chunk
 
 
+def ordered_remaining(missing: dict[str, str], memory: dict[str, str],
+                      output: dict[str, str]) -> dict[str, str]:
+    pending = ((key, value) for key, value in missing.items()
+               if key not in memory and key not in output)
+
+    def rank(item: tuple[str, str]) -> tuple[int, int, str]:
+        args, tags = args_and_tags(item[1])
+        return (2 if args else 1 if tags else 0, len(item[1]), item[0])
+
+    return dict(sorted(pending, key=rank))
+
+
 def translate(batch: dict[str, str], output: dict[str, str]) -> None:
     for attempt in range(2):
         try:
@@ -124,7 +136,7 @@ def translate(batch: dict[str, str], output: dict[str, str]) -> None:
 
 def main() -> None:
     output = json.loads(OUTPUT.read_text()) if OUTPUT.exists() else {}
-    to_do = {k: v for k, v in MISSING.items() if k not in MEMORY and k not in output}
+    to_do = ordered_remaining(MISSING, MEMORY, output)
     total = len(to_do)
     start = time.monotonic()
     print(f"starting {total} strings; memory={len(MEMORY)}, generated={len(output)}", flush=True)

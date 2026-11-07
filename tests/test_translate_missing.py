@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import json
+import os
 import runpy
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -82,6 +84,36 @@ class TranslationSafetyTests(unittest.TestCase):
         remaining = order(missing, {}, {"used": "已翻译"})
         self.assertEqual(list(remaining), ["short", "long", "html", "icu"])
         self.assertEqual(set(remaining), set(missing) - {"used"})
+
+    def test_literal_fallback_preserves_nested_icu_selectors_and_arguments(self):
+        source = "{count, plural, =1 {Draft} one {# Draft} other {# Draft}}"
+        helper = ROOT / "scripts/icu_literals.cjs"
+        env = os.environ.copy()
+        inherited_modules = ROOT.parents[1] / "node_modules"
+        if inherited_modules.is_dir():
+            env["NODE_PATH"] = str(inherited_modules)
+
+        def invoke(payload):
+            proc = subprocess.run(["node", str(helper)], input=json.dumps(payload),
+                                  capture_output=True, text=True, env=env, timeout=10)
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            return json.loads(proc.stdout)
+
+        parts = invoke({"operation": "segments", "source": source})["segments"]
+        self.assertEqual([part["text"] for part in parts], ["Draft", " Draft", " Draft"])
+        translated = invoke({"operation": "compose", "source": source,
+                             "replacements": ["草稿", " 草稿", " 草稿"]})["text"]
+        self.assertEqual(translated,
+                         "{count, plural, =1 {草稿} one {# 草稿} other {# 草稿}}")
+        self.load_parser()(json.dumps({"id": translated}), {"id": source})
+
+        conditional = "{first, select, yes {New section} other {New section {n}}}"
+        self.assertEqual([p["text"] for p in invoke({"operation": "segments", "source": conditional})["segments"]],
+                         ["New section", "New section "])
+        result = invoke({"operation": "compose", "source": conditional,
+                         "replacements": ["新章节", "新章节 "]})["text"]
+        self.assertEqual(result, "{first, select, yes {新章节} other {新章节 {n}}}")
+        self.load_parser()(json.dumps({"id": result}), {"id": conditional})
 
 
 if __name__ == "__main__":

@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
+import subprocess
 import time
 import urllib.request
 from pathlib import Path
@@ -18,6 +20,7 @@ MISSING = json.loads((ROOT / "missing.json").read_text())
 MEMORY = json.loads((ROOT / "memory.json").read_text()) if (ROOT / "memory.json").exists() else {}
 OUTPUT = ROOT / "translated.json"
 MODEL = args.model
+SCRIPT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def write_progress(data: dict[str, str]) -> None:
@@ -32,6 +35,24 @@ def args_and_tags(value: str) -> tuple[list[str], list[str]]:
     return args, tags
 
 
+def valid_icu_structure(original: str, translated: str) -> bool:
+    environment = os.environ.copy()
+    for modules in (SCRIPT_ROOT / "node_modules", SCRIPT_ROOT.parent.parent / "node_modules"):
+        if modules.is_dir():
+            environment["NODE_PATH"] = str(modules)
+            break
+    try:
+        result = subprocess.run(
+            ["node", str(SCRIPT_ROOT / "scripts/icu_literals.cjs")],
+            input=json.dumps({"operation": "validate", "source": original,
+                              "translated": translated}),
+            capture_output=True, text=True, timeout=8, env=environment,
+        )
+        return result.returncode == 0 and json.loads(result.stdout).get("valid") is True
+    except (OSError, ValueError, subprocess.TimeoutExpired):
+        return False
+
+
 def parse_response(raw: str, batch: dict[str, str]) -> dict[str, str]:
     first = raw.find("{")
     if first < 0:
@@ -42,7 +63,14 @@ def parse_response(raw: str, batch: dict[str, str]) -> dict[str, str]:
     for key, zh in parsed.items():
         if not isinstance(zh, str) or not zh.strip():
             raise ValueError(f"empty or non-string translation: {key}")
-        if args_and_tags(zh) != args_and_tags(batch[key]):
+        original = batch[key]
+        if re.search(r"\{[\w.$-]+\s*,\s*(?:plural|select|selectordinal)\s*,", original):
+            valid = valid_icu_structure(original, zh)
+            if args_and_tags(zh)[1] != args_and_tags(original)[1]:
+                valid = False
+        else:
+            valid = args_and_tags(zh) == args_and_tags(original)
+        if not valid:
             raise ValueError(f"placeholders changed in translation: {key}")
     return parsed
 

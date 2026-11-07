@@ -47,7 +47,25 @@ def parse_response(raw: str, batch: dict[str, str]) -> dict[str, str]:
     return parsed
 
 
-def request(batch: dict[str, str]) -> dict[str, str]:
+def partition_response(raw: str, batch: dict[str, str]) -> tuple[dict[str, str], dict[str, str]]:
+    first = raw.find("{")
+    if first < 0:
+        raise ValueError("no JSON object")
+    parsed, _ = json.JSONDecoder().raw_decode(raw[first:])
+    if not isinstance(parsed, dict) or set(parsed) != set(batch):
+        raise ValueError("keys mismatch")
+    valid, rejected = {}, {}
+    for key, original in batch.items():
+        try:
+            parse_response(json.dumps({key: parsed[key]}, ensure_ascii=False), {key: original})
+        except ValueError:
+            rejected[key] = original
+        else:
+            valid[key] = parsed[key]
+    return valid, rejected
+
+
+def request(batch: dict[str, str]) -> tuple[dict[str, str], dict[str, str]]:
     instructions = (
         "Translate every English desktop-app UI value to concise, natural Simplified Chinese. "
         "Return ONLY a JSON object with the exact same keys. Preserve every {variable}, "
@@ -64,7 +82,7 @@ def request(batch: dict[str, str]) -> dict[str, str]:
                                  headers={"Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=260) as response:
         result = json.load(response)
-    return parse_response(result.get("response", ""), batch)
+    return partition_response(result.get("response", ""), batch)
 
 
 def chunks(data: dict[str, str]):
@@ -83,13 +101,18 @@ def chunks(data: dict[str, str]):
 def translate(batch: dict[str, str], output: dict[str, str]) -> None:
     for attempt in range(2):
         try:
-            result = request(batch)
-            output.update(result)
-            write_progress(output)
-            return
+            valid, rejected = request(batch)
+            if not valid:
+                raise ValueError("all translations changed placeholders")
         except Exception as error:
             print(f"retry {attempt+1} for {len(batch)}: {type(error).__name__}: {error}", flush=True)
             time.sleep(1)
+        else:
+            output.update(valid)
+            write_progress(output)
+            if rejected:
+                translate(rejected, output)
+            return
     if len(batch) == 1:
         print(f"UNRESOLVED {next(iter(batch))}", flush=True)
         return

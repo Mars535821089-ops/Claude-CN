@@ -11,3 +11,4 @@ work/
 config.json
 
 node_modules/
+.worktrees/

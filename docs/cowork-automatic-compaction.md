@@ -16,7 +16,12 @@ with exactly one ASAR entry changed in memory. Neither a fully translated app
 nor a user-session policy installation has been built or activated. The old
 ad-hoc-signed app remains installed and keeps its current hook. An unknown
 future Claude build fails closed; never reuse a minified chunk name without a
-fresh signed-release fingerprint and native test.
+fresh signed-release fingerprint and native test. The isolated signed smoke
+candidate was built from the 4.23118.0 official source and independently
+verified to have only `index.chunk-D6Y0BUdo.js` changed; signed resource
+integrity passed. It uses a synthetic session ID and `/dev/null` policy, has
+the stock English locale, and **must never be installed** as the user's
+Chinese app. Real-session native compaction remains untested in the new build.
 
 `scripts/cowork_compaction_policy.cjs` reads a local policy at each worker
 launch. It sets the supported `CLAUDE_CODE_AUTO_COMPACT_WINDOW` environment

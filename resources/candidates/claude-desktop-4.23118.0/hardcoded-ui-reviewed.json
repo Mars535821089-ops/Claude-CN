@@ -7,13 +7,40 @@
   "files": {
     "app.asar/.vite/build/index.chunk-ThbSSMzR.js": {
       "sha256": "90ef8dbdde2e0c6fdcb51f476b1ff3caa329b0e2afe10d3bc9c6ed0944c568ec",
-      "patched_sha256": "0cb7583ad9dbe7762f3d0e1cdd3e9398ee78215629cff4e66770bfe6575c3d26",
-      "rules": [{"context": "label", "source": "Model and effort selection", "expected": 1}]
+      "patched_sha256": "957bf9edcd74dce1efc06e1e7b1c3e6a5516a82b959e9207cbbf0a1085ec1e00",
+      "rules": [
+        {"context": "label", "source": "Model and effort selection", "expected": 1},
+        {"context": "label", "source": "Scheduled tasks", "expected": 1}
+      ]
     },
     "app.asar/.vite/build/index.chunk-BBUaTQ8d.js": {
       "sha256": "1ffb394eb87f77ec1e8949c4acb8c30e973fcb6897987133f46444560dcd3df1",
-      "patched_sha256": "91addebc960a4a718a6613f6a68f4524ada235daae5d931133820e1988e38f59",
-      "rules": [{"context": "title", "source": "Some models are currently unavailable.", "expected": 1}]
+      "patched_sha256": "9a217a1eeb44934cf8f88610765337141fe8f6d15921ad5e5427ffa895fa731d",
+      "rules": [
+        {"context": "title", "source": "Some models are currently unavailable.", "expected": 1},
+        {"context": "buttons", "source": "Open System Settings", "expected": 2},
+        {"context": "buttons", "source": "Open Claude Settings", "expected": 1},
+        {"context": "label", "source": "Background Computer Use", "expected": 1},
+        {"context": "label", "source": "Start Cowork VM", "expected": 1},
+        {"context": "label", "source": "Show Debug Window", "expected": 1},
+        {"context": "label", "source": "Hide Debug Window", "expected": 1},
+        {"context": "label", "source": "Stop Cowork VM", "expected": 1},
+        {"context": "title", "source": "Copy file to Claude", "expected": 1},
+        {"context": "title", "source": "Inspector", "expected": 1},
+        {"context": "label", "source": "Reset Chrome Browser Pairing", "expected": 1},
+        {"context": "label", "source": "Browser Use", "expected": 1},
+        {"context": "buttons", "source": "Run", "expected": 1},
+        {"context": "buttons", "source": "Install", "expected": 1},
+        {"context": "buttons", "source": "Remove", "expected": 1}
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-BiPhYDJ3.js": {
+      "sha256": "ac2eddc77c730064b4bd47e93ccd80fce899334fcc7949f7331a5c26c7af607c",
+      "patched_sha256": "fc87dc71a711530d17c5e1a891d56ba434a2548b3cd9f3fb655194e709754182",
+      "rules": [
+        {"context": "buttons", "source": "Clean up", "expected": 1},
+        {"context": "buttons", "source": "I'll clean up sessions myself", "expected": 1}
+      ]
     },
     "ion-dist.asar/assets/v1/cde03b773-BwxmykJC.js": {
       "sha256": "fc4942e3b74bc980c53ee8ab04ff06bf657ec11d5db84852ed741cbd010423ac",

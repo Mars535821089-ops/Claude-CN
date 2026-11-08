@@ -52,7 +52,7 @@ def validate_manifest(manifest: dict) -> dict[str, dict]:
         rules = spec["rules"]
         if (not isinstance(rules, list) or not rules or any(
                 not isinstance(rule, dict) or set(rule) != {"context", "source", "expected"}
-                or rule["context"] not in {"title", "label", "children"}
+                or rule["context"] not in {"title", "label", "children", "buttons"}
                 or not isinstance(rule["source"], str) or not rule["source"]
                 or type(rule["expected"]) is not int or rule["expected"] < 1
                 for rule in rules)):

@@ -250,6 +250,25 @@ ID、英文源摘要、中文候选摘要和 ICU 参数/分支，另核对 8 处
 ASAR 文件互不重叠。它不构建、安装或启动应用；真实 Cowork 会话、剩余
 硬编码界面和视觉验收仍需继续，不能据此说新版中文版已经生效。
 
+随后做了**不可安装的合并打包烟测**，只使用官方签名 4.23118.0 源，
+只写入本机外置构建区。新官方包在 `ion-dist.asar` 旁还附有独立
+`ion-dist/index.html`，供仍打开旧版本的窗口显示；它不是新版前端资源。
+旧工具误判双布局为冲突，版本专用构建器现原样保留该备用页，只从 ASAR
+提取前端到隔离目录进行修改。首次失败副本经签名、ASAR、Info.plist
+与官方源一致性检查后移除，失败日志保留；第二次候选完整打包成功。
+
+`build_smoke_423118.py` 会先核验官方签名、完整中文目录和所有源指纹，
+拒绝覆盖既有候选或写入 `/Applications`；只在**合成 Cowork 会话**中
+验证钩子打包兼容。烟测副本的双 ASAR、Electron 完整性摘要、签名、
+43,876 条消息、26 处审阅文案和 2 份语言白名单经独立回读；备用
+HTML 与官方源字节一致。回执标记 `smoke_only=true`、`installed=false`。
+仅在新建且位于已挂载外置构建区的路径调用：
+
+    python3 scripts/build_smoke_423118.py --official-app /absolute/official/Claude.app --stage /Volumes/Mars-私人服务器/内置盘写入统一管理/01-编译与构建/Codex-provider-switch/new-smoke/Claude.app
+
+**不得把这个合成会话包安装给用户**：未迁移真实会话私密策略，仍有
+未审阅硬编码界面、语言菜单呈现、新开/刷新默认侧栏及原生视觉验收。
+
 scripts/translate_missing.py 可通过本机 Ollama 处理公开 UI 文案：在独立目录准备 missing.json（消息 ID 到英文的映射）和可选的 memory.json（已有精确译文），然后运行：
 
     python3 scripts/translate_missing.py --directory /path/to/public-ui-messages --model your-local-model

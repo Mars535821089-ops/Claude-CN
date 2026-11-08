@@ -19,8 +19,8 @@ class Reviewed423118UITests(unittest.TestCase):
     def test_manifest_is_versioned_and_rejects_unsafe_or_empty_rule_sets(self):
         manifest = json.loads((ROOT / "resources/candidates/claude-desktop-4.23118.0/hardcoded-ui-reviewed.json").read_text())
         reviewed = review.validate_manifest(manifest)
-        self.assertEqual(len(reviewed), 5)
-        self.assertEqual(sum(rule["expected"] for item in reviewed.values() for rule in item["rules"]), 8)
+        self.assertEqual(len(reviewed), 6)
+        self.assertEqual(sum(rule["expected"] for item in reviewed.values() for rule in item["rules"]), 26)
         bad = json.loads(json.dumps(manifest))
         bad["files"]["app.asar/../../escape.js"] = bad["files"].pop(next(iter(bad["files"])))
         with self.assertRaisesRegex(ValueError, "unsafe"):
@@ -40,6 +40,8 @@ class Reviewed423118UITests(unittest.TestCase):
         self.assertFalse(set(existing) & set(added))
         self.assertEqual(existing["Default effort level"], "默认思考强度")
         self.assertEqual(added["Collapse all"], "全部收起")
+        self.assertEqual(added["Open System Settings"], "打开系统设置")
+        self.assertEqual(added["I'll clean up sessions myself"], "我会自行清理会话")
 
     def test_unknown_archive_stops_before_any_ui_patch_or_app_write(self):
         with tempfile.TemporaryDirectory() as raw:

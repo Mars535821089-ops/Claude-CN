@@ -211,6 +211,12 @@ build、官方发行方及两份 ASAR 指纹。它重新生成预览并与仓库
 和审阅真实可见内容，再迁移 Cowork 魔改、构建重签候选并做界面验收；这个盘点
 不构成安装授权或“最新版已全部汉化”的证明。
 
+为缩小审阅范围，先看 `label/title/children/placeholder/aria-label/
+heading/textContent/buttons` 与 HTML 等更可能显示给用户的上下文：
+共 3,101 次出现，其中旧词典精确命中 1,405 次；余下 1,696 次、
+1,262 个不同英文原文仍须逐上下文判断与翻译。这个过滤仅是**优先队列**，
+并不证明其他上下文没有可见文字，也不保证队列内的每条都是界面内容。
+
 scripts/translate_missing.py 可通过本机 Ollama 处理公开 UI 文案：在独立目录准备 missing.json（消息 ID 到英文的映射）和可选的 memory.json（已有精确译文），然后运行：
 
     python3 scripts/translate_missing.py --directory /path/to/public-ui-messages --model your-local-model

@@ -2,6 +2,7 @@
 
 import json
 import plistlib
+import hashlib
 import sys
 import tempfile
 import unittest
@@ -11,6 +12,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import verify_ui_423118 as review
+from upstream_patch_lib import BASE_LANGUAGE_LIST
 
 
 class Reviewed423118UITests(unittest.TestCase):
@@ -57,6 +59,19 @@ class Reviewed423118UITests(unittest.TestCase):
             self.assertEqual(before, sorted(p.relative_to(app).as_posix()
                                            for p in app.rglob("*") if p.is_file()))
             self.assertEqual((resources / "app.asar").read_bytes(), b"unknown archive")
+
+    def test_both_locale_gates_must_match_signed_source_before_chinese_preview(self):
+        before = (BASE_LANGUAGE_LIST + '];const locale="en-US";').encode()
+        after = (BASE_LANGUAGE_LIST + ',"zh-CN"];const locale="en-US";').encode()
+        spec = {"sha256": hashlib.sha256(before).hexdigest(),
+                "patched_sha256": hashlib.sha256(after).hexdigest(), "expected": 1}
+        names = ["assets/v1/shared-67.js", "assets/v1/shared-99.js"]
+        files = {name: before for name in names}
+        expected = {name: spec for name in names}
+        self.assertEqual(review.verify_locale_gates(files, expected), 2)
+        files[names[1]] = b"changed upstream language guard"
+        with self.assertRaisesRegex(ValueError, "fingerprint"):
+            review.verify_locale_gates(files, expected)
 
 
 if __name__ == "__main__":

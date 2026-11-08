@@ -232,6 +232,24 @@ heading/textContent/buttons` 与 HTML 等更可能显示给用户的上下文：
 其余高优先级候选仍待审阅，Cowork 魔改与完整版候选打包、签名、实际界面
 验收仍未完成。当前运行的 4.4212.0 汉化应用没有被替换或重启。
 
+另一处升级阻断也已定位：官方 4.23118.0 前端包含**两份独立语言白名单**
+`shared-67-CqVL4EFG.js` 与 `shared-99-Do2dhk0C.js`。旧版工具只改找到的
+第一份，因此直接复用会使另一条语言路径回退英文。新的
+`language-whitelist-reviewed.json` 将这两份官方源及其中文输出分别绑定 SHA、
+一次匹配和确切文件名；`patch_whitelist_423118.py` 的命令行只做读取验证，
+实际修改函数只能由后续隔离构建器对可丢弃的提取目录调用。指纹错、软链接、
+只改了一份或第二份写入失败均会停止或恢复旧内容与文件权限。
+
+综合只读检查：
+
+    python3 scripts/verify_combined_423118.py --official-app /absolute/path/to/official/Claude.app
+
+该检查已在官方签名包上验证 **43,876 条消息（桌面、前端、动态三组）** 的
+ID、英文源摘要、中文候选摘要和 ICU 参数/分支，另核对 8 处审阅文案、
+2 份语言白名单，以及 Cowork 钩子使用**合成会话**时的语法；11 个目标
+ASAR 文件互不重叠。它不构建、安装或启动应用；真实 Cowork 会话、剩余
+硬编码界面和视觉验收仍需继续，不能据此说新版中文版已经生效。
+
 scripts/translate_missing.py 可通过本机 Ollama 处理公开 UI 文案：在独立目录准备 missing.json（消息 ID 到英文的映射）和可选的 memory.json（已有精确译文），然后运行：
 
     python3 scripts/translate_missing.py --directory /path/to/public-ui-messages --model your-local-model

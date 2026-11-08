@@ -18,6 +18,7 @@ import subprocess
 
 from upstream_patch_lib import read_asar_entry, read_asar_header
 from update_guard import require_official_signature
+from patch_whitelist_423118 import load_reviewed as reviewed_locale_gates, verify_source
 
 ROOT = Path(__file__).resolve().parents[1]
 CANDIDATE = ROOT / "resources/candidates/claude-desktop-4.23118.0"
@@ -59,6 +60,16 @@ def validate_manifest(manifest: dict) -> dict[str, dict]:
     return files
 
 
+def verify_locale_gates(sources: dict[str, bytes], expected: dict[str, dict]) -> int:
+    """Require both reviewed locale arrays in an unmodified official bundle."""
+    if not expected or set(sources) != set(expected):
+        raise ValueError("reviewed locale gates are missing")
+    for name, spec in expected.items():
+        if verify_source(sources[name], spec) is None:
+            raise ValueError("official locale gate is already patched")
+    return len(expected)
+
+
 def verify(app: Path) -> dict[str, object]:
     manifest = json.loads(MANIFEST.read_text())
     files = validate_manifest(manifest)
@@ -78,12 +89,22 @@ def verify(app: Path) -> dict[str, object]:
     require_official_signature(app)
 
     originals = []
+    locale_gates = 0
     for archive in ("app.asar", "ion-dist.asar"):
         path = app / "Contents/Resources" / archive
         raw = path.read_bytes()
         if hashlib.sha256(raw).hexdigest() != manifest["source_archives"][archive]:
             raise ValueError("reviewed official ASAR fingerprint changed")
         size, _, header = read_asar_header(raw, path)
+        if archive == "ion-dist.asar":
+            gate_specs = reviewed_locale_gates()
+            gate_sources: dict[str, bytes] = {}
+            for name in gate_specs:
+                content = read_asar_entry(raw, size, header, name)
+                if content is None:
+                    raise ValueError("reviewed locale gate source is missing")
+                gate_sources[name] = content
+            locale_gates = verify_locale_gates(gate_sources, gate_specs)
         for name, spec in files.items():
             if not name.startswith(archive + "/"):
                 continue
@@ -108,6 +129,7 @@ def verify(app: Path) -> dict[str, object]:
                 hashlib.sha256(output.encode()).hexdigest() != item["spec"]["patched_sha256"]):
             raise ValueError("reviewed UI patch output fingerprint changed")
     return {"version": VERSION, "source_signed": True, "files": len(files),
+            "locale_gates": locale_gates,
             "reviewed_replacements": sum(rule["expected"] for spec in files.values()
                                          for rule in spec["rules"]),
             "installed": False, "visual_ui": "not_checked"}

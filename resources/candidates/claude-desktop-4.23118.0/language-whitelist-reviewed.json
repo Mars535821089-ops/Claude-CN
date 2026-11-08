@@ -1,0 +1,16 @@
+{
+  "version": "4.23118.0",
+  "source_ion_dist_asar_sha256": "fe3dab2e327b043878176ed4b354eda6213055b5bc9270e0cfebf0748362f9d3",
+  "files": {
+    "assets/v1/shared-67-CqVL4EFG.js": {
+      "sha256": "17d95bc82d2eaa73da94f83e518bc42943bc96ca84d1de134b2da1b921807c91",
+      "patched_sha256": "ba6787e0a6a7b6d5db66d59518d844f9f734ae995fa920b30a74a4ed664e3c47",
+      "expected": 1
+    },
+    "assets/v1/shared-99-Do2dhk0C.js": {
+      "sha256": "7444035895541fb1331b29b86053a2a506602e7df77d26171bae8dbe8df0b5c5",
+      "patched_sha256": "587804c2621b526f97a765017bb54b1317aeb5532235d4b8f88a0c4c6d08e25e",
+      "expected": 1
+    }
+  }
+}

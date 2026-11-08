@@ -217,6 +217,21 @@ heading/textContent/buttons` 与 HTML 等更可能显示给用户的上下文：
 1,262 个不同英文原文仍须逐上下文判断与翻译。这个过滤仅是**优先队列**，
 并不证明其他上下文没有可见文字，也不保证队列内的每条都是界面内容。
 
+2026-11-08 先把其中 5 份官方签名 4.23118.0 源码的 8 处高优先级
+`Model and effort selection`、`Some models are currently unavailable.`、
+`Default model`、`Default effort level`、`Collapse all`、`Expand all` 和
+`New chat` 做了逐文件审阅：旧词典已有的 4 个原文沿用既定译法，新增 3 条
+单独版本化，绝不全局替换同字样的枚举或程序字符串。清单固定官方双 ASAR
+摘要、五个 JS 源文件与预期产物 SHA、AST 上下文及 8 次出现数量；复用既有
+`prepareBundle` 的可选词典参数，不影响旧版调用者。只读验证入口：
+
+    python3 scripts/verify_ui_423118.py --official-app /absolute/path/to/official/Claude.app
+
+该命令已对官方签名 4.23118.0 包通过，只在内存中验证替换后 JS 语法结构；
+27 项 Node、69 项 Python 测试通过。**这不是新版已完整汉化或已安装**：
+其余高优先级候选仍待审阅，Cowork 魔改与完整版候选打包、签名、实际界面
+验收仍未完成。当前运行的 4.4212.0 汉化应用没有被替换或重启。
+
 scripts/translate_missing.py 可通过本机 Ollama 处理公开 UI 文案：在独立目录准备 missing.json（消息 ID 到英文的映射）和可选的 memory.json（已有精确译文），然后运行：
 
     python3 scripts/translate_missing.py --directory /path/to/public-ui-messages --model your-local-model

@@ -141,6 +141,24 @@ test('bundle path traversal is refused', () => {
   }), /escapes its bundle/);
 });
 
+test('version-pinned UI rules use a separately reviewed new-build dictionary', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'claude-new-ui-'));
+  try {
+    const source = 'f({children:"Collapse all",type:"Collapse all"})';
+    const rules = [{ context: 'children', source: 'Collapse all', expected: 1 }];
+    const translations = { 'Collapse all': '全部收起' };
+    const patched = applyRules(source, 'app.asar/fixture.js', rules, translations).source;
+    fs.writeFileSync(path.join(root, 'fixture.js'), source);
+    const manifest = { version: '4.23118.0', files: { 'app.asar/fixture.js': {
+      sha256: sha256(source), patched_sha256: sha256(patched), rules,
+    } } };
+    const prepared = prepareBundle(root, 'app.asar', manifest, translations);
+    assert.equal(prepared.length, 1);
+    assert.match(prepared[0].source, /children:"全部收起",type:"Collapse all"/);
+    assert.equal(fs.readFileSync(path.join(root, 'fixture.js'), 'utf8'), source);
+  } finally { fs.rmSync(root, { recursive: true }); }
+});
+
 test('current-version review-only manifests cannot enter the installer', () => {
   assert.throws(() => prepareBundle('/tmp/test', 'app.asar', {
     version: '4.4212.0', preview_only: true, files: {},

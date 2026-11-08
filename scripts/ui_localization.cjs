@@ -88,7 +88,7 @@ function checkedPath(root, relative) {
   return target;
 }
 
-function prepareBundle(root, bundle, manifest) {
+function prepareBundle(root, bundle, manifest, translations = dictionary) {
   if (manifest.preview_only) throw new Error('Review-only UI manifest cannot be applied');
   const prepared = [];
   for (const [file, spec] of Object.entries(manifest.files)) {
@@ -99,7 +99,7 @@ function prepareBundle(root, bundle, manifest) {
     const digest = sha256(source);
     if (digest === spec.patched_sha256) continue;
     if (digest !== spec.sha256) throw new Error(`Unknown UI source fingerprint: ${file}; stopped without writing`);
-    const patched = applyRules(source, file, spec.rules);
+    const patched = applyRules(source, file, spec.rules, translations);
     if (sha256(patched.source) !== spec.patched_sha256) {
       throw new Error(`UI dictionary or generated manifest changed: ${file}`);
     }

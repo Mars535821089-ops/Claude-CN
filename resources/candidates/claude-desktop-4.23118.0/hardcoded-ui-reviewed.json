@@ -1,0 +1,40 @@
+{
+  "version": "4.23118.0",
+  "source_archives": {
+    "app.asar": "4a47424bf89ffe2041ff5828da635d366485599ef2823ee1ce2e8e10dce7903f",
+    "ion-dist.asar": "fe3dab2e327b043878176ed4b354eda6213055b5bc9270e0cfebf0748362f9d3"
+  },
+  "files": {
+    "app.asar/.vite/build/index.chunk-ThbSSMzR.js": {
+      "sha256": "90ef8dbdde2e0c6fdcb51f476b1ff3caa329b0e2afe10d3bc9c6ed0944c568ec",
+      "patched_sha256": "0cb7583ad9dbe7762f3d0e1cdd3e9398ee78215629cff4e66770bfe6575c3d26",
+      "rules": [{"context": "label", "source": "Model and effort selection", "expected": 1}]
+    },
+    "app.asar/.vite/build/index.chunk-BBUaTQ8d.js": {
+      "sha256": "1ffb394eb87f77ec1e8949c4acb8c30e973fcb6897987133f46444560dcd3df1",
+      "patched_sha256": "91addebc960a4a718a6613f6a68f4524ada235daae5d931133820e1988e38f59",
+      "rules": [{"context": "title", "source": "Some models are currently unavailable.", "expected": 1}]
+    },
+    "ion-dist.asar/assets/v1/cde03b773-BwxmykJC.js": {
+      "sha256": "fc4942e3b74bc980c53ee8ab04ff06bf657ec11d5db84852ed741cbd010423ac",
+      "patched_sha256": "07354665b46ca77cf6676f2ed89b138215b23abd81bb16fccf7d1b1101a385f9",
+      "rules": [
+        {"context": "label", "source": "Default model", "expected": 1},
+        {"context": "label", "source": "Default effort level", "expected": 2}
+      ]
+    },
+    "ion-dist.asar/assets/v1/c5a5d8e85-C-j5LGdC.js": {
+      "sha256": "25d70af022f9ff13a0bf7a52f8fb460d07c99151a8cb1d2f04b1599267361f2b",
+      "patched_sha256": "fa6d907ab42305190d637b043ce6e72e0d836c61e6bd718532f5f1e87c87b56e",
+      "rules": [
+        {"context": "children", "source": "Collapse all", "expected": 1},
+        {"context": "children", "source": "Expand all", "expected": 1}
+      ]
+    },
+    "ion-dist.asar/assets/v1/cf6c0e3a1-0_cXd4nS.js": {
+      "sha256": "69ef766d77103949beca278f404ae7a65c39e762ce2b75cba9f6de30bf43fb24",
+      "patched_sha256": "a6a9f7a2efff68238ac86641402b183a355ca6691de292aec06dbb2b497f5cf0",
+      "rules": [{"context": "children", "source": "New chat", "expected": 1}]
+    }
+  }
+}

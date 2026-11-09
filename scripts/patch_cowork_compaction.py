@@ -30,6 +30,9 @@ NEW_ENTRY = '.vite/build/index.chunk-D6Y0BUdo.js'
 NEW_OFFICIAL_CHUNK_SHA256 = '5af1d0d66409c1558186a748fcb7dd02505f65ea97c04f9927fb43ccbc691b10'
 NEW_ANCHOR = 't.tvt.info("[HostLoop] sdkOptions after patch: %o",'
 NEW_BINDING = 'async function eh(e,r){let{sessionId:i,'
+LATEST_ENTRY = '.vite/build/index.chunk-vznsWXEK.js'
+LATEST_OFFICIAL_CHUNK_SHA256 = 'ebe8305f396e1f8e9fb8d8f22c749ae8b4eddedb75c5e684d1c2f621e21e1c35'
+LATEST_BINDING = 'async function th(e,r){let{sessionId:i,'
 
 
 def patch_host_loop_source(source, module_path, policy_path, session_id, *, version='4.4212.0'):
@@ -38,6 +41,10 @@ def patch_host_loop_source(source, module_path, policy_path, session_id, *, vers
     elif version == '4.23118.0':
         anchor, binding, owner, logger = NEW_ANCHOR, NEW_BINDING, 'i', 't.tvt'
         if MARKER not in source and hashlib.sha256(source.encode()).hexdigest() != NEW_OFFICIAL_CHUNK_SHA256:
+            raise ValueError('Unknown official HostLoop source fingerprint')
+    elif version == '4.23118.1':
+        anchor, binding, owner, logger = NEW_ANCHOR, LATEST_BINDING, 'i', 't.tvt'
+        if MARKER not in source and hashlib.sha256(source.encode()).hexdigest() != LATEST_OFFICIAL_CHUNK_SHA256:
             raise ValueError('Unknown official HostLoop source fingerprint')
     else:
         raise ValueError('Unsupported official Claude build for session-scoped compaction')
@@ -103,7 +110,7 @@ def replace_asar_entry(data, target, replacement):
 
 
 def stage_app(source_app, destination, module_path, policy_path, session_id, expected_version):
-    if expected_version not in ('4.4212.0', '4.23118.0'):
+    if expected_version not in ('4.4212.0', '4.23118.0', '4.23118.1'):
         raise ValueError('Unsupported official Claude build for session-scoped compaction')
     info = plistlib.loads((source_app / 'Contents/Info.plist').read_bytes())
     version = info.get('CFBundleShortVersionString')
@@ -111,9 +118,13 @@ def stage_app(source_app, destination, module_path, policy_path, session_id, exp
         raise ValueError(f'Installed app version changed: expected {expected_version}, got {version}')
     if destination.exists():
         raise ValueError('Staging destination already exists; refusing to overwrite it')
-    if expected_version == '4.23118.0':
+    if expected_version in ('4.23118.0', '4.23118.1'):
         require_official_signature(source_app)
-    target_entry = NEW_ENTRY if expected_version == '4.23118.0' else ENTRY
+    target_entry = {
+        '4.4212.0': ENTRY,
+        '4.23118.0': NEW_ENTRY,
+        '4.23118.1': LATEST_ENTRY,
+    }[expected_version]
     original = (source_app / 'Contents/Resources/app.asar').read_bytes()
     hs, _, header = read_asar_header(original, source_app / 'Contents/Resources/app.asar')
     js = read_asar_entry(original, hs, header, target_entry)

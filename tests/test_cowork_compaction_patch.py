@@ -1,4 +1,5 @@
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -14,6 +15,7 @@ ANCHOR = 't.Yut.info("[HostLoop] sdkOptions after patch: %o",'
 SOURCE = 'async function Ah(e,r){let{sessionId:a,sessionType:o}=r;return 1,' + ANCHOR + '{model:e.model}),{workspaceMcpServer:{}}}'
 NEW_ANCHOR = 't.tvt.info("[HostLoop] sdkOptions after patch: %o",'
 NEW_SOURCE = 'async function eh(e,r){let{sessionId:i,sessionType:o}=r;return 1,' + NEW_ANCHOR + '{model:e.model}),{workspaceMcpServer:{}}}'
+LATEST_SOURCE = 'async function th(e,r){let{sessionId:i,sessionType:o}=r;return 1,' + NEW_ANCHOR + '{model:e.model}),{workspaceMcpServer:{}}}'
 
 
 class CompactionPatchTests(unittest.TestCase):
@@ -23,6 +25,32 @@ class CompactionPatchTests(unittest.TestCase):
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         return module
+
+    def test_latest_official_hostloop_retains_session_scoped_policy(self):
+        m = self.load()
+        fingerprint = hashlib.sha256(LATEST_SOURCE.encode()).hexdigest()
+        with patch.object(m, 'LATEST_OFFICIAL_CHUNK_SHA256', fingerprint, create=True):
+            result = m.patch_host_loop_source(
+                LATEST_SOURCE, '/adapter.cjs', '/policy.json', SESSION,
+                version='4.23118.1',
+            )
+            self.assertEqual(result.count(m.MARKER), 1)
+            self.assertIn('applyCompactionPolicy(e,{sessionId:i,policyPath:', result)
+            self.assertEqual(result.count(NEW_ANCHOR), 1)
+            self.assertNotIn('e.model=', result)
+            self.assertEqual(
+                m.patch_host_loop_source(result, '/adapter.cjs', '/policy.json', SESSION,
+                                         version='4.23118.1'),
+                result,
+            )
+            changed = LATEST_SOURCE.replace('sessionId:i', 'sessionId:z')
+            with patch.object(m, 'LATEST_OFFICIAL_CHUNK_SHA256',
+                              hashlib.sha256(changed.encode()).hexdigest()):
+                with self.assertRaisesRegex(ValueError, 'binding'):
+                    m.patch_host_loop_source(
+                        changed, '/adapter.cjs', '/policy.json', SESSION,
+                        version='4.23118.1',
+                    )
 
     def test_hook_is_session_scoped_and_preserves_existing_option_log(self):
         m = self.load()

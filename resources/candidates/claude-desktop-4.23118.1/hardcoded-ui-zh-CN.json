@@ -1,5 +1,6 @@
 {
   "Background Computer Use": "后台电脑操作",
+  "Block type": "区块类型",
   "Browser Use": "浏览器操作",
   "Cache Performance": "缓存性能",
   "Clean up": "清理",
@@ -7,10 +8,14 @@
   "Expand all": "全部展开",
   "Copy file to Claude": "将文件复制到 Claude",
   "Data isn't persisted across browser sessions or for old messages to prevent leakage.": "为防止信息泄露，数据不会跨浏览器会话保存，也不会为旧消息保留。",
+  "Delete block": "删除区块",
   "Hide Debug Window": "隐藏调试窗口",
+  "Horizontal rule": "水平分隔线",
   "I'll clean up sessions myself": "我会自行清理会话",
   "Inspector": "检查器",
   "Install": "安装",
+  "Insert block": "插入区块",
+  "List kind": "列表类型",
   "Loading debug information": "正在加载调试信息",
   "Message Structure": "消息结构",
   "New chat": "新聊天",
@@ -18,6 +23,7 @@
   "Open Claude Settings": "打开 Claude 设置",
   "Open System Settings": "打开系统设置",
   "Prompt Map": "提示词映射",
+  "Read the transcript": "阅读转录文本",
   "Remove": "移除",
   "Reset Chrome Browser Pairing": "重置 Chrome 浏览器配对",
   "Run": "运行",
@@ -25,5 +31,7 @@
   "Sends your note and this modal's debug data (conversation and API usage logs) to Anthropic.": "将你的说明以及此弹窗的调试数据（对话与 API 使用日志）发送给 Anthropic。",
   "Show Debug Window": "显示调试窗口",
   "Start Cowork VM": "启动 Cowork 虚拟机",
-  "Stop Cowork VM": "停止 Cowork 虚拟机"
+  "Stop Cowork VM": "停止 Cowork 虚拟机",
+  "What's wrong with this response?": "这条回复有什么问题？",
+  "…and {…} more": "……还有 {…} 项"
 }

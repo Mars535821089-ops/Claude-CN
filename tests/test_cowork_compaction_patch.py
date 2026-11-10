@@ -1,10 +1,13 @@
 import importlib.util
 import hashlib
+import io
 import json
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import unittest
+from contextlib import redirect_stderr, redirect_stdout
 from unittest.mock import patch
 
 
@@ -19,6 +22,75 @@ LATEST_SOURCE = 'async function th(e,r){let{sessionId:i,sessionType:o}=r;return 
 
 
 class CompactionPatchTests(unittest.TestCase):
+    def test_real_session_stage_rejects_world_readable_parent_before_source_read(self):
+        m = self.load()
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            public = base / 'public-build'
+            public.mkdir(mode=0o755)
+            app = base / 'source.app'
+            (app / 'Contents').mkdir(parents=True)
+            (app / 'Contents/Info.plist').write_bytes(m.plistlib.dumps({
+                'CFBundleShortVersionString': '4.23118.1',
+            }))
+            with patch.object(m, 'require_official_signature', return_value=None):
+                with self.assertRaisesRegex(ValueError, 'private staging'):
+                    m.stage_app(app, public / 'Claude.app', '/adapter.cjs', '/policy.json',
+                                SESSION, '4.23118.1')
+            self.assertEqual(list(public.iterdir()), [])
+
+    def test_private_stage_slot_refuses_existing_session_artifacts(self):
+        m = self.load()
+        with tempfile.TemporaryDirectory() as directory:
+            parent = Path(directory).resolve()
+            destination = parent / 'Claude.app'
+            self.assertIsNone(m.require_private_stage_parent(destination))
+            artifact = parent / 'host-loop-auto-compact-staged.js'
+            artifact.write_text('existing private session fixture')
+            with self.assertRaisesRegex(ValueError, 'already contains'):
+                m.require_private_stage_parent(destination)
+            self.assertEqual(artifact.read_text(), 'existing private session fixture')
+
+    def test_private_session_artifact_is_owner_only_and_not_overwritten(self):
+        m = self.load()
+        writer = getattr(m, 'write_private_stage_artifact', None)
+        self.assertIsNotNone(writer, 'real session artifacts require atomic private creation')
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory).resolve() / 'receipt.json'
+            writer(path, b'first synthetic session')
+            self.assertEqual(path.stat().st_mode & 0o777, 0o600)
+            with self.assertRaisesRegex(ValueError, 'already exists'):
+                writer(path, b'second synthetic session')
+            self.assertEqual(path.read_bytes(), b'first synthetic session')
+
+    def test_public_stage_output_never_contains_private_session_or_policy_paths(self):
+        m = self.load()
+        summarize = getattr(m, 'public_stage_summary', None)
+        self.assertIsNotNone(summarize, 'staging must emit a redacted public receipt')
+        private = {'version': '4.23118.1', 'session_id': SESSION,
+                   'module_path': '/private/adapter.cjs', 'policy_path': '/private/policy.json',
+                   'staged_app': '/private/Claude.app', 'changed_archive_entries': [m.LATEST_ENTRY]}
+        summary = summarize(private)
+        public = json.dumps(summary)
+        self.assertNotIn(SESSION, public)
+        self.assertNotIn('/private/', public)
+        self.assertEqual(summary['status'], 'staged_private_candidate')
+
+    def test_cli_failure_redacts_private_session_path(self):
+        m = self.load()
+        output, error = io.StringIO(), io.StringIO()
+        args = ['patch_cowork_compaction.py', '--source-app', '/unavailable/Claude.app',
+                '--stage-app', f'/private/{SESSION}/Claude.app', '--module', '/adapter.cjs',
+                '--policy', f'/private/{SESSION}/policy.json', '--session', SESSION,
+                '--expected-version', '4.23118.1']
+        with patch.object(sys, 'argv', args), patch.object(
+            m, 'stage_app', side_effect=OSError(f'private path {SESSION}')
+        ), redirect_stdout(output), redirect_stderr(error):
+            status = m.main()
+        self.assertEqual(status, 1)
+        self.assertNotIn(SESSION, output.getvalue() + error.getvalue())
+        self.assertNotIn('/private/', output.getvalue() + error.getvalue())
+
     def load(self):
         self.assertTrue(MODULE.exists(), 'Missing version-bound native SDK policy patcher')
         spec = importlib.util.spec_from_file_location('cowork_compaction_patch_test', MODULE)

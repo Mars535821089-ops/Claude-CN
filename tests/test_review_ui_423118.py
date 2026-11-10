@@ -18,6 +18,29 @@ from upstream_patch_lib import BASE_LANGUAGE_LIST
 
 
 class Reviewed423118UITests(unittest.TestCase):
+    def test_latest_exact_accessibility_and_dom_text_contexts_are_reviewable(self):
+        latest = ROOT / "resources/candidates/claude-desktop-4.23118.1"
+        manifest = json.loads((latest / "hardcoded-ui-reviewed.json").read_text())
+        one = next(iter(manifest["files"].values()))
+        original = one["rules"]
+        try:
+            one["rules"] = [
+                {"context": "aria-label", "source": "Read the transcript", "expected": 1},
+                {"context": "placeholder", "source": "What's wrong with this response?", "expected": 1},
+                {"context": "setAttribute:aria-label", "source": "Copy code", "expected": 1},
+                {"context": "textContent", "source": "…and {…} more", "expected": 1},
+            ]
+            try:
+                reviewed = review.validate_manifest(manifest, version="4.23118.1")
+            except ValueError as error:
+                if str(error) != "reviewed UI rules are invalid":
+                    raise
+                reviewed = None
+            self.assertIsNotNone(reviewed, "reviewed accessibility and DOM text contexts must be supported")
+            self.assertEqual(len(reviewed), 7)
+        finally:
+            one["rules"] = original
+
     def test_signed_local_arm64_official_variant_reuses_exact_reviewed_ui(self):
         location = os.environ.get("CLAUDE_OFFICIAL_VARIANT_APP")
         if not location:
@@ -33,22 +56,24 @@ class Reviewed423118UITests(unittest.TestCase):
                 raise
             outcome = None
         self.assertIsNotNone(outcome, "a second exact signed archive variant must be reviewed")
-        self.assertEqual(outcome["reviewed_replacements"], 40)
+        self.assertEqual(outcome["reviewed_replacements"], 72)
         self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(), before)
 
     def test_latest_reviewed_manifest_and_both_locale_gates_are_version_bound(self):
         latest = ROOT / "resources/candidates/claude-desktop-4.23118.1"
         manifest = json.loads((latest / "hardcoded-ui-reviewed.json").read_text())
         reviewed = review.validate_manifest(manifest, version="4.23118.1")
-        self.assertEqual(len(reviewed), 6)
+        self.assertEqual(len(reviewed), 7)
         self.assertEqual(
             sum(rule["expected"] for item in reviewed.values() for rule in item["rules"]),
-            40,
+            72,
         )
         self.assertEqual(len(whitelist.load_reviewed("4.23118.1")), 2)
         additions = json.loads((latest / "hardcoded-ui-zh-CN.json").read_text())
         self.assertEqual(additions["No structured data available."], "没有可用的结构化数据。")
         self.assertEqual(additions["Prompt Map"], "提示词映射")
+        self.assertEqual(additions["Block type"], "区块类型")
+        self.assertEqual(additions["What's wrong with this response?"], "这条回复有什么问题？")
         with self.assertRaisesRegex(ValueError, "version"):
             review.validate_manifest(manifest, version="4.23118.0")
 

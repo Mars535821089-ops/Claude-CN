@@ -13,6 +13,7 @@ import plistlib
 import struct
 import subprocess
 import sys
+import stat
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from upstream_patch_lib import (
@@ -33,6 +34,53 @@ NEW_BINDING = 'async function eh(e,r){let{sessionId:i,'
 LATEST_ENTRY = '.vite/build/index.chunk-vznsWXEK.js'
 LATEST_OFFICIAL_CHUNK_SHA256 = 'ebe8305f396e1f8e9fb8d8f22c749ae8b4eddedb75c5e684d1c2f621e21e1c35'
 LATEST_BINDING = 'async function th(e,r){let{sessionId:i,'
+
+
+def require_private_stage_parent(destination: Path) -> None:
+    """Real session IDs may only enter an existing, owner-private build slot."""
+    if (not destination.is_absolute() or destination.is_relative_to(Path('/Volumes'))
+            or destination.exists() or destination.is_symlink()):
+        raise ValueError('private staging requires a new internal or encrypted-private destination')
+    parent = destination.parent
+    if any(path.is_symlink() for path in (parent, *parent.parents)):
+        raise ValueError('private staging parent is redirected')
+    try:
+        info = parent.lstat()
+    except OSError as error:
+        raise ValueError('private staging parent must already exist') from error
+    if (not stat.S_ISDIR(info.st_mode) or info.st_uid != os.getuid()
+            or stat.S_IMODE(info.st_mode) != 0o700):
+        raise ValueError('private staging requires an owner-only 0700 parent')
+    for name in ('host-loop-auto-compact-staged.js', 'automatic-compaction-stage.json'):
+        child = parent / name
+        if child.exists() or child.is_symlink():
+            raise ValueError('private staging slot already contains a session artifact')
+
+
+def write_private_stage_artifact(path: Path, content: bytes) -> None:
+    parent = path.parent.lstat()
+    if (not stat.S_ISDIR(parent.st_mode) or parent.st_uid != os.getuid()
+            or stat.S_IMODE(parent.st_mode) != 0o700 or path.is_symlink() or path.exists()):
+        raise ValueError('private staging artifact already exists or parent is unsafe')
+    try:
+        descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, 'O_NOFOLLOW', 0), 0o600)
+    except FileExistsError as error:
+        raise ValueError('private staging artifact already exists') from error
+    with os.fdopen(descriptor, 'wb') as handle:
+        os.fchmod(handle.fileno(), 0o600)
+        handle.write(content)
+        handle.flush()
+        os.fsync(handle.fileno())
+
+
+def public_stage_summary(receipt: dict) -> dict:
+    """Never print session identity or private filesystem paths to a terminal."""
+    return {
+        'status': 'staged_private_candidate',
+        'version': receipt['version'],
+        'changed_archive_entries': len(receipt['changed_archive_entries']),
+        'installed': False,
+    }
 
 
 def patch_host_loop_source(source, module_path, policy_path, session_id, *, version='4.4212.0'):
@@ -112,6 +160,7 @@ def replace_asar_entry(data, target, replacement):
 def stage_app(source_app, destination, module_path, policy_path, session_id, expected_version):
     if expected_version not in ('4.4212.0', '4.23118.0', '4.23118.1'):
         raise ValueError('Unsupported official Claude build for session-scoped compaction')
+    require_private_stage_parent(destination)
     info = plistlib.loads((source_app / 'Contents/Info.plist').read_bytes())
     version = info.get('CFBundleShortVersionString')
     if version != expected_version:
@@ -144,27 +193,36 @@ def stage_app(source_app, destination, module_path, policy_path, session_id, exp
             changed.append(name)
     if changed != [target_entry]:
         raise ValueError(f'Archive edit exceeded scope: {changed}')
-    destination.parent.mkdir(parents=True, exist_ok=True)
     syntax_path = destination.parent / 'host-loop-auto-compact-staged.js'
-    syntax_path.write_bytes(patched_js)
+    write_private_stage_artifact(syntax_path, patched_js)
     acorn = Path(__file__).resolve().parents[1] / 'node_modules/acorn'
     validator = 'const fs=require("fs"),a=require(process.argv[1]);a.parse(fs.readFileSync(process.argv[2],"utf8"),{ecmaVersion:"latest",sourceType:"module"});'
-    subprocess.run(['node', '-e', validator, str(acorn), str(syntax_path)], check=True)
-    subprocess.run(['cp', '-cR', str(source_app), str(destination)], check=True)
+    syntax = subprocess.run(
+        ['node', '-e', validator, str(acorn), str(syntax_path)],
+        capture_output=True, check=False,
+    )
+    if syntax.returncode:
+        raise RuntimeError('private Cowork hook JavaScript syntax verification failed')
+    subprocess.run(['cp', '-cR', str(source_app), str(destination)],
+                   capture_output=True, check=True)
     archive_path = destination / 'Contents/Resources/app.asar'
     archive_path.write_bytes(replacement)
     update_electron_asar_integrity(destination, 'Resources/app.asar', archive_path)
     verify_electron_asar_integrity(destination)
     resign_app(destination)
-    subprocess.run(['codesign', '--verify', '--deep', '--strict', str(destination)], check=True)
+    subprocess.run(['codesign', '--verify', '--deep', '--strict', str(destination)],
+                   capture_output=True, check=True)
     receipt = {
         'version': version, 'session_id': session_id, 'changed_archive_entries': changed,
         'original_archive_sha256': hashlib.sha256(original).hexdigest(),
         'staged_archive_sha256': hashlib.sha256(replacement).hexdigest(),
         'staged_app': str(destination), 'module_path': str(module_path), 'policy_path': str(policy_path),
     }
-    (destination.parent / 'automatic-compaction-stage.json').write_text(json.dumps(receipt, indent=2))
-    print(json.dumps(receipt), flush=True)
+    write_private_stage_artifact(
+        destination.parent / 'automatic-compaction-stage.json',
+        json.dumps(receipt, indent=2).encode(),
+    )
+    print(json.dumps(public_stage_summary(receipt)), flush=True)
 
 
 def main():
@@ -176,8 +234,14 @@ def main():
     parser.add_argument('--session', required=True)
     parser.add_argument('--expected-version', required=True)
     args = parser.parse_args()
-    stage_app(args.source_app, args.stage_app, args.module, args.policy, args.session, args.expected_version)
+    try:
+        stage_app(args.source_app, args.stage_app, args.module, args.policy,
+                  args.session, args.expected_version)
+    except (OSError, ValueError, RuntimeError, TypeError, subprocess.SubprocessError, SystemExit) as error:
+        print(json.dumps({'status': 'failed', 'error_type': type(error).__name__}), flush=True)
+        return 1
+    return 0
 
 
 if __name__ == '__main__':
-    main()
+    raise SystemExit(main())

@@ -5,16 +5,20 @@ window to an explicitly listed Cowork session. It preserves model and provider
 selectors, credentials, tool permissions, and session identities. It does not
 rewrite history or invent token usage.
 
-The tested application build is **Claude Desktop 4.4212.0**, with native agent
-**2.1.309**. The patcher requires both the exact app version and the expected SDK
-option-construction binding. Unknown builds are rejected.
+The last **real-session-tested** application build was Claude Desktop
+**4.4212.0**, with native agent **2.1.309**. It is no longer installed.
+Version-bound source/synthetic validation also covers 4.23118.0 and 4.23118.1,
+but neither newer build has passed a real Cowork session. The patcher requires
+the exact app version and SDK option-construction binding; unknown builds fail.
 
 The 4.23118.0 official signed candidate has a separately fingerprint-pinned
 HostLoop chunk (`D6Y0BUdo`): the existing session-specific option policy was
 ported in source, and a real official chunk passes JavaScript syntax parsing
 with exactly one ASAR entry changed in memory. Neither a fully translated app
 nor a user-session policy installation has been built or activated. The old
-ad-hoc-signed app remains installed and keeps its current hook. An unknown
+ad-hoc-signed app is no longer the current installation: the observed
+`/Applications/Claude.app` is official-signed 4.23118.1 without this hook.
+An unknown
 future Claude build fails closed; never reuse a minified chunk name without a
 fresh signed-release fingerprint and native test. The isolated signed smoke
 candidate was built from the 4.23118.0 official source and independently
@@ -52,6 +56,19 @@ only the expected HostLoop archive entry, validates JavaScript, updates Electron
 archive integrity, and re-signs the clone with existing entitlements. It does not
 activate the staged app or change user profiles. Activate only while the app and
 its workers are idle; retain the previous app as a rollback.
+
+Real-session staging must use an **existing** user-owned `0700` directory on
+the internal disk or the mounted encrypted private archive. The ordinary
+`/Volumes/.../01-编译与构建` directory is not permitted for a production
+session ID, even when it stores harmless smoke candidates. Staging refuses
+symlinked or reused paths and writes the session-scoped JavaScript and receipt
+as `0600` files with exclusive creation. Do not put those private artifacts
+in Git, plain external build areas or public logs. Terminal output is reduced
+to version/count/status without session IDs or private paths; validation or
+copy failures emit only a sanitized error type, not the private command or
+subprocess stderr. The full receipt stays only in the private staging slot.
+The synthetic smoke build
+uses a separate code path and does not grant real-session installation status.
 
 Validation for the repaired session included an ordinary read-only message at a
 temporary 120,000-token window. Its native transcript recorded **`trigger: auto`,

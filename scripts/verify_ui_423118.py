@@ -61,9 +61,12 @@ def validate_manifest(manifest: dict, *, version: str = VERSION) -> dict[str, di
                        for key in ("sha256", "patched_sha256"))):
             raise ValueError("reviewed UI source fingerprint is invalid")
         rules = spec["rules"]
+        allowed_contexts = {"title", "label", "children", "buttons"}
+        if version == "4.23118.1":
+            allowed_contexts.update({"aria-label", "placeholder", "setAttribute:aria-label", "textContent"})
         if (not isinstance(rules, list) or not rules or any(
                 not isinstance(rule, dict) or set(rule) != {"context", "source", "expected"}
-                or rule["context"] not in {"title", "label", "children", "buttons"}
+                or rule["context"] not in allowed_contexts
                 or not isinstance(rule["source"], str) or not rule["source"]
                 or type(rule["expected"]) is not int or rule["expected"] < 1
                 for rule in rules)):

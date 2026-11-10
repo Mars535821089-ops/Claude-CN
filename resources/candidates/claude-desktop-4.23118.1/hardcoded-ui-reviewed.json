@@ -136,7 +136,7 @@
     },
     "ion-dist.asar/assets/v1/c5a5d8e85-C-j5LGdC.js": {
       "sha256": "25d70af022f9ff13a0bf7a52f8fb460d07c99151a8cb1d2f04b1599267361f2b",
-      "patched_sha256": "fa6d907ab42305190d637b043ce6e72e0d836c61e6bd718532f5f1e87c87b56e",
+      "patched_sha256": "55b38c82ba730f4226b18a56e1f3326c7d8ebc46a3916b51edec3d834597a230",
       "rules": [
         {
           "context": "children",
@@ -146,6 +146,76 @@
         {
           "context": "children",
           "source": "Expand all",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "No structured data available.",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Overview",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Message Structure",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Prompt Map",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Loading debug information",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Sends your note and this modal's debug data (conversation and API usage logs) to Anthropic.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Cancel",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Sending…",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Send feedback",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Feedback sent. Reference ID: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Failed to load debug information: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Cache Performance",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Data isn't persisted across browser sessions or for old messages to prevent leakage.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Loading",
           "expected": 1
         }
       ]

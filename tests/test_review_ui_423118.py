@@ -24,9 +24,12 @@ class Reviewed423118UITests(unittest.TestCase):
         self.assertEqual(len(reviewed), 6)
         self.assertEqual(
             sum(rule["expected"] for item in reviewed.values() for rule in item["rules"]),
-            26,
+            40,
         )
         self.assertEqual(len(whitelist.load_reviewed("4.23118.1")), 2)
+        additions = json.loads((latest / "hardcoded-ui-zh-CN.json").read_text())
+        self.assertEqual(additions["No structured data available."], "没有可用的结构化数据。")
+        self.assertEqual(additions["Prompt Map"], "提示词映射")
         with self.assertRaisesRegex(ValueError, "version"):
             review.validate_manifest(manifest, version="4.23118.0")
 

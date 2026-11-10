@@ -25,12 +25,20 @@ EXPECTED_FILES = {
 }
 
 
-def load_reviewed() -> dict[str, dict]:
-    document = json.loads(MANIFEST.read_text())
+def load_reviewed(version: str = "4.23118.0") -> dict[str, dict]:
+    source_hashes = {
+        "4.23118.0": "fe3dab2e327b043878176ed4b354eda6213055b5bc9270e0cfebf0748362f9d3",
+        "4.23118.1": "1f5b0a6a2d83c9165ab92215223a3412b8c8e924ead5c4f86a03624d6d090e60",
+    }
+    if version not in source_hashes:
+        raise ValueError("unsupported reviewed locale gate version")
+    path = MANIFEST if version == "4.23118.0" else (
+        ROOT / f"resources/candidates/claude-desktop-{version}/language-whitelist-reviewed.json"
+    )
+    document = json.loads(path.read_text())
     files = document.get("files")
-    if (document.get("version") != "4.23118.0"
-            or document.get("source_ion_dist_asar_sha256") !=
-            "fe3dab2e327b043878176ed4b354eda6213055b5bc9270e0cfebf0748362f9d3"
+    if (document.get("version") != version
+            or document.get("source_ion_dist_asar_sha256") != source_hashes[version]
             or not isinstance(files, dict) or set(files) != EXPECTED_FILES):
         raise ValueError("reviewed locale gate source version or files changed")
     return files

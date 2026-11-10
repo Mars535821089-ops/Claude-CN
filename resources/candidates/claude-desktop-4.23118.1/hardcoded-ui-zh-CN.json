@@ -1,0 +1,22 @@
+{
+  "Background Computer Use": "后台电脑操作",
+  "Browser Use": "浏览器操作",
+  "Clean up": "清理",
+  "Collapse all": "全部收起",
+  "Expand all": "全部展开",
+  "Copy file to Claude": "将文件复制到 Claude",
+  "Hide Debug Window": "隐藏调试窗口",
+  "I'll clean up sessions myself": "我会自行清理会话",
+  "Inspector": "检查器",
+  "Install": "安装",
+  "New chat": "新聊天",
+  "Open Claude Settings": "打开 Claude 设置",
+  "Open System Settings": "打开系统设置",
+  "Remove": "移除",
+  "Reset Chrome Browser Pairing": "重置 Chrome 浏览器配对",
+  "Run": "运行",
+  "Scheduled tasks": "计划任务",
+  "Show Debug Window": "显示调试窗口",
+  "Start Cowork VM": "启动 Cowork 虚拟机",
+  "Stop Cowork VM": "停止 Cowork 虚拟机"
+}

@@ -1,0 +1,165 @@
+{
+  "version": "4.23118.1",
+  "source_archives": {
+    "app.asar": "8fed22604221c40dec8b2886b3bd96d3f383104072dd3a6f3890bef65e2aece1",
+    "ion-dist.asar": "1f5b0a6a2d83c9165ab92215223a3412b8c8e924ead5c4f86a03624d6d090e60"
+  },
+  "files": {
+    "app.asar/.vite/build/index.chunk--ZM92Ifo.js": {
+      "sha256": "e0f8f1a91bbc695c91b6f42cc650221e393b9ab6a893d64e2602e6a47fc59197",
+      "patched_sha256": "38f7a49c4d5ed991e8492dbbee93e388d0ba5bb924fd6f6bcf07f111d7c029b4",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Model and effort selection",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Scheduled tasks",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-BLvDWgqz.js": {
+      "sha256": "fd7afc91b7082d653f58f590ba984583989078191c4b29599747de332416cf47",
+      "patched_sha256": "e182f43c82cf8ed449fb50cba9e58c3d24a7360b438a519b79f2f33408b30e98",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Some models are currently unavailable.",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "Open System Settings",
+          "expected": 2
+        },
+        {
+          "context": "buttons",
+          "source": "Open Claude Settings",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Background Computer Use",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Start Cowork VM",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Show Debug Window",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Hide Debug Window",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Stop Cowork VM",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Copy file to Claude",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Inspector",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Reset Chrome Browser Pairing",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Browser Use",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "Run",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "Install",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "Remove",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-ByPT2_1B.js": {
+      "sha256": "7d5a1ec4a23adc74d8390d48837f8656fc6ad580a68ca7c37b58f53ec8ed6c09",
+      "patched_sha256": "72e5b872799515536b088073c146bee878ad6a6a3c08f2b7a9bc616ea316ba8c",
+      "rules": [
+        {
+          "context": "buttons",
+          "source": "Clean up",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "I'll clean up sessions myself",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cde03b773-BwxmykJC.js": {
+      "sha256": "fc4942e3b74bc980c53ee8ab04ff06bf657ec11d5db84852ed741cbd010423ac",
+      "patched_sha256": "07354665b46ca77cf6676f2ed89b138215b23abd81bb16fccf7d1b1101a385f9",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Default model",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Default effort level",
+          "expected": 2
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c5a5d8e85-C-j5LGdC.js": {
+      "sha256": "25d70af022f9ff13a0bf7a52f8fb460d07c99151a8cb1d2f04b1599267361f2b",
+      "patched_sha256": "fa6d907ab42305190d637b043ce6e72e0d836c61e6bd718532f5f1e87c87b56e",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Collapse all",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Expand all",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cf6c0e3a1-0_cXd4nS.js": {
+      "sha256": "69ef766d77103949beca278f404ae7a65c39e762ce2b75cba9f6de30bf43fb24",
+      "patched_sha256": "a6a9f7a2efff68238ac86641402b183a355ca6691de292aec06dbb2b497f5cf0",
+      "rules": [
+        {
+          "context": "children",
+          "source": "New chat",
+          "expected": 1
+        }
+      ]
+    }
+  }
+}

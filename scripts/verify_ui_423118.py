@@ -26,8 +26,8 @@ MANIFEST = CANDIDATE / "hardcoded-ui-reviewed.json"
 VERSION = "4.23118.0"
 
 
-def validate_manifest(manifest: dict) -> dict[str, dict]:
-    if not isinstance(manifest, dict) or manifest.get("version") != VERSION:
+def validate_manifest(manifest: dict, *, version: str = VERSION) -> dict[str, dict]:
+    if not isinstance(manifest, dict) or manifest.get("version") != version:
         raise ValueError("reviewed UI manifest version differs")
     archives = manifest.get("source_archives")
     files = manifest.get("files")
@@ -70,11 +70,17 @@ def verify_locale_gates(sources: dict[str, bytes], expected: dict[str, dict]) ->
     return len(expected)
 
 
-def verify(app: Path) -> dict[str, object]:
-    manifest = json.loads(MANIFEST.read_text())
-    files = validate_manifest(manifest)
+def verify(app: Path, *, version: str = VERSION) -> dict[str, object]:
+    if version not in {"4.23118.0", "4.23118.1"}:
+        raise ValueError("unsupported reviewed UI version")
+    candidate = CANDIDATE if version == VERSION else (
+        ROOT / f"resources/candidates/claude-desktop-{version}"
+    )
+    manifest_path = MANIFEST if version == VERSION else candidate / "hardcoded-ui-reviewed.json"
+    manifest = json.loads(manifest_path.read_text())
+    files = validate_manifest(manifest, version=version)
     labels = json.loads((ROOT / "resources/ui-reviewed-zh-CN.json").read_text())
-    additions = json.loads((CANDIDATE / "hardcoded-ui-zh-CN.json").read_text())
+    additions = json.loads((candidate / "hardcoded-ui-zh-CN.json").read_text())
     if (not isinstance(labels, dict) or not isinstance(additions, dict)
             or set(labels) & set(additions)):
         raise ValueError("reviewed UI translation dictionary conflicts")
@@ -84,7 +90,7 @@ def verify(app: Path) -> dict[str, object]:
         raise ValueError("reviewed UI rule has no pinned translation")
     info = plistlib.loads((app / "Contents/Info.plist").read_bytes())
     if (info.get("CFBundleIdentifier") != "com.anthropic.claudefordesktop"
-            or info.get("CFBundleShortVersionString") != VERSION):
+            or info.get("CFBundleShortVersionString") != version):
         raise ValueError("official Claude build identity changed")
     require_official_signature(app)
 
@@ -97,7 +103,7 @@ def verify(app: Path) -> dict[str, object]:
             raise ValueError("reviewed official ASAR fingerprint changed")
         size, _, header = read_asar_header(raw, path)
         if archive == "ion-dist.asar":
-            gate_specs = reviewed_locale_gates()
+            gate_specs = reviewed_locale_gates(version)
             gate_sources: dict[str, bytes] = {}
             for name in gate_specs:
                 content = read_asar_entry(raw, size, header, name)
@@ -128,7 +134,7 @@ def verify(app: Path) -> dict[str, object]:
         if (not isinstance(output, str) or
                 hashlib.sha256(output.encode()).hexdigest() != item["spec"]["patched_sha256"]):
             raise ValueError("reviewed UI patch output fingerprint changed")
-    return {"version": VERSION, "source_signed": True, "files": len(files),
+    return {"version": version, "source_signed": True, "files": len(files),
             "locale_gates": locale_gates,
             "reviewed_replacements": sum(rule["expected"] for spec in files.values()
                                          for rule in spec["rules"]),
@@ -138,9 +144,10 @@ def verify(app: Path) -> dict[str, object]:
 def main() -> int:
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument("--official-app", type=Path, required=True)
+    cli.add_argument("--version", choices=("4.23118.0", "4.23118.1"), default=VERSION)
     args = cli.parse_args()
     try:
-        print(json.dumps(verify(args.official_app), sort_keys=True))
+        print(json.dumps(verify(args.official_app, version=args.version), sort_keys=True))
     except Exception as error:
         # Never print vendor chunk contents, local user state or signing details.
         print(json.dumps({"status": "unverified", "reason_type": type(error).__name__}))

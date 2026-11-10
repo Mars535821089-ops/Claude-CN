@@ -14,7 +14,7 @@ from pathlib import Path
 import subprocess
 
 import preview_current as preview
-from patch_cowork_compaction import NEW_ENTRY, MARKER, patch_host_loop_source
+from patch_cowork_compaction import NEW_ENTRY, LATEST_ENTRY, MARKER, patch_host_loop_source
 from patch_whitelist_423118 import load_reviewed as load_locale_gates
 from update_guard import catalog_fingerprint
 from upstream_patch_lib import read_asar_entry, read_asar_header
@@ -22,6 +22,14 @@ import verify_ui_423118 as ui
 
 ROOT = Path(__file__).resolve().parents[1]
 CANDIDATE = ROOT / "resources/candidates/claude-desktop-4.23118.0"
+
+
+def candidate_for_version(version: str) -> Path:
+    if version not in {"4.23118.0", "4.23118.1"}:
+        raise ValueError("unsupported combined candidate version")
+    return CANDIDATE if version == "4.23118.0" else (
+        ROOT / f"resources/candidates/claude-desktop-{version}"
+    )
 
 
 def assert_disjoint(*groups: set[str]) -> int:
@@ -43,16 +51,17 @@ def validate_catalog(english: dict, candidate: bytes, spec: dict) -> tuple[int, 
     return len(chinese), chinese
 
 
-def verify(app: Path) -> dict:
-    ui_report = ui.verify(app)
-    manifest = json.loads((CANDIDATE / "manifest.json").read_text())
+def verify(app: Path, *, version: str = "4.23118.0") -> dict:
+    candidate = candidate_for_version(version)
+    ui_report = ui.verify(app, version=version)
+    manifest = json.loads((candidate / "manifest.json").read_text())
     if (manifest.get("target_version") != ui_report["version"]
             or manifest.get("status") != "locale_candidate_only_not_installed"):
         raise ValueError("new-build locale candidate provenance changed")
     all_catalogs = preview.load_catalogs(app)
     candidate_payload = {}
     for group in preview.PATHS:
-        data = (CANDIDATE / f"{group}-zh-CN.json").read_bytes()
+        data = (candidate / f"{group}-zh-CN.json").read_bytes()
         _, chinese = validate_catalog(all_catalogs[group]["en"], data, manifest[group])
         candidate_payload[group] = {"en": all_catalogs[group]["en"], "zh": chinese,
                                     "strictSelections": True}
@@ -70,12 +79,13 @@ def verify(app: Path) -> dict:
     archive = app / "Contents/Resources/app.asar"
     raw = archive.read_bytes()
     size, _, header = read_asar_header(raw, archive)
-    source = read_asar_entry(raw, size, header, NEW_ENTRY)
+    cowork_entry = NEW_ENTRY if version == "4.23118.0" else LATEST_ENTRY
+    source = read_asar_entry(raw, size, header, cowork_entry)
     if source is None:
         raise ValueError("official Cowork HostLoop is absent")
     patched = patch_host_loop_source(
         source.decode(), "/dev/null", "/dev/null", "local-SYNTHETIC-REVIEW-ONLY",
-        version="4.23118.0",
+        version=version,
     )
     if patched.count(MARKER) != 1:
         raise ValueError("official Cowork hook is not uniquely bound")
@@ -88,14 +98,15 @@ def verify(app: Path) -> dict:
     if parsed.returncode:
         raise ValueError("patched Cowork HostLoop JavaScript is invalid")
 
-    ui_files = set(json.loads(ui.MANIFEST.read_text())["files"])
-    locale_files = {f"ion-dist.asar/{name}" for name in load_locale_gates()}
+    ui_manifest = json.loads((candidate / "hardcoded-ui-reviewed.json").read_text())
+    ui_files = set(ui_manifest["files"])
+    locale_files = {f"ion-dist.asar/{name}" for name in load_locale_gates(version)}
     catalog_files = {"app.asar/resources/i18n/zh-CN.json", "ion-dist.asar/i18n/zh-CN.json",
                      "ion-dist.asar/i18n/dynamic/zh-CN.json"}
-    paths = assert_disjoint(ui_files, locale_files, {f"app.asar/{NEW_ENTRY}"}, catalog_files)
+    paths = assert_disjoint(ui_files, locale_files, {f"app.asar/{cowork_entry}"}, catalog_files)
     if ui_report["files"] != len(ui_files) or ui_report["locale_gates"] != len(locale_files):
         raise ValueError("source verification and manifest count differ")
-    if hashlib.sha256(raw).hexdigest() != json.loads(ui.MANIFEST.read_text())["source_archives"]["app.asar"]:
+    if hashlib.sha256(raw).hexdigest() != ui_manifest["source_archives"]["app.asar"]:
         raise ValueError("official signed app changed during combined verification")
     return {"version": ui_report["version"], "signed_official_source": True,
             "catalog_messages": sum(len(pack["zh"]) for pack in candidate_payload.values()),
@@ -108,9 +119,10 @@ def verify(app: Path) -> dict:
 def main() -> int:
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument("--official-app", type=Path, required=True)
+    cli.add_argument("--version", choices=("4.23118.0", "4.23118.1"), default="4.23118.0")
     args = cli.parse_args()
     try:
-        print(json.dumps(verify(args.official_app), sort_keys=True))
+        print(json.dumps(verify(args.official_app, version=args.version), sort_keys=True))
         return 0
     except Exception as error:
         print(json.dumps({"status": "unverified", "reason_type": type(error).__name__}))

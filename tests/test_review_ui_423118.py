@@ -12,10 +12,24 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import verify_ui_423118 as review
+import patch_whitelist_423118 as whitelist
 from upstream_patch_lib import BASE_LANGUAGE_LIST
 
 
 class Reviewed423118UITests(unittest.TestCase):
+    def test_latest_reviewed_manifest_and_both_locale_gates_are_version_bound(self):
+        latest = ROOT / "resources/candidates/claude-desktop-4.23118.1"
+        manifest = json.loads((latest / "hardcoded-ui-reviewed.json").read_text())
+        reviewed = review.validate_manifest(manifest, version="4.23118.1")
+        self.assertEqual(len(reviewed), 6)
+        self.assertEqual(
+            sum(rule["expected"] for item in reviewed.values() for rule in item["rules"]),
+            26,
+        )
+        self.assertEqual(len(whitelist.load_reviewed("4.23118.1")), 2)
+        with self.assertRaisesRegex(ValueError, "version"):
+            review.validate_manifest(manifest, version="4.23118.0")
+
     def test_manifest_is_versioned_and_rejects_unsafe_or_empty_rule_sets(self):
         manifest = json.loads((ROOT / "resources/candidates/claude-desktop-4.23118.0/hardcoded-ui-reviewed.json").read_text())
         reviewed = review.validate_manifest(manifest)

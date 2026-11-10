@@ -64,6 +64,11 @@ class SmokeBuilderTests(unittest.TestCase):
             result = smoke.prepare_ui_edits(roots, {"version": "4.23118.0", "files": files},
                                             translations)
             self.assertEqual(len(result), 2)
+            latest = smoke.prepare_ui_edits(
+                roots, {"version": "4.23118.1", "files": files}, translations,
+                version="4.23118.1",
+            )
+            self.assertEqual(len(latest), 2)
             self.assertTrue(all((roots[name.split('/')[0]] / name.split('/', 1)[1]).read_text()
                                 == source for name, source in sources.items()))
             (roots["ion-dist.asar"] / "rail.js").write_text("upstream changed")

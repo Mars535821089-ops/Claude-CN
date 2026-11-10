@@ -55,8 +55,11 @@ def checked_destination(stage: Path, build_root: Path = BUILD_ROOT) -> Path:
 
 
 def prepare_ui_edits(roots: dict[str, Path], manifest: dict,
-                     translations: dict[str, str]) -> list[tuple[Path, str]]:
-    if manifest.get('version') != '4.23118.0' or not isinstance(manifest.get('files'), dict):
+                     translations: dict[str, str], *,
+                     version: str = '4.23118.0') -> list[tuple[Path, str]]:
+    if (version not in ('4.23118.0', '4.23118.1')
+            or manifest.get('version') != version
+            or not isinstance(manifest.get('files'), dict)):
         raise ValueError('unknown reviewed UI version or file map')
     originals = []
     for name, spec in manifest['files'].items():
@@ -139,24 +142,26 @@ def finalize_frontend_stage(app: Path, state: dict) -> None:
     update_electron_asar_integrity(app, 'Resources/ion-dist.asar', asar)
 
 
-def _catalogs() -> dict[str, bytes]:
-    manifest = json.loads((CANDIDATE / 'manifest.json').read_text())
-    return {group: (CANDIDATE / f'{group}-zh-CN.json').read_bytes()
+def _catalogs(candidate: Path = CANDIDATE) -> dict[str, bytes]:
+    manifest = json.loads((candidate / 'manifest.json').read_text())
+    return {group: (candidate / f'{group}-zh-CN.json').read_bytes()
             for group in preview.PATHS if manifest[group]['candidate_sha256'] ==
-            hashlib.sha256((CANDIDATE / f'{group}-zh-CN.json').read_bytes()).hexdigest()}
+            hashlib.sha256((candidate / f'{group}-zh-CN.json').read_bytes()).hexdigest()}
 
 
-def build(source: Path, stage: Path, build_root: Path = BUILD_ROOT) -> dict:
+def build(source: Path, stage: Path, build_root: Path = BUILD_ROOT, *,
+          version: str = '4.23118.0') -> dict:
     target = checked_destination(stage, build_root)
-    report = combined.verify(source)
-    if report['version'] != '4.23118.0' or report['signed_official_source'] is not True:
-        raise ValueError('signed 4.23118.0 source is required')
-    catalogs = _catalogs()
+    candidate = combined.candidate_for_version(version)
+    report = combined.verify(source, version=version)
+    if report['version'] != version or report['signed_official_source'] is not True:
+        raise ValueError('signed reviewed official source is required')
+    catalogs = _catalogs(candidate)
     if set(catalogs) != set(preview.PATHS):
         raise ValueError('one or more reviewed locale catalogs changed')
-    manifest = json.loads(ui.MANIFEST.read_text())
+    manifest = json.loads((candidate / 'hardcoded-ui-reviewed.json').read_text())
     reviewed = {**json.loads((ROOT / 'resources/ui-reviewed-zh-CN.json').read_text()),
-                **json.loads((CANDIDATE / 'hardcoded-ui-zh-CN.json').read_text())}
+                **json.loads((candidate / 'hardcoded-ui-zh-CN.json').read_text())}
     source_hashes = {relative: hashlib.sha256((source / 'Contents/Resources' / relative).read_bytes()).hexdigest()
                      for relative in ('app.asar', 'ion-dist.asar')}
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -172,13 +177,14 @@ def build(source: Path, stage: Path, build_root: Path = BUILD_ROOT) -> dict:
         app_asar = target / repair.APP_ASAR_REL
         extract_asar(app_asar, desktop, desktop_unpacked)
         roots = {'app.asar': desktop, 'ion-dist.asar': frontend['work']}
-        edits = prepare_ui_edits(roots, manifest, reviewed)
-        gate_edits = whitelist.prepare(frontend['work'], whitelist.load_reviewed())
-        hostloop = desktop / cowork.NEW_ENTRY
+        edits = prepare_ui_edits(roots, manifest, reviewed, version=version)
+        gate_edits = whitelist.prepare(frontend['work'], whitelist.load_reviewed(version))
+        hostloop_entry = cowork.NEW_ENTRY if version == '4.23118.0' else cowork.LATEST_ENTRY
+        hostloop = desktop / hostloop_entry
         original_hostloop = hostloop.read_text(encoding='utf-8')
         patched_hostloop = cowork.patch_host_loop_source(
             original_hostloop, '/dev/null', '/dev/null', 'local-SYNTHETIC-REVIEW-ONLY',
-            version='4.23118.0',
+            version=version,
         )
         if patched_hostloop.count(cowork.MARKER) != 1:
             raise ValueError('synthetic Cowork hook source is incomplete')
@@ -205,7 +211,7 @@ def build(source: Path, stage: Path, build_root: Path = BUILD_ROOT) -> dict:
         repair.patch.resign_app(target)
         subprocess.run(['/usr/bin/codesign', '--verify', '--deep', '--strict', str(target)],
                        check=True, capture_output=True, timeout=45)
-        _verify_smoke_content(target, manifest, catalogs)
+        _verify_smoke_content(target, manifest, catalogs, version=version)
         result = {'version': report['version'], 'smoke_only': True,
                   'synthetic_cowork_session': True, 'installed': False,
                   'signed_local_candidate': True, 'catalog_messages': report['catalog_messages'],
@@ -226,7 +232,8 @@ def build(source: Path, stage: Path, build_root: Path = BUILD_ROOT) -> dict:
             shutil.rmtree(frontend['work'])
 
 
-def _verify_smoke_content(stage: Path, manifest: dict, catalogs: dict[str, bytes]) -> None:
+def _verify_smoke_content(stage: Path, manifest: dict, catalogs: dict[str, bytes], *,
+                          version: str = '4.23118.0') -> None:
     for bundle in ('app.asar', 'ion-dist.asar'):
         path = stage / 'Contents/Resources' / bundle
         raw = path.read_bytes()
@@ -237,11 +244,12 @@ def _verify_smoke_content(stage: Path, manifest: dict, catalogs: dict[str, bytes
                 if actual is None or hashlib.sha256(actual).hexdigest() != spec['patched_sha256']:
                     raise ValueError('packaged UI entry failed hash verification')
         if bundle == 'app.asar':
-            host = read_asar_entry(raw, size, header, cowork.NEW_ENTRY)
+            hostloop_entry = cowork.NEW_ENTRY if version == '4.23118.0' else cowork.LATEST_ENTRY
+            host = read_asar_entry(raw, size, header, hostloop_entry)
             if host is None or host.decode().count(cowork.MARKER) != 1:
                 raise ValueError('packaged Cowork hook missing')
         else:
-            for name, spec in whitelist.load_reviewed().items():
+            for name, spec in whitelist.load_reviewed(version).items():
                 actual = read_asar_entry(raw, size, header, name)
                 if actual is None or hashlib.sha256(actual).hexdigest() != spec['patched_sha256']:
                     raise ValueError('packaged locale gate differs')
@@ -259,9 +267,10 @@ def main() -> int:
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument('--official-app', type=Path, required=True)
     cli.add_argument('--stage', type=Path, required=True)
+    cli.add_argument('--version', choices=('4.23118.0', '4.23118.1'), default='4.23118.0')
     args = cli.parse_args()
     try:
-        print(json.dumps(build(args.official_app, args.stage), sort_keys=True))
+        print(json.dumps(build(args.official_app, args.stage, version=args.version), sort_keys=True))
         return 0
     except Exception as error:
         print(json.dumps({'status': 'unverified', 'reason_type': type(error).__name__}))

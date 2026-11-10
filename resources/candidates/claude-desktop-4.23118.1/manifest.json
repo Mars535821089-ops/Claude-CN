@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "target_version": "4.23118.1",
+  "derived_from": "4.23118.0",
+  "status": "locale_candidate_only_not_installed",
+  "desktop": {
+    "message_ids": 1130,
+    "official_english_catalog_sha256": "a936a4af996bb9d511f77f1d980aa6de4ade07f0c377791bd231f8af808cd3a1",
+    "candidate_sha256": "9ad5710ea9067daec3eb0d2145af2a3123265b76b71bbdaa64c7550e4fe8afd1"
+  },
+  "frontend": {
+    "message_ids": 42695,
+    "official_english_catalog_sha256": "74960495e5743cb2ddb60dd5ca1ca35df48cf3fad04def21452be08518532173",
+    "candidate_sha256": "44d873bf531875d86d138ff8ad3f734108e1171b94a3043a1c1473f3a1929aaf",
+    "new_translations": 2577,
+    "manually_reviewed_icu": 12,
+    "corrected_reused_quantity_messages": 3
+  },
+  "dynamic": {
+    "message_ids": 51,
+    "official_english_catalog_sha256": "2ccedb4cff2d5b9d2de99ec662d18eba99bdad00b5ee3963a3882399aae85654",
+    "candidate_sha256": "08b2300f95168a92c4507565aab6c5b60a7e7b22b75e14591dfa09c059ce0db3"
+  },
+  "validation": {
+    "frontend_icu_errors": 0,
+    "desktop_icu_errors": 0,
+    "signing": "not_yet_packaged",
+    "visual_ui": "not_checked"
+  }
+}

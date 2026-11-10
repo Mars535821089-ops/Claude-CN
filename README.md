@@ -14,6 +14,9 @@ ZIP 完整性、Anthropic Developer ID、Team ID、签名和应用版本分别�
 的 ID 与原文完全一致；上一候选的目录级译文因此可作为迁移输入，但不能把
 两个 ASAR 的新指纹当作旧包。已审阅的 6 个界面 JS 文件中，3 个旧桌面
 chunk 改名；经新源逐文件 AST 上下文复核，旧 26 处翻译规则仍可匹配。
+`resources/candidates/claude-desktop-4.23118.1/` 已保留三组原字节译文和
+新版源指纹，43,876 条消息的 ICU/参数/标签再次核验为零错误；其状态仅为
+`locale_candidate_only_not_installed`。
 Cowork HostLoop 亦换了文件名和函数绑定，版本专属补丁现在对 4.23118.1
 使用精确新 SHA-256、唯一锚点和会话变量，合成测试及官方新源的 JS 语法
 验证通过。旧版签名与旧版补丁分支保留。

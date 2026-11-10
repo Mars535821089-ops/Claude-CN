@@ -4,6 +4,7 @@ import json
 import plistlib
 import hashlib
 import sys
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -17,6 +18,24 @@ from upstream_patch_lib import BASE_LANGUAGE_LIST
 
 
 class Reviewed423118UITests(unittest.TestCase):
+    def test_signed_local_arm64_official_variant_reuses_exact_reviewed_ui(self):
+        location = os.environ.get("CLAUDE_OFFICIAL_VARIANT_APP")
+        if not location:
+            self.skipTest("signed local official variant is not supplied")
+        app = Path(location)
+        source = app / "Contents/Resources/app.asar"
+        before = hashlib.sha256(source.read_bytes()).hexdigest()
+        self.assertEqual(before, "089b1780ff06a54a63773a10d6f866d451f0a6096e4107d38a50f21392f78d63")
+        try:
+            outcome = review.verify(app, version="4.23118.1")
+        except ValueError as error:
+            if str(error) != "reviewed official ASAR fingerprint changed":
+                raise
+            outcome = None
+        self.assertIsNotNone(outcome, "a second exact signed archive variant must be reviewed")
+        self.assertEqual(outcome["reviewed_replacements"], 40)
+        self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(), before)
+
     def test_latest_reviewed_manifest_and_both_locale_gates_are_version_bound(self):
         latest = ROOT / "resources/candidates/claude-desktop-4.23118.1"
         manifest = json.loads((latest / "hardcoded-ui-reviewed.json").read_text())
@@ -50,6 +69,16 @@ class Reviewed423118UITests(unittest.TestCase):
         bad["version"] = "4.4212.0"
         with self.assertRaisesRegex(ValueError, "version"):
             review.validate_manifest(bad)
+
+    def test_latest_rejects_duplicate_or_partial_official_source_variants(self):
+        latest = json.loads((ROOT / "resources/candidates/claude-desktop-4.23118.1/hardcoded-ui-reviewed.json").read_text())
+        self.assertEqual(len(latest["source_variants"]), 1)
+        for variants in ([latest["source_archives"]], [{"app.asar": "0" * 64}],
+                         [{"app.asar": "0" * 64, "ion-dist.asar": "not-a-digest"}]):
+            bad = json.loads(json.dumps(latest))
+            bad["source_variants"] = variants
+            with self.subTest(variants=variants), self.assertRaisesRegex(ValueError, "variant"):
+                review.validate_manifest(bad, version="4.23118.1")
 
     def test_only_new_translations_are_added_without_rewriting_existing_terminology(self):
         existing = json.loads((ROOT / "resources/ui-reviewed-zh-CN.json").read_text())

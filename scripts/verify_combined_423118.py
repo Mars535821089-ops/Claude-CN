@@ -106,8 +106,9 @@ def verify(app: Path, *, version: str = "4.23118.0") -> dict:
     paths = assert_disjoint(ui_files, locale_files, {f"app.asar/{cowork_entry}"}, catalog_files)
     if ui_report["files"] != len(ui_files) or ui_report["locale_gates"] != len(locale_files):
         raise ValueError("source verification and manifest count differ")
-    if hashlib.sha256(raw).hexdigest() != ui_manifest["source_archives"]["app.asar"]:
-        raise ValueError("official signed app changed during combined verification")
+    for archive_name, expected_hash in ui_report["source_archives"].items():
+        if hashlib.sha256((app / "Contents/Resources" / archive_name).read_bytes()).hexdigest() != expected_hash:
+            raise ValueError("official signed app changed during combined verification")
     return {"version": ui_report["version"], "signed_official_source": True,
             "catalog_messages": sum(len(pack["zh"]) for pack in candidate_payload.values()),
             "catalog_groups": len(candidate_payload), "reviewed_ui_strings": ui_report["reviewed_replacements"],

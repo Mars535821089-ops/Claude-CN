@@ -36,6 +36,17 @@ def validate_manifest(manifest: dict, *, version: str = VERSION) -> dict[str, di
                    for value in archives.values())
             or not isinstance(files, dict) or not files):
         raise ValueError("reviewed UI manifest is incomplete")
+    variants = manifest.get("source_variants", [])
+    if not isinstance(variants, list) or len(variants) > 2:
+        raise ValueError("reviewed official source variants are invalid")
+    seen = {tuple(sorted(archives.items()))}
+    for variant in variants:
+        if (not isinstance(variant, dict) or set(variant) != set(archives)
+                or any(not isinstance(value, str) or re.fullmatch(r"[0-9a-f]{64}", value) is None
+                       for value in variant.values())
+                or tuple(sorted(variant.items())) in seen):
+            raise ValueError("reviewed official source variant is invalid or duplicate")
+        seen.add(tuple(sorted(variant.items())))
     for name, spec in files.items():
         if not isinstance(name, str) or "\\" in name or any(
                 segment in {".", "..", ""} for segment in name.split("/")):
@@ -94,12 +105,22 @@ def verify(app: Path, *, version: str = VERSION) -> dict[str, object]:
         raise ValueError("official Claude build identity changed")
     require_official_signature(app)
 
+    try:
+        observed_archives = {
+            archive: hashlib.sha256((app / "Contents/Resources" / archive).read_bytes()).hexdigest()
+            for archive in ("app.asar", "ion-dist.asar")
+        }
+    except OSError as error:
+        raise ValueError("reviewed official ASAR fingerprint changed") from error
+    if observed_archives not in [manifest["source_archives"], *manifest.get("source_variants", [])]:
+        raise ValueError("reviewed official ASAR fingerprint changed")
+
     originals = []
     locale_gates = 0
     for archive in ("app.asar", "ion-dist.asar"):
         path = app / "Contents/Resources" / archive
         raw = path.read_bytes()
-        if hashlib.sha256(raw).hexdigest() != manifest["source_archives"][archive]:
+        if hashlib.sha256(raw).hexdigest() != observed_archives[archive]:
             raise ValueError("reviewed official ASAR fingerprint changed")
         size, _, header = read_asar_header(raw, path)
         if archive == "ion-dist.asar":
@@ -135,6 +156,7 @@ def verify(app: Path, *, version: str = VERSION) -> dict[str, object]:
                 hashlib.sha256(output.encode()).hexdigest() != item["spec"]["patched_sha256"]):
             raise ValueError("reviewed UI patch output fingerprint changed")
     return {"version": version, "source_signed": True, "files": len(files),
+            "source_archives": observed_archives,
             "locale_gates": locale_gates,
             "reviewed_replacements": sum(rule["expected"] for spec in files.values()
                                          for rule in spec["rules"]),

@@ -4,6 +4,12 @@
     "app.asar": "8fed22604221c40dec8b2886b3bd96d3f383104072dd3a6f3890bef65e2aece1",
     "ion-dist.asar": "1f5b0a6a2d83c9165ab92215223a3412b8c8e924ead5c4f86a03624d6d090e60"
   },
+  "source_variants": [
+    {
+      "app.asar": "089b1780ff06a54a63773a10d6f866d451f0a6096e4107d38a50f21392f78d63",
+      "ion-dist.asar": "1f5b0a6a2d83c9165ab92215223a3412b8c8e924ead5c4f86a03624d6d090e60"
+    }
+  ],
   "files": {
     "app.asar/.vite/build/index.chunk--ZM92Ifo.js": {
       "sha256": "e0f8f1a91bbc695c91b6f42cc650221e393b9ab6a893d64e2602e6a47fc59197",

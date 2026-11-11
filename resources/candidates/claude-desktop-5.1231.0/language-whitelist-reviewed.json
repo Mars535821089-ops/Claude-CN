@@ -1,0 +1,32 @@
+{
+  "version": "5.1231.0",
+  "files": {
+    "assets/v1/c6fce776d-e1o6dciS.js": {
+      "sha256": "532bcb572e47c79ce562324a4eb98f97961fdd7ca95ec73dd7e4fc1d29b3af96",
+      "patched_sha256": "232ae6d872d4584494979daf8c5910ac1a84750beddfa44f3f4062dfd912625f",
+      "expected": 1,
+      "locales": [
+        "zh-CN",
+        "zh-Hans"
+      ]
+    },
+    "assets/v1/shared-130-o9Pr1Pt_.js": {
+      "sha256": "b0dff0162a7ac022f9933c4096d181fbca5106688eb1291e5d6aea555b0b4576",
+      "patched_sha256": "521284fcdf4d3bc18a2748351cb958277b8aba7d4b321a56e5128e9aced1d34f",
+      "expected": 1,
+      "locales": [
+        "zh-CN",
+        "zh-Hans"
+      ]
+    },
+    "assets/v1/shared-25-R__OiE7w.js": {
+      "sha256": "64454e6fe9fd23a1f6781d5be977e9cf097822a18141a2a5addf6ec48b152d9d",
+      "patched_sha256": "2e05b7b217f87304c76390154ee67108eb8680216b582fd96aba057b739b16ea",
+      "expected": 1,
+      "locales": [
+        "zh-CN",
+        "zh-Hans"
+      ]
+    }
+  }
+}

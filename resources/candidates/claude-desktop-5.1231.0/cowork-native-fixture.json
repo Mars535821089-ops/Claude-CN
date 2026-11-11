@@ -1,0 +1,8 @@
+{
+  "getter": "function y2r(){let e=Ul()?.autoCompactWindow;return typeof e==\"number\"&&e>0?e:void 0}",
+  "propagation": "...t._H()&&{CLAUDE_CODE_AUTO_COMPACT_WINDOW:String(t._H())}",
+  "config_scope": "shared in-memory provider; getter has no session argument",
+  "native_equivalent_to_session_allowlist": false,
+  "minimal_adapter": "optional CLAUDE_CN_SESSION_COMPACTION_POLICY; no configuration is created or enabled by this build",
+  "runtime_compaction_verified": false
+}

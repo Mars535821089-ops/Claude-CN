@@ -1,0 +1,29 @@
+{
+  "catalog_bindings": [
+    {
+      "file": "assets/v1/index-C5hoiU2R.js",
+      "source_sha256": "04405de48b0de8eb602b7079daf788887a0d45184a7b052b2bf4133d15e3cef7",
+      "catalog_ids": {
+        "knhVwvlQOb": "新建聊天"
+      }
+    },
+    {
+      "file": "assets/v1/shared-130-o9Pr1Pt_.js",
+      "source_sha256": "b0dff0162a7ac022f9933c4096d181fbca5106688eb1291e5d6aea555b0b4576",
+      "catalog_ids": {
+        "knhVwvlQOb": "新建聊天"
+      }
+    },
+    {
+      "file": "assets/v1/shared-6-CUEhov0g.js",
+      "source_sha256": "d97b65b93cde680711e66c05941a6110d91180b0e424e8e5d56de1d1d48dd28b",
+      "catalog_ids": {
+        "qCRVxuNbN3": "新建聊天"
+      }
+    }
+  ],
+  "visual_verified": false,
+  "old_children_rule": "not transplanted; new ComparisonRoute has no matching literal",
+  "remaining_fallback": "shared-29-BBxMe69G.js title fallback patched with pinned source/output hashes",
+  "gated_publisher": "112 messages embedded for zh-CN and zh-Hans; pinned output verified, no GUI acceptance"
+}

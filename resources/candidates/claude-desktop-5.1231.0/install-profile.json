@@ -1,0 +1,14 @@
+{
+  "version": "5.1231.0",
+  "bundle_id": "com.anthropic.claudefordesktop",
+  "bundle_sha256": "5f9d171ce7c26b15887222de1ba8a17e6e7023d20e2240044e087de4732d2e3a",
+  "archives": {
+    "app.asar": "ba11dc21839f9c20c9c4fbd70d0bf2e097c2b50166c5296712be93af50aa9d0d",
+    "ion-dist.asar": "bc0813a3203b5335826f0b11c6cf14a43bd60c0b0250abceeb75fac91644a36d"
+  },
+  "receipts": {
+    "engineering-receipt.json": "70d94d253ca42513308d5a11a8bc88d50ff48735b2cc6d9b1896fde19559b01b",
+    "local-signature-record.json": "11f85cb354389e427d21e2b205619d58a09e783de74dd970e1caafc2a83a9b3d",
+    "source-resource-manifest.json": "456384153301c2f610879e9542e19a960a239b85915270cf0e62c4a533923c06"
+  }
+}

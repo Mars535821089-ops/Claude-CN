@@ -1,0 +1,93 @@
+{
+  "target_version": "5.1231.2",
+  "source_archives": {
+    "app.asar": "5e71c28e6e8e21f028811212144feebe45e6346b60645a25e2f1b6a72186999b",
+    "ion-dist.asar": "d7957c54e70073b6a143e09421d456e268a4fc7cb600bf9bfec791c99c7cdaf4"
+  },
+  "status": "source_candidate_not_gui_verified",
+  "catalogs": {
+    "desktop": {
+      "source_messages": 1279,
+      "translated": 1279,
+      "missing": 0,
+      "source_sha256": "a4e796ba4f18a43f5a43b09f15adf9b8229cbb0308c0e1804ede44a3576bd30b",
+      "baseline_reviewed_translation_sha256": "df7a1fe8f6a2230b1c9e987ec1cb9d4612e694be5c2f3985a373bbf50e61260f"
+    },
+    "frontend": {
+      "source_messages": 43833,
+      "translated": 43833,
+      "missing": 0,
+      "source_sha256": "cc2f719cccc5a5f990cbcb970b99561592c4168ba51cf3aa5f22da9573afc424",
+      "baseline_reviewed_translation_sha256": "d5cace4d65d29065e1a34ed6e2dcbcdbe32451b9fb20bf881a3f966bf24ea40f"
+    },
+    "dynamic": {
+      "source_messages": 51,
+      "translated": 51,
+      "missing": 0,
+      "source_sha256": "6602bad4689ae72e9a7678734d82e20901040ca23c46b7983927a01d5583248c",
+      "baseline_reviewed_translation_sha256": "f785152be659504916eb819f09f4a99afd6f56a47b3413126048c8c3d9f43535"
+    },
+    "gated": {
+      "source_messages": 112,
+      "translated": 112,
+      "missing": 0
+    }
+  },
+  "icu_validation": {
+    "catalogs": {
+      "desktop": 1279,
+      "frontend": 43833,
+      "dynamic": 51
+    },
+    "changedJavaScript": 0,
+    "errors": []
+  },
+  "installed": false,
+  "visual_ui_verified": false,
+  "cowork": "optional_session_policy_adapter_native_scope_not_equivalent",
+  "sidebar": "source_lifecycle_patch_ready_GUI_pending",
+  "new_chat_anchor": "catalog_and_title_fallback_patched",
+  "compatibility_validation": {
+    "catalogs": {
+      "gated": 112
+    },
+    "changedJavaScript": 4,
+    "errors": []
+  },
+  "baseline_full06_resource_manifest_sha256": "456384153301c2f610879e9542e19a960a239b85915270cf0e62c4a533923c06",
+  "target_review_sha256": "cdbf279e31eccf9de5e61bf3e3342bd0b6ef425095ffbb9dc406e181c01dc7a2",
+  "source_diff_sha256": "df654485c47181247e508a490457160532d0b16d107c0960abda76eca46ae678",
+  "authored_inputs_sha256": {
+    "authored-zh-CN.json": "c2434a03722d1f7724506f91a4443607e691e92cb4e3369bc78b3eb72565999d",
+    "official-icu-normalized.json": "5682f49ea67c719fa714951e24dde31df936507dfde2fecf22d710155354579c",
+    "gated-authored-zh-CN.json": "cb302c7b022bc34c3f5c45a4a7677a8f7a8ed2bae0b3c4d02026d264c5ea68a3",
+    "frontend-authored-batch-01.json": "4904976a23610816dd9e957360d26f4a8e53ad643c9dd1280eabad5b48b9dfcd",
+    "frontend-authored-batch-02.json": "cbe1642fb9ad1ef7b8791c14e8cc49254903a7b1f470c5605d20a9eeed51ad6d",
+    "frontend-authored-batch-03.json": "9f9d913a276b867b545ebff4f011075b737eafc1735b8cc8dbcaf6f8fa5f878f",
+    "frontend-authored-batch-04.json": "f28b88bf7ac886383fc41fc7dac988710e45204c17bca168d974086e03bba8f6",
+    "frontend-authored-batch-05.json": "83cf9bcf359ebbe93aea0f2f354faac0dd4007205da901d4aaa0fa1c3aba3dc0",
+    "frontend-authored-batch-06.json": "55ddd11f7d1ca164437039bd6cfde841738c7cc36c55540a57d93cde70f3f0ef",
+    "frontend-authored-by-id.json": "749b73f17d705d46a3f0a1ea602ce7234018d405bd0b928815abfc51fe8e2b00"
+  },
+  "generated_files_sha256": {
+    "desktop-zh-CN.json": "df7a1fe8f6a2230b1c9e987ec1cb9d4612e694be5c2f3985a373bbf50e61260f",
+    "desktop-missing.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "desktop-provenance.json": "75ce4a26f74ee66235576b00001a778edf8e6ba51922fd34d89ce4ef38aeb1b9",
+    "frontend-zh-CN.json": "d5cace4d65d29065e1a34ed6e2dcbcdbe32451b9fb20bf881a3f966bf24ea40f",
+    "frontend-missing.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "frontend-provenance.json": "4dae03692f009b18c8adfbc55426ecb5c03bf5236f2b7872c882b19c5abd54b8",
+    "dynamic-zh-CN.json": "f785152be659504916eb819f09f4a99afd6f56a47b3413126048c8c3d9f43535",
+    "dynamic-missing.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "dynamic-provenance.json": "a3476186e7a0810b9203149d026e54683036db38460480056f585fd7cdb09195",
+    "desktop-official-zh-Hans.json": "ca304a2029ca4fa7299efde03c09799fb0fa786e113bcb337d868a506f8abef0",
+    "language-whitelist-reviewed.json": "87260708de070852e65802fb21530a8860203d93f3f9bc58556f404b1280e09c",
+    "hardcoded-ui-reviewed.json": "95c9be1355abc315bde59e409d6f44e8d6c78ce5a7504f05a867706b08f0234d",
+    "new-chat-evidence.json": "715e7af522ec734630e5b26d5f6fea1f250cb2ecb500157a179560d1bcc58ceb",
+    "gated-en-US.json": "29a8309084160e49e8811c0a17f2427b35802d68014e9c29586f9826e75b3f70",
+    "gated-zh-CN.json": "e655dca81588f49ace630bbb8ab4bd5d102cd293c208f3fe582faa4d237bb3aa",
+    "gated-provenance.json": "bc6b547849942ab5ad21836aca1f6fd052197b667abb7b3b6997309813cf3677",
+    "sidebar-lifecycle-fixture.json": "062b4f6b09dcba8f7ded879e12b05471dd5c5920c03c54a8dc5a48ed491e0706",
+    "cowork-native-fixture.json": "572e9d428aa229cc3632300a7a2ea3a551c6ccbb7f4ae074dd140b66b5339a6d",
+    "compatibility-reviewed.json": "d80cb07821d4e8a0717080559222a967e0c064fb63f7d2cc7f6c8a2c243b92a1"
+  }
+}

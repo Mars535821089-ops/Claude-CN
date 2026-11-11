@@ -7,10 +7,10 @@ import hashlib
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGETS = {
- 'gated': ('app.asar', '.vite/build/index.chunk-CInLNSAV.js', '07fac0b520e6f3640e42dec24fe353ac2effabf00975952a9406e95556829820'),
- 'sidebar': ('ion-dist.asar', 'assets/v1/shared-98-ChPwuRcq.js', 'e09e48ec03b7823388347fbe73d730ae287c08e2b0813721d9573ba52551d66d'),
- 'fallback': ('ion-dist.asar', 'assets/v1/shared-29-BBxMe69G.js', '1436e82e5c46f529908e44f2388340d8f6ec72cd865d27f236c4a4eda2eb6e04'),
- 'cowork': ('app.asar', '.vite/build/index.chunk-2cjcenUp.js', '2dbca5ad88d9a8a8b63efa1ed8a1bbe2105d8204d58080dbd5c4cf4a78f0a4fd'),
+ 'gated': ('app.asar', '.vite/build/index.chunk-D3ouEfeo.js', 'dbd75dc373531b25b4d5bdeb0d7640c196cf32f106bb10a9276f1883712141dd'),
+ 'sidebar': ('ion-dist.asar', 'assets/v1/shared-98-DEv7MzNi.js', 'd42d27652bf16486d8f8d0217db134bbd00a3086f3cbd0080f84ddcdd0d1728b'),
+ 'fallback': ('ion-dist.asar', 'assets/v1/shared-29-Ca8yur2i.js', '876fd02455294ad8679322425ccfc8db1f7846f599ccf1433ffc7f9b6eaf884a'),
+ 'cowork': ('app.asar', '.vite/build/index.chunk-CWaGU0Cp.js', '06e27c74c391ae98e010fe18076e63e4b803508fda01bbdbacfefe11ebf92809'),
 }
 POLICY_ENTRY = '.vite/build/claude-cn-compaction-policy.cjs'
 def sha(raw): return hashlib.sha256(raw).hexdigest()
@@ -51,7 +51,7 @@ def prepare(entry, candidate, catalogs):
  before=js('sidebar-parts',sources['sidebar']);after=js('sidebar-parts',patches['sidebar'])
  if before['setCollapsedPref']!=after['setCollapsedPref'] or before['partialize']!=after['partialize']:
   raise ValueError('native sidebar controls/persistence changed')
- owner=entry('app.asar','.vite/build/index.chunk-C6mgT-OL.js').decode()
+ owner=entry('app.asar','.vite/build/index.chunk-BV3uOqbK.js').decode()
  getter='function y2r(){let e=Ul()?.autoCompactWindow;return typeof e=="number"&&e>0?e:void 0}'
  propagation='...t._H()&&{CLAUDE_CODE_AUTO_COMPACT_WINDOW:String(t._H())}'
  if owner.count(getter)!=1 or sources['cowork'].count(propagation)!=1:
@@ -69,7 +69,7 @@ def prepare(entry, candidate, catalogs):
    'native_equivalent_to_session_allowlist':False,
    'minimal_adapter':'optional CLAUDE_CN_SESSION_COMPACTION_POLICY; no configuration is created or enabled by this build',
    'runtime_compaction_verified':False},
-  'compatibility-reviewed.json':{'version':'5.1231.0','files':specs,'validation':validation,
+  'compatibility-reviewed.json':{'version':'5.1231.2','files':specs,'validation':validation,
    'policy_entry':POLICY_ENTRY,'policy_sha256':sha((ROOT/'scripts/cowork_compaction_policy.cjs').read_bytes()),
    'native_scope_equivalence':False,'gui_verified':False}}
  return outputs
@@ -77,7 +77,7 @@ def prepare(entry, candidate, catalogs):
 def apply(entry, candidate):
  """Return validated in-memory edits. The caller owns an isolated new build."""
  specs=json.loads((candidate/'compatibility-reviewed.json').read_text())
- if specs['version']!='5.1231.0' or set(specs['files'])!=set(TARGETS):
+ if specs['version']!='5.1231.2' or set(specs['files'])!=set(TARGETS):
   raise ValueError('compatibility profile changed')
  edits={}
  for action,(archive,path,digest) in TARGETS.items():

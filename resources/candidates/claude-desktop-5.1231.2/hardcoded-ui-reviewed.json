@@ -1,0 +1,385 @@
+{
+  "version": "5.1231.2",
+  "source_archives": {
+    "app.asar": "5e71c28e6e8e21f028811212144feebe45e6346b60645a25e2f1b6a72186999b",
+    "ion-dist.asar": "d7957c54e70073b6a143e09421d456e268a4fc7cb600bf9bfec791c99c7cdaf4"
+  },
+  "files": {
+    "app.asar/.vite/build/index.chunk-3CBBolNc.js": {
+      "sha256": "441a11b6fd5b1c0200b326540d8858175d822a43492efaabf4b8ffd16e916036",
+      "patched_sha256": "e82668a5ef98644166291d98057e331eca55555f888d9e9deac3368ef036f143",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Model and effort selection",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Scheduled tasks",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-BV3uOqbK.js": {
+      "sha256": "438297c7ba2bc7d3b9816fc16c12a078af08c524d30b8044861b49b6992d63c9",
+      "patched_sha256": "482f9ebcbffb02d298ef1034361fe79464e15bf457a6eae3f7eb7154e498ae27",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Some models are currently unavailable.",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "Open System Settings",
+          "expected": 2
+        },
+        {
+          "context": "buttons",
+          "source": "Open Claude Settings",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Background Computer Use",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Start Cowork VM",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Show Debug Window",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Hide Debug Window",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Stop Cowork VM",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Copy file to Claude",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Inspector",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Reset Chrome Browser Pairing",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Browser Use",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "Run",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "Install",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "Remove",
+          "expected": 1
+        }
+      ]
+    },
+    "app.asar/.vite/build/index.chunk-22xHOiMR.js": {
+      "sha256": "58707ff2b129231c71fda0f4edf5c59e72ab5f76e92cebd08fd83a67b77546f6",
+      "patched_sha256": "faf180fd7a869d5898bd64081b05d87f98d0a38028cdce6992749885b1956491",
+      "rules": [
+        {
+          "context": "buttons",
+          "source": "Clean up",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "I'll clean up sessions myself",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/cde03b773-DdSfp4q6.js": {
+      "sha256": "c09046e4b9d2879d02a42207c3f9e712cc760ff2b7bbd9d5a0d80b6db0aa2f69",
+      "patched_sha256": "a1bdbdfddef88af6b83aec4ffb80984ae2a926092f5ff4f0f82d337ebb51cbb3",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Default model",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Default effort level",
+          "expected": 2
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js": {
+      "sha256": "afc9ac631354d3a6494cbcdcd4d10ef61fcfc855ff7b19a636f60723b70f61e8",
+      "patched_sha256": "2e266be88c04199887e474171f3c59e259d022564c3cb51a8dd675b700071892",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Quote",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Open link",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Block type",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Delete block",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "List kind",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Indent",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Outdent",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Horizontal rule",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Code block",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Image",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Selection",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Code block actions",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "Copy",
+          "expected": 2
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Copy code",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "Wrap",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Toggle line wrap",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Insert block",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Editor actions",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "…and {…} more",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "Dismiss",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Dismiss import fidelity notes",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": " ({…} occurrences)",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "Show",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Show the affected content: {…}{…}",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "Show ({…}/{…})",
+          "expected": 1
+        },
+        {
+          "context": "setAttribute:aria-label",
+          "source": "Show the affected content: {…}{…} — showing {…} of {…}",
+          "expected": 1
+        },
+        {
+          "context": "textContent",
+          "source": "Showing occurrence {…} of {…}",
+          "expected": 1
+        }
+      ]
+    },
+    "ion-dist.asar/assets/v1/c5a5d8e85-C2iEEOLG.js": {
+      "sha256": "ef5784d473c9dcd2f10e7e42f25beae546a12318fa2e895cd12abc2c1ab02d1c",
+      "patched_sha256": "1e10fbf11fe0a216781079827685d62548da3d616ef7b6d8045244041fd3a55c",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Collapse all",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Expand all",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "No structured data available.",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Overview",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Message Structure",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Prompt Map",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Loading debug information",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Sends your note and this modal's debug data (conversation and API usage logs) to Anthropic.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Cancel",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Sending…",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Send feedback",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Feedback sent. Reference ID: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Failed to load debug information: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Cache Performance",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Data isn't persisted across browser sessions or for old messages to prevent leakage.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Loading",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Read the transcript",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Send feedback",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Feedback description",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "What's wrong with this response?",
+          "expected": 1
+        }
+      ]
+    }
+  }
+}

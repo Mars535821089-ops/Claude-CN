@@ -1,0 +1,40 @@
+{
+  "version": "5.1231.2",
+  "files": {
+    "gated": {
+      "archive": "app.asar",
+      "path": ".vite/build/index.chunk-D3ouEfeo.js",
+      "sha256": "dbd75dc373531b25b4d5bdeb0d7640c196cf32f106bb10a9276f1883712141dd",
+      "patched_sha256": "09945629d0d4123b08e939af314063e8048c338000c94499dc9ea7a0a122fd8e"
+    },
+    "sidebar": {
+      "archive": "ion-dist.asar",
+      "path": "assets/v1/shared-98-DEv7MzNi.js",
+      "sha256": "d42d27652bf16486d8f8d0217db134bbd00a3086f3cbd0080f84ddcdd0d1728b",
+      "patched_sha256": "86d1b3c192df5166045959f17052bd16ae0454f843e867b79b0ecc48ee70ac3c"
+    },
+    "fallback": {
+      "archive": "ion-dist.asar",
+      "path": "assets/v1/shared-29-Ca8yur2i.js",
+      "sha256": "876fd02455294ad8679322425ccfc8db1f7846f599ccf1433ffc7f9b6eaf884a",
+      "patched_sha256": "d3f2425d4b34bba6ab8e18b8f6f2a09ed61fbe3abbe9ccd87a2519b54613cfca"
+    },
+    "cowork": {
+      "archive": "app.asar",
+      "path": ".vite/build/index.chunk-CWaGU0Cp.js",
+      "sha256": "06e27c74c391ae98e010fe18076e63e4b803508fda01bbdbacfefe11ebf92809",
+      "patched_sha256": "b19ef0e363eb9d09b2f6c5ae041f3112a59942071db916b30537cb2db8c70a7f"
+    }
+  },
+  "validation": {
+    "catalogs": {
+      "gated": 112
+    },
+    "changedJavaScript": 4,
+    "errors": []
+  },
+  "policy_entry": ".vite/build/claude-cn-compaction-policy.cjs",
+  "policy_sha256": "dfbcc716a0ec33a6d2d7fe21cc6d36c99f56efa12d3639e5a479e13ac872830b",
+  "native_scope_equivalence": false,
+  "gui_verified": false
+}

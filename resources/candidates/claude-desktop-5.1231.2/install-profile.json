@@ -1,0 +1,21 @@
+{
+  "schema": 2,
+  "kind": "claude-5.1231.2-install-review-profile",
+  "version": "5.1231.2",
+  "bundle_id": "com.anthropic.claudefordesktop",
+  "tree_algorithm": "claude-cn-install-tree-v1",
+  "bundle_sha256": "013bd018e21d81a74443420561b1014184f99b4a7dbb9121efb99b733d85b20c",
+  "archives": {
+    "app.asar": "3807d2ab6ed790df6432a2353ad610ac764dc77cdbeace1fe7b6c102fb875215",
+    "ion-dist.asar": "457ffe2bdf1e4f1093fad023228a9e90991c787d884b1e8b458d84f25e468622"
+  },
+  "receipts": {
+    "engineering-receipt.json": "fa7103b551f3b5be775097182d03e2fa577f8ea583ea86592811fc2f24a77c35",
+    "candidate-validation-record.json": "68e361d3e69592ca2f7874707cfcbe944487dd71aa10e031e45940d388d06727",
+    "source-resource-manifest.json": "ac5b76a0734f7cd69ffc512dd66775c4d61fb30b538f1f2e5371c41f24701315"
+  },
+  "candidate_status": "awaiting_install_acceptance",
+  "install_authorized": false,
+  "business_recovery_verified": false,
+  "native_restore_verified": false
+}

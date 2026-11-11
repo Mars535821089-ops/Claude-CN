@@ -9,6 +9,28 @@ import subprocess
 import claude5_candidate as c
 from upstream_patch_lib import read_asar_header,read_asar_entry,walk_asar_entries,asar_entry,verify_electron_asar_integrity,_asar_integrity
 
+def signature_evidence(app,receipt):
+    current=app.parent/'candidate-validation-record.json'
+    if current.exists() or current.is_symlink():
+        from candidate_validation_512312 import read_current
+        validated=read_current(app)
+        return {'status':'local_signature_verified','candidate_asar_sha256':validated['candidate_asar_sha256'],
+                'evidence_kind':validated['kind'],'candidate_validation_status':validated['status']}
+    legacy=app.parent/'local-signature-record.json'
+    if legacy.exists() or legacy.is_symlink():
+        if legacy.is_symlink():raise ValueError('redirected signature record')
+        signed=c.load(legacy)
+        if (signed.get('status')!='local_signature_verified' or 'error_type' in signed
+                or signed.get('verification',{}).get('exit')!=0
+                or not signed.get('targets') or signed['targets'][-1].get('path')!='.'
+                or any(type(t.get('exit')) is not int or t['exit']!=0 for t in signed['targets'])):
+            raise ValueError('failed/incomplete legacy signing record cannot validate current candidate')
+        return {**signed,'evidence_kind':'legacy-complete-signing-record','candidate_validation_status':'absent'}
+    # Resource-only preparation can run before publishing current validation;
+    # absence of a signature receipt is never reported as readiness acceptance.
+    return {'status':'not_signed','candidate_asar_sha256':receipt['candidate_asar_sha256'],
+            'evidence_kind':'engineering-resources-only','candidate_validation_status':'absent'}
+
 def audit(app):
     receipt=c.load(app.parent/'engineering-receipt.json')
     if receipt['status']!='FULL_RESOURCE_COMPAT_REVIEW_CANDIDATE_NOT_APPROVED_FOR_INSTALL' or any(receipt['missing_translations'].values()):
@@ -21,7 +43,7 @@ def audit(app):
     if c.sha(profile_raw)!=receipt['resource_manifest_sha256']:
         raise ValueError('build resource manifest changed')
     profile=json.loads(profile_raw)
-    signed=c.load(app.parent/'local-signature-record.json') if (app.parent/'local-signature-record.json').exists() else {'status':'not_signed'}
+    signed=signature_evidence(app,receipt)
     hashes=signed.get('candidate_asar_sha256',receipt['candidate_asar_sha256'])
     store={}
     for archive,digest in hashes.items():
@@ -91,6 +113,7 @@ def audit(app):
     return {'version':c.VERSION,'status':'packaged_resources_verified_NOT_GUI_ACCEPTANCE',
         'catalogs_and_js':json.loads(validation.stdout),'missing':0,'locale_gates':3,
         'aliases':['zh-CN','zh-Hans'],'signature_status':signed['status'],
+        'signature_evidence_kind':signed['evidence_kind'],'candidate_validation_status':signed['candidate_validation_status'],
         'candidate_asar_sha256':hashes,'signed_unpacked_integrity_verified':True,
         'source_original_unchanged':True,'installed':False,'launched':False,'gui_verified':False}
 

@@ -201,7 +201,7 @@ def build(source, stage, *, partial_smoke=False):
         'candidate_asar_sha256': {a: c.sha((target / 'Contents/Resources' / a).read_bytes()) for a in c.ARCHIVES},
         'loose_fallback_sha256': fallback_sha,
         'signature': 'INVALIDATED_BY_RESOURCE_EDIT_NOT_RESIGNED_NOT_A_RELEASE',
-        'source_signature': 'main-agent initial Anthropic strict verification passed; later bounded timeout preserved in assessment; not rerun',
+        'source_signature': '5.1231.2 Anthropic Developer ID Q6L2SF6YDW and deep/strict verification passed in this run; see logs/official-signature.log',
         'cowork_hook': 'optional_session_allowlist_policy_unconfigured_native_fallback_preserved',
         'sidebar': 'both_framework_lifecycle_source_patch_GUI_not_accepted'}
     (target.parent / 'engineering-receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')

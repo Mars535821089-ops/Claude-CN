@@ -1,0 +1,29 @@
+{
+  "catalog_bindings": [
+    {
+      "file": "assets/v1/index-m4Lmn-QT.js",
+      "source_sha256": "d03487e72cde96bfc3c6a9d47e54d8d987ccba1b76f7fe781ed96bbdfd4162d7",
+      "catalog_ids": {
+        "knhVwvlQOb": "新建聊天"
+      }
+    },
+    {
+      "file": "assets/v1/shared-130-EowXggL2.js",
+      "source_sha256": "8449e57046fd4d9d89646b8ed3333ef87cd888bf641f63853e2c57e08b09b87c",
+      "catalog_ids": {
+        "knhVwvlQOb": "新建聊天"
+      }
+    },
+    {
+      "file": "assets/v1/shared-6-wiyzoaNH.js",
+      "source_sha256": "3d1d610a4428adc329c8648aca8ff201320934788ff5a760ee96292273994853",
+      "catalog_ids": {
+        "qCRVxuNbN3": "新建聊天"
+      }
+    }
+  ],
+  "visual_verified": false,
+  "old_children_rule": "not transplanted; catalog-based new UI retained",
+  "remaining_fallback": "assets/v1/shared-29-Ca8yur2i.js narrowly patched",
+  "gated_publisher": "112 unchanged English messages; both Chinese aliases"
+}

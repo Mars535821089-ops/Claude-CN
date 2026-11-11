@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Offline Claude 5.1231.0 source preparation. Never installs or starts an app.
+"""Offline Claude 5.1231.2 source preparation. Never installs or starts an app.
 
 Keep the 4.x installers and their trust boundaries unchanged. Incomplete source
 packs are useful review artifacts, NOT installable releases.
@@ -19,16 +19,16 @@ from upstream_patch_lib import (BASE_LANGUAGE_LIST, LANG_LIST_RE, read_asar_head
                                 read_asar_entry, verify_electron_asar_integrity)
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '5.1231.0'
-CANDIDATE = ROOT / 'resources/candidates/claude-desktop-5.1231.0'
-BASE = Path('/Volumes/Mars-私人服务器/内置盘写入统一管理/01-编译与构建/Codex-provider-switch/claude5-compat-20261111')
+VERSION = '5.1231.2'
+CANDIDATE = ROOT / 'resources/candidates/claude-desktop-5.1231.2'
+BASE = Path('/Volumes/Mars-私人服务器/内置盘写入统一管理/01-编译与构建/Codex-provider-switch/claude5-1231-2-20261111')
 ARCHIVES = {
-    'app.asar': '9a5b8be056e59afb68964916cb71890c47512d0eb8690e943e6cf087e103f7aa',
-    'ion-dist.asar': 'ffe1e6f1f51930c59296b03cd4befae0c3d174df2cc843e1beb2dc9e73a0d929',
+    'app.asar': '5e71c28e6e8e21f028811212144feebe45e6346b60645a25e2f1b6a72186999b',
+    'ion-dist.asar': 'd7957c54e70073b6a143e09421d456e268a4fc7cb600bf9bfec791c99c7cdaf4',
 }
 GATES = {
-    'assets/v1/c6fce776d-e1o6dciS.js': '532bcb572e47c79ce562324a4eb98f97961fdd7ca95ec73dd7e4fc1d29b3af96',
-    'assets/v1/shared-130-o9Pr1Pt_.js': 'b0dff0162a7ac022f9933c4096d181fbca5106688eb1291e5d6aea555b0b4576',
+    'assets/v1/c6fce776d-CpCXDKwF.js': 'c594fe011b8866c551ca4408d5b2e3a9534d34314788166f0157220dde878c73',
+    'assets/v1/shared-130-EowXggL2.js': '8449e57046fd4d9d89646b8ed3333ef87cd888bf641f63853e2c57e08b09b87c',
     'assets/v1/shared-25-R__OiE7w.js': '64454e6fe9fd23a1f6781d5be977e9cf097822a18141a2a5addf6ec48b152d9d',
 }
 PATHS = {'desktop': ('app.asar', 'resources/i18n/en-US.json'),
@@ -131,6 +131,9 @@ def read_source(app):
     return entry
 
 def prepare(app=BASE / 'Claude.app', assessment=BASE, candidate=CANDIDATE):
+    if VERSION == '5.1231.2':
+        from prepare_512312 import prepare_from_full06
+        return prepare_from_full06(app, candidate)
     entry = read_source(app)
     for name, expected in ASSESSMENT_HASHES.items():
         if sha((assessment / name).read_bytes()) != expected:

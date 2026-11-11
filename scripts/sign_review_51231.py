@@ -41,6 +41,40 @@ def local_entitlements(original):
         result['com.apple.security.cs.disable-library-validation']=True
     return result
 
+def reviewed_sign_targets(app):
+    """Omit ONLY the verified Electron bundle main from the bare-file phase.
+
+    It is signed once as its containing framework, after ASAR header/digest
+    refresh. Missing/ambiguous layouts fail rather than broadly skip native code.
+    """
+    files,bundles=_collect_sign_targets(app)
+    framework=app/'Contents/Frameworks/Electron Framework.framework'
+    version=framework/'Versions/A';main=version/'Electron Framework'
+    info=version/'Resources/Info.plist'
+    if files.count(main)!=1 or bundles.count(framework)!=1:
+        raise ValueError('Electron framework main/bundle target count is not unique')
+    if any(p.is_symlink() for p in (framework,framework/'Versions',version,version/'Resources',main,info)):
+        raise ValueError('Electron framework physical target is redirected')
+    if not main.is_file() or not info.is_file():
+        raise ValueError('Electron framework main/Info missing')
+    metadata=plistlib.loads(info.read_bytes())
+    if (metadata.get('CFBundleExecutable')!=main.name
+            or metadata.get('CFBundleIdentifier')!='com.github.Electron.framework'
+            or metadata.get('CFBundlePackageType')!='FMWK'):
+        raise ValueError('Electron framework main does not match known bundle identity')
+    current=framework/'Versions/Current';alias=framework/main.name
+    if (not current.is_symlink() or os.readlink(current)!='A'
+            or not alias.is_symlink() or os.readlink(alias)!='Versions/Current/Electron Framework'
+            or current.resolve(strict=True)!=version or alias.resolve(strict=True)!=main):
+        raise ValueError('Electron framework main alias does not match version A')
+    if sorted(p.name for p in (framework/'Versions').iterdir() if p.is_dir() and not p.is_symlink())!=['A']:
+        raise ValueError('Electron framework version set changed')
+    identity=lambda p:(p.stat().st_dev,p.stat().st_ino)
+    if sum(identity(p)==identity(main) for p in files)!=1 or sum(identity(p)==identity(framework) for p in bundles)!=1:
+        raise ValueError('Electron framework main/bundle inode has duplicate target aliases')
+    return [p for p in files if p!=main],bundles,{
+        'file':str(main.relative_to(app)),'bundle':str(framework.relative_to(app))}
+
 def sign(app):
     app=app.absolute()
     if ('..' in app.parts or not app.is_relative_to(c.BASE) or app==c.BASE/'Claude.app'
@@ -67,7 +101,9 @@ def sign(app):
     record={'version':c.VERSION,'identity':'ad-hoc (-), not Anthropic','installed':False,
             'launched':False,'gui_verified':False,'status':'in_progress','targets':[]}
     try:
-        files,bundles=_collect_sign_targets(app)
+        files,bundles,omitted=reviewed_sign_targets(app)
+        record['target_plan']={'native_files':len(files),'bundles':len(bundles),'outer':1,
+                               'omitted_duplicate_bundle_main':omitted}
         targets=sorted(files,key=lambda p:len(p.parts),reverse=True)+sorted(bundles,key=lambda p:len(p.parts),reverse=True)+[app]
         for i,target in enumerate(targets):
             # Sign native .unpacked files FIRST, then bind their new signed

@@ -11,7 +11,7 @@ test('sidebar mutation cannot silently target an unknown build',()=>{
  assert.throws(()=>c.patchSidebar('var collapsed=false;'));
 });
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),os=require('node:os');
-const candidate=path.join(__dirname,'../resources/candidates/claude-desktop-5.1231.0');
+const candidate=path.join(__dirname,'../resources/candidates/claude-desktop-5.1231.2');
 const fixture=JSON.parse(fs.readFileSync(path.join(candidate,'sidebar-lifecycle-fixture.json')));
 const plain=x=>JSON.parse(JSON.stringify(x));
 function nativeSidebar(parts,composed){
@@ -82,7 +82,7 @@ test('Cowork no explicit policy is a no-op and missing module retains native opt
  assert.throws(()=>c.patchCowork(c.patchCowork(toy)));assert.throws(()=>c.patchCowork(toy.replace('sessionId:i','sessionId:z')));
 });
 test('Cowork adapter preserves scope, inline settings and explicit native disable',async t=>{
- const root=path.join('/Volumes/Mars-私人服务器/内置盘写入统一管理/01-编译与构建/Codex-provider-switch/claude5-compat-20261111/implementation-01','test-fixtures');
+ const root=path.join('/Volumes/Mars-私人服务器/内置盘写入统一管理/01-编译与构建/Codex-provider-switch/claude5-1231-2-20261111/implementation-01','test-fixtures');
  fs.mkdirSync(root,{recursive:true});const dir=fs.mkdtempSync(path.join(root,'synthetic-policy-'));
  t.after(()=>fs.rmSync(dir,{recursive:true,force:true}));
  const policyPath=path.join(dir,'policy.json');fs.writeFileSync(policyPath,JSON.stringify({version:1,sessions:{'synthetic-A':{enabled:true,windowTokens:700000}}}));

@@ -82,7 +82,28 @@ def gate_candidates(old_rules: dict[str, dict], new_paths: list[str],
         raw = read_entry(path)
         if not isinstance(raw, bytes):
             raise ValueError("new locale gate bytes are unavailable")
-        patched, count = LANG_LIST_RE.subn(replacement, raw.decode("utf-8"))
+        text = raw.decode("utf-8")
+        match = LANG_LIST_RE.search(text)
+        if match is None:
+            raise ValueError("new locale gate context changed")
+        declaration = re.search(r"([A-Za-z_$][\w$]*)=$", text[max(0, match.start()-32):match.start()])
+        if declaration is None:
+            raise ValueError("new locale gate context changed")
+        variable = declaration.group(1)
+        suffix = text[match.end():match.end()+200]
+        if prefix == "shared-25-":
+            contextual = bool(re.search(r";function\s+[\w$]+\([\w$]+\)\{return\s+"
+                                        + re.escape(variable) + r"\.includes\([\w$]+\)\}", suffix))
+        elif prefix == "shared-130-":
+            contextual = (f"t={variable})" in suffix and "new Map" in suffix
+                          and "for(let" in suffix)
+        elif prefix == "c6fce776d-":
+            contextual = '"signin-hand-over"' in suffix[:80]
+        else:
+            contextual = False
+        if not contextual:
+            raise ValueError("new locale gate context changed")
+        patched, count = LANG_LIST_RE.subn(replacement, text)
         if count != spec.get("expected") or count != 1:
             raise ValueError("new locale gate context changed")
         output[path] = {"sha256": hashlib.sha256(raw).hexdigest(),

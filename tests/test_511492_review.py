@@ -68,9 +68,9 @@ class NewClaudeVersionReviewTests(unittest.TestCase):
         module = __import__("review_claude_511492")
         candidate = getattr(module, "gate_candidates", None)
         self.assertIsNotNone(candidate, "new version needs exact dual-alias gate review")
-        old = {"assets/v1/shared-130-OLD.js": {"expected": 1}}
-        raw = b'const languages=["en-US","de-DE","fr-FR","ko-KR","ja-JP","es-419","es-ES","it-IT","hi-IN","pt-BR","id-ID"];'
-        paths = ["assets/v1/shared-130-NEW.js"]
+        old = {"assets/v1/shared-25-OLD.js": {"expected": 1}}
+        raw = b'var oq=["en-US","de-DE","fr-FR","ko-KR","ja-JP","es-419","es-ES","it-IT","hi-IN","pt-BR","id-ID"];function sq(e){return oq.includes(e)}'
+        paths = ["assets/v1/shared-25-NEW.js"]
         report = candidate(old, paths, lambda _path: raw)
         spec = report[paths[0]]
         expected = raw.replace(b'"id-ID"]', b'"id-ID","zh-CN","zh-Hans"]')
@@ -79,9 +79,16 @@ class NewClaudeVersionReviewTests(unittest.TestCase):
         self.assertEqual(spec["locales"], ["zh-CN", "zh-Hans"])
         self.assertEqual(spec["status"], "review_required_not_installable")
         with self.assertRaises(ValueError):
-            candidate(old, paths + ["assets/v1/shared-130-OTHER.js"], lambda _path: raw)
+            candidate(old, paths + ["assets/v1/shared-25-OTHER.js"], lambda _path: raw)
         with self.assertRaises(ValueError):
             candidate(old, [], lambda _path: raw)
+
+    def test_gate_with_same_language_array_but_no_membership_check_is_rejected(self):
+        module = __import__("review_claude_511492")
+        old = {"assets/v1/shared-25-OLD.js": {"expected": 1}}
+        raw = b'var oq=["en-US","de-DE","fr-FR","ko-KR","ja-JP","es-419","es-ES","it-IT","hi-IN","pt-BR","id-ID"];function sq(e){return true}'
+        with self.assertRaisesRegex(ValueError, "context"):
+            module.gate_candidates(old, ["assets/v1/shared-25-NEW.js"], lambda _path: raw)
 
     def test_pinned_new_gate_review_does_not_advertise_installable_profile(self):
         path = Path(__file__).resolve().parents[1] / (

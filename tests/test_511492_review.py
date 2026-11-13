@@ -8,6 +8,7 @@ import sys
 import unittest
 from unittest import mock
 import json
+import hashlib
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
@@ -62,6 +63,37 @@ class NewClaudeVersionReviewTests(unittest.TestCase):
                         "progress text must not corrupt the machine-readable JSON result")
         self.assertEqual(json.loads(output.getvalue()),
                          {"status": "review_required_not_installable"})
+
+    def test_new_locale_gate_candidates_require_unique_paths_and_both_aliases(self):
+        module = __import__("review_claude_511492")
+        candidate = getattr(module, "gate_candidates", None)
+        self.assertIsNotNone(candidate, "new version needs exact dual-alias gate review")
+        old = {"assets/v1/shared-130-OLD.js": {"expected": 1}}
+        raw = b'const languages=["en-US","de-DE","fr-FR","ko-KR","ja-JP","es-419","es-ES","it-IT","hi-IN","pt-BR","id-ID"];'
+        paths = ["assets/v1/shared-130-NEW.js"]
+        report = candidate(old, paths, lambda _path: raw)
+        spec = report[paths[0]]
+        expected = raw.replace(b'"id-ID"]', b'"id-ID","zh-CN","zh-Hans"]')
+        self.assertEqual(spec["sha256"], hashlib.sha256(raw).hexdigest())
+        self.assertEqual(spec["patched_sha256"], hashlib.sha256(expected).hexdigest())
+        self.assertEqual(spec["locales"], ["zh-CN", "zh-Hans"])
+        self.assertEqual(spec["status"], "review_required_not_installable")
+        with self.assertRaises(ValueError):
+            candidate(old, paths + ["assets/v1/shared-130-OTHER.js"], lambda _path: raw)
+        with self.assertRaises(ValueError):
+            candidate(old, [], lambda _path: raw)
+
+    def test_pinned_new_gate_review_does_not_advertise_installable_profile(self):
+        path = Path(__file__).resolve().parents[1] / (
+            "resources/candidates/claude-desktop-5.11492.2/language-whitelist-review.json")
+        value = json.loads(path.read_text())
+        self.assertEqual(value["version"], "5.11492.2")
+        self.assertEqual(value["status"], "review_required_not_installable")
+        self.assertEqual(len(value["files"]), 3)
+        self.assertTrue(all(item["status"] == "review_required_not_installable"
+                            for item in value["files"].values()))
+        self.assertNotIn("install_profile", value)
+        self.assertNotIn("approved", value)
 
 
 if __name__ == "__main__":

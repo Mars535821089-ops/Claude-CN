@@ -11,10 +11,12 @@ import json
 from pathlib import Path
 import plistlib
 import re
+from typing import Callable
 
 import claude5_candidate as previous
 import update_guard
-from upstream_patch_lib import read_asar_entry, read_asar_header, read_frontend_entry
+from upstream_patch_lib import (BASE_LANGUAGE_LIST, LANG_LIST_RE, read_asar_entry,
+                                read_asar_header, read_frontend_entry)
 
 
 VERSION = "5.11492.2"
@@ -60,6 +62,32 @@ def plan_catalog(old_en: dict[str, str], new_en: dict[str, str],
             "memory_proposals": memory_proposals,
             "pending_ids": sorted(pending), "ambiguous_ids": sorted(ambiguous),
             "changed_ids": changed, "removed_ids": sorted(set(old_en)-set(new_en))}
+
+
+def gate_candidates(old_rules: dict[str, dict], new_paths: list[str],
+                    read_entry: Callable[[str], bytes | None]) -> dict[str, dict]:
+    """Pin unique renamed JS candidates; no app or extracted file is patched."""
+    output = {}
+    replacement = BASE_LANGUAGE_LIST + ',"zh-CN","zh-Hans"]'
+    for old_path, spec in sorted(old_rules.items()):
+        prefix = old_path.rsplit("/", 1)[-1].rsplit("-", 1)[0] + "-"
+        parent = old_path.rsplit("/", 1)[0] + "/"
+        matches = [name for name in new_paths if name.startswith(parent)
+                   and name.rsplit("/", 1)[-1].startswith(prefix) and name.endswith(".js")]
+        if len(matches) != 1:
+            raise ValueError("new locale gate path is absent or ambiguous")
+        path = matches[0]
+        raw = read_entry(path)
+        if not isinstance(raw, bytes):
+            raise ValueError("new locale gate bytes are unavailable")
+        patched, count = LANG_LIST_RE.subn(replacement, raw.decode("utf-8"))
+        if count != spec.get("expected") or count != 1:
+            raise ValueError("new locale gate context changed")
+        output[path] = {"sha256": hashlib.sha256(raw).hexdigest(),
+                        "patched_sha256": hashlib.sha256(patched.encode()).hexdigest(),
+                        "expected": count, "locales": ["zh-CN", "zh-Hans"],
+                        "status": "review_required_not_installable"}
+    return output
 
 
 def review(app: Path) -> dict:
@@ -118,6 +146,33 @@ def review(app: Path) -> dict:
         }
     summary["old_js_gate_paths_missing"] = sum(
         read_frontend_entry(app, path) is None for path in previous.GATES
+    )
+    frontend_asar = app / "Contents/Resources/ion-dist.asar"
+    frontend_raw = frontend_asar.read_bytes()
+    frontend_size, _, frontend_header = read_asar_header(frontend_raw, frontend_asar)
+    js_paths: list[str] = []
+
+    def collect(entries: dict, prefix: str = "") -> None:
+        for name, item in entries.items():
+            path = f"{prefix}/{name}".lstrip("/")
+            if isinstance(item, dict) and isinstance(item.get("files"), dict):
+                collect(item["files"], path)
+            elif path.endswith(".js"):
+                js_paths.append(path)
+
+    collect(frontend_header["files"])
+    old_gate_path = pack / "language-whitelist-reviewed.json"
+    if hashlib.sha256(old_gate_path.read_bytes()).hexdigest() != manifest.get(
+            "generated_files_sha256", {}).get(old_gate_path.name):
+        raise ValueError("previous locale gate review changed")
+    old_gate_rules = previous.load(old_gate_path)["files"]
+    if (set(old_gate_rules) != set(previous.GATES)
+            or any(rule.get("sha256") != previous.GATES[path]
+                   for path, rule in old_gate_rules.items())):
+        raise ValueError("previous locale gate identities differ")
+    summary["new_gate_candidates"] = gate_candidates(
+        old_gate_rules, js_paths,
+        lambda path: read_asar_entry(frontend_raw, frontend_size, frontend_header, path),
     )
     if update_guard.bundle_identity(app) != identity:
         raise ValueError("official app changed during read-only inspection")

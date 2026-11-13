@@ -1,0 +1,45 @@
+{
+  "version": "5.11492.2",
+  "group": "frontend",
+  "status": "draft_not_installable",
+  "source_archives_sha256": {
+    "Contents/Resources/app.asar": "1e38950b8666ee7a271fdac0fc407f62bf47dc692e2ecd7f2f4f8bf6000a78fc",
+    "Contents/Resources/ion-dist.asar": "6717da52172b568ce601f9ef28411a7c35afb51ca7d5e0518f3089d1e42b0c15"
+  },
+  "source_english_sha256": {
+    "+82RkqnEtg": "bed828726ef4592704d15d278292e098242e78b6882b6705728dcf78478ac106",
+    "+OudZtR5aM": "6e3685e79384e2dc6cb23621520c720cddef8b59746ddc0b0c794facae8cece8",
+    "+aRBCPa/xE": "36c1d7f3f63614dc5f6557183a09c1d95834f00ce5139bceafbc8c51ca76a265",
+    "0GQ1Ih1+CR": "286633e3adfa75243afdcfe54f7895cafec16548154001743635300e4d7b2a3f",
+    "4xFao+3BJM": "56be369312951c91ec177a1c7558af4a9bb4005be5c2b76b5c9387dec43f48e7",
+    "52rq9dGx98": "f16847546b5c30bb29d09c1a49f489a80d663ddfab0724ee818e0073a479aad3",
+    "5zgnet8w2/": "73d926432796b6a5ac15f504dbc97552ba02b10fc06daf6b98ba41b8f48088ad",
+    "6G9Bh2Tel8": "72695854ddac75b0fcdde4cdbf9c6d00eb620641654b93adf41b32f3c9f0f931",
+    "74zOWAOOvy": "0ae9c7eefa86102925ee9b36bfd67261b103b5d492aab8aa530f637280c2fc02",
+    "7pa3WT4cmU": "0d4497403c4dbe6d22730b396b67b7adcbb55fb9d34e0bd2d8678e93dd5939d2",
+    "8zuT7bFcfF": "605b69cf9d2cf2261ba18dce4a22a7f2a063bf6113705fa9021a9ff91da86ade",
+    "9sHca1tBPQ": "10c3aec5c0463bb43b570e9cf55c96d75607a160946b9b17a595cbaf6a0fd5d9",
+    "Ba6CWeGHht": "d1dfb2b217c7298d7f611874b7934127c929ef3b476aa8b128edcd4423b437c4",
+    "Be6qv7vQca": "dc3897e0f5db9859ddcb82754e1bcc9aeac262f18a98d091ea8b03e47156ec46",
+    "BhuUeq5nfR": "1917a6774a64d927260e1f03b4acd0aadf608080ed6b842fe3f379e903920f7c",
+    "CxirElDC4z": "1b4758254664359f8a44fbf1950c0fe93c328abbc8a73039f2dc437198f8bc2e"
+  },
+  "translations": {
+    "+82RkqnEtg": "搜索在检查完所有已解决的问题之前就停止了。部分问题的修复验证可能仍待确认。",
+    "+OudZtR5aM": "先前的修复验证更新了此问题。",
+    "+aRBCPa/xE": "修复验证",
+    "0GQ1Ih1+CR": "无法删除 {what}。它可能包含你看不到的项目。请联系共享文件夹的所有者将其删除。",
+    "4xFao+3BJM": "这次验证更新了{fields}。",
+    "52rq9dGx98": "无法编辑或重试对话的这一部分",
+    "5zgnet8w2/": "无法检查已解决的问题是否仍有修复验证等待确认。请选择 {segment} 前往查看。",
+    "6G9Bh2Tel8": "你的组织未启用 Claude Security。你仍可删除其中存储的内容。",
+    "74zOWAOOvy": "要使用“{label}”标签，请先将访问权限限制为组织内的特定人员。",
+    "7pa3WT4cmU": "删除此问题后无法撤销。后续扫描可能会再次报告它。",
+    "8zuT7bFcfF": "部分已解决的问题仍有修复验证等待确认。请选择 {segment} 查看。",
+    "9sHca1tBPQ": "Claude Code 的策略在此会话中阻止使用该服务器。请联系管理员获取访问权限。",
+    "Ba6CWeGHht": "GitHub Enterprise 项目无法迁移。",
+    "Be6qv7vQca": "安装程序会提供客户端密钥",
+    "BhuUeq5nfR": "默认设置遵循你所在组织的规则以及当前会话的权限模式。{note}",
+    "CxirElDC4z": "这将恢复此问题中修复验证所做的所有更改，包括之前的更改，且无法撤销。"
+  }
+}

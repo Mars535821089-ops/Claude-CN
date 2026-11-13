@@ -125,6 +125,24 @@ class NewClaudeVersionReviewTests(unittest.TestCase):
             validate({**draft, "status": "installable"}, source,
                      {"version": "5.11492.2", "archives": archives})
 
+    def test_frontend_draft_is_restricted_to_pending_ids_and_correct_group(self):
+        module = __import__("review_claude_511492")
+        validate = getattr(module, "validate_frontend_draft", None)
+        self.assertIsNotNone(validate, "frontend drafts need a group/pending-ID boundary")
+        archives = {"Contents/Resources/app.asar": "a" * 64,
+                    "Contents/Resources/ion-dist.asar": "b" * 64}
+        english = {"pending": "Open {file}"}
+        draft = {"version": "5.11492.2", "group": "frontend",
+                 "status": "draft_not_installable", "source_archives_sha256": archives,
+                 "source_english_sha256": {"pending": hashlib.sha256(english["pending"].encode()).hexdigest()},
+                 "translations": {"pending": "打开 {file}"}}
+        identity = {"version": "5.11492.2", "archives": archives}
+        self.assertEqual(validate(draft, english, identity, {"pending"})["draft_count"], 1)
+        with self.assertRaises(ValueError):
+            validate({**draft, "group": "desktop"}, english, identity, {"pending"})
+        with self.assertRaises(ValueError):
+            validate(draft, english, identity, {"another"})
+
 
 if __name__ == "__main__":
     unittest.main()

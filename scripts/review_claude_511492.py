@@ -153,6 +153,16 @@ def validate_desktop_draft(draft: dict, english: dict[str, str], identity: dict)
     return {"status": "review_required_not_installable", "draft_count": len(translations)}
 
 
+def validate_frontend_draft(draft: dict, english: dict[str, str], identity: dict,
+                            pending_ids: set[str]) -> dict:
+    if (not isinstance(draft, dict) or draft.get("group") != "frontend"
+            or not isinstance(draft.get("translations"), dict)
+            or not draft["translations"]
+            or not set(draft["translations"]) <= pending_ids):
+        raise ValueError("frontend draft is outside exact pending IDs")
+    return validate_desktop_draft(draft, english, identity)
+
+
 def review(app: Path) -> dict:
     if app.is_symlink() or not app.is_dir():
         raise ValueError("current official Claude app unavailable")
@@ -244,6 +254,14 @@ def review(app: Path) -> dict:
     if set(draft.get("translations", {})) != set(desktop_plan["pending_ids"]):
         raise ValueError("desktop draft does not cover the exact pending source IDs")
     summary["desktop_draft"] = validate_desktop_draft(draft, current_english["desktop"], identity)
+    frontend_path = previous.ROOT / "resources/candidates/claude-desktop-5.11492.2/frontend-authored-draft-01.json"
+    frontend_draft = previous.load(frontend_path)
+    frontend_plan = plan_catalog(old_english["frontend"], current_english["frontend"],
+                                 old_chinese["frontend"], {}, memory)
+    summary["frontend_draft_batch01"] = validate_frontend_draft(
+        frontend_draft, current_english["frontend"], identity,
+        set(frontend_plan["pending_ids"]),
+    )
     if update_guard.bundle_identity(app) != identity:
         raise ValueError("official app changed during read-only inspection")
     return summary

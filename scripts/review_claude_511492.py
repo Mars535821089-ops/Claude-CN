@@ -8,9 +8,11 @@ import contextlib
 import hashlib
 import io
 import json
+import os
 from pathlib import Path
 import plistlib
 import re
+import subprocess
 from typing import Callable
 
 import claude5_candidate as previous
@@ -88,6 +90,46 @@ def gate_candidates(old_rules: dict[str, dict], new_paths: list[str],
                         "expected": count, "locales": ["zh-CN", "zh-Hans"],
                         "status": "review_required_not_installable"}
     return output
+
+
+def validate_desktop_draft(draft: dict, english: dict[str, str], identity: dict) -> dict:
+    """Check exact source and ICU structure; never promote draft to installable."""
+    if (not isinstance(draft, dict) or draft.get("version") != VERSION
+            or draft.get("status") != "draft_not_installable"
+            or draft.get("source_archives_sha256") != identity.get("archives")
+            or identity.get("version") != VERSION):
+        raise ValueError("desktop draft version or source identity differs")
+    translations = draft.get("translations")
+    source_digests = draft.get("source_english_sha256")
+    if (not isinstance(translations, dict) or not translations
+            or not isinstance(source_digests, dict)
+            or set(translations) != set(source_digests)):
+        raise ValueError("desktop draft ID set is incomplete")
+    script = Path(__file__).parent / "icu_literals.cjs"
+    env = os.environ.copy()
+    modules = script.parent.parent / "node_modules"
+    if modules.is_dir():
+        env["NODE_PATH"] = str(modules)
+    for key, translated in translations.items():
+        source = english.get(key)
+        if (not isinstance(source, str) or not isinstance(translated, str)
+                or not translated.strip()
+                or hashlib.sha256(source.encode()).hexdigest() != source_digests[key]):
+            raise ValueError("desktop draft source text differs")
+        args = lambda value: sorted(re.findall(r"\{([\w.$-]+)(?:\s*[,}])", value))
+        tags = lambda value: sorted(re.findall(r"</?[A-Za-z][^>]*>", value))
+        if args(source) != args(translated) or tags(source) != tags(translated):
+            raise ValueError("desktop draft placeholders or markup changed")
+        try:
+            result = subprocess.run(["node", str(script)], input=json.dumps({
+                "operation": "validate", "source": source, "translated": translated,
+            }), capture_output=True, text=True, timeout=8, env=env)
+            valid = result.returncode == 0 and json.loads(result.stdout).get("valid") is True
+        except (OSError, ValueError, subprocess.TimeoutExpired):
+            valid = False
+        if not valid:
+            raise ValueError("desktop draft ICU structure differs")
+    return {"status": "review_required_not_installable", "draft_count": len(translations)}
 
 
 def review(app: Path) -> dict:
@@ -174,6 +216,13 @@ def review(app: Path) -> dict:
         old_gate_rules, js_paths,
         lambda path: read_asar_entry(frontend_raw, frontend_size, frontend_header, path),
     )
+    authored_path = previous.ROOT / "resources/candidates/claude-desktop-5.11492.2/desktop-authored-draft.json"
+    draft = previous.load(authored_path)
+    desktop_plan = plan_catalog(old_english["desktop"], current_english["desktop"],
+                                old_chinese["desktop"], official_desktop, memory)
+    if set(draft.get("translations", {})) != set(desktop_plan["pending_ids"]):
+        raise ValueError("desktop draft does not cover the exact pending source IDs")
+    summary["desktop_draft"] = validate_desktop_draft(draft, current_english["desktop"], identity)
     if update_guard.bundle_identity(app) != identity:
         raise ValueError("official app changed during read-only inspection")
     return summary

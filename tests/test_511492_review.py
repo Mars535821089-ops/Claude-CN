@@ -95,6 +95,29 @@ class NewClaudeVersionReviewTests(unittest.TestCase):
         self.assertNotIn("install_profile", value)
         self.assertNotIn("approved", value)
 
+    def test_draft_translation_binds_source_placeholder_and_noninstallable_status(self):
+        module = __import__("review_claude_511492")
+        validate = getattr(module, "validate_desktop_draft", None)
+        self.assertIsNotNone(validate, "new-version authored draft needs strict source validation")
+        archives = {"Contents/Resources/app.asar": "a" * 64,
+                    "Contents/Resources/ion-dist.asar": "b" * 64}
+        source = {"new": "Run on {host}."}
+        draft = {"version": "5.11492.2", "status": "draft_not_installable",
+                 "source_archives_sha256": archives,
+                 "source_english_sha256": {"new": hashlib.sha256(source["new"].encode()).hexdigest()},
+                 "translations": {"new": "在 {host} 上运行。"}}
+        result = validate(draft, source, {"version": "5.11492.2", "archives": archives})
+        self.assertEqual(result, {"status": "review_required_not_installable", "draft_count": 1})
+        with self.assertRaises(ValueError):
+            validate(draft, {"new": "Run here instead."},
+                     {"version": "5.11492.2", "archives": archives})
+        with self.assertRaises(ValueError):
+            validate({**draft, "translations": {"new": "在这里运行。"}}, source,
+                     {"version": "5.11492.2", "archives": archives})
+        with self.assertRaises(ValueError):
+            validate({**draft, "status": "installable"}, source,
+                     {"version": "5.11492.2", "archives": archives})
+
 
 if __name__ == "__main__":
     unittest.main()

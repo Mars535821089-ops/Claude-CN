@@ -1,0 +1,20 @@
+{
+  "version": "5.11492.2",
+  "status": "draft_not_installable",
+  "source_archives_sha256": {
+    "Contents/Resources/app.asar": "1e38950b8666ee7a271fdac0fc407f62bf47dc692e2ecd7f2f4f8bf6000a78fc",
+    "Contents/Resources/ion-dist.asar": "6717da52172b568ce601f9ef28411a7c35afb51ca7d5e0518f3089d1e42b0c15"
+  },
+  "source_english_sha256": {
+    "3bBzTmLxak": "9455870ccc41dbb23ce37833822f95a86ebdb3daa06e98172157a399723f4f9a",
+    "a7AO7xQ4AF": "fa5c7d2d7a0b7127810dfc8558523636e8dc0e1d075fb89fb89aa6ed33d4b924",
+    "bzjbetJaYu": "a1327dd7729c0a70d2fe61a7671d0341a92bd455b960f5128a201fde8e099493",
+    "uEfd/Zx/hB": "814d02952559870666a7de9bda01ffcc60760e430692a7de0b6dfd540d20942b"
+  },
+  "translations": {
+    "3bBzTmLxak": "请勿在此设备上登录真实账号。",
+    "a7AO7xQ4AF": "Claude 将控制此模拟器，在其中安装并运行应用。整个屏幕的截图会发送给 Anthropic，并遵循你的对话保留设置。",
+    "bzjbetJaYu": "这台电脑的文件夹访问限制不适用于在 {host} 上运行的插件。",
+    "uEfd/Zx/hB": "Claude 将控制此仿真器，在其中安装并运行应用。整个屏幕的截图会发送给 Anthropic，并遵循你的对话保留设置。"
+  }
+}

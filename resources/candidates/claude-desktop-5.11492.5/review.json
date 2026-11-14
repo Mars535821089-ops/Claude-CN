@@ -10,10 +10,14 @@
     "frontend-authored-draft-09.json": 85,
     "frontend-authored-draft-10.json": 9
   },
+  "desktop_candidate_id_coverage": 1310,
+  "desktop_proposals_reviewed_drafts": 31,
   "draft_counts": {
     "desktop": 4,
     "frontend": 594
   },
+  "frontend_candidate_id_coverage": 44218,
+  "frontend_memory_reviewed_drafts": 63,
   "groups": {
     "desktop": {
       "changed_english_ids": 0,

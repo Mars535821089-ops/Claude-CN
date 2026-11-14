@@ -82,6 +82,48 @@ def validate_frontend_additions(root: Path, english: dict[str, str], identity: d
     return result
 
 
+def validate_frontend_memory_review(draft: dict, english: dict[str, str],
+                                    identity: dict, proposals: dict[str, str]) -> int:
+    """Require an authored, source-bound decision for every memory proposal."""
+    if (not isinstance(proposals, dict) or not proposals
+            or not isinstance(draft, dict)
+            or not isinstance(draft.get("translations"), dict)
+            or set(draft["translations"]) != set(proposals)):
+        raise ValueError("memory review must cover the exact proposal IDs")
+    old_version = prior.VERSION
+    try:
+        prior.VERSION = VERSION
+        prior.validate_frontend_draft(draft, english, identity, set(proposals))
+    finally:
+        prior.VERSION = old_version
+    return len(proposals)
+
+
+def ensure_frontend_coverage(reused: set[str], pending: set[str], memory: set[str],
+                             authored_count: int, source_ids: set[str]) -> int:
+    """Require disjoint, complete ID coverage; matching counts alone are unsafe."""
+    if (authored_count != len(pending) or reused & pending or reused & memory
+            or pending & memory or reused | pending | memory != source_ids):
+        raise ValueError("new-version frontend catalog still has uncovered IDs")
+    return len(source_ids)
+
+
+def validate_desktop_proposals_review(draft: dict, english: dict[str, str],
+                                      identity: dict, proposal_ids: set[str]) -> int:
+    """Review official and remembered wording against the actual source ICU."""
+    if (not isinstance(draft, dict) or draft.get("group") != "desktop"
+            or not isinstance(draft.get("translations"), dict)
+            or not proposal_ids or set(draft["translations"]) != proposal_ids):
+        raise ValueError("desktop review must cover the exact proposal IDs")
+    old_version = prior.VERSION
+    try:
+        prior.VERSION = VERSION
+        prior.validate_desktop_draft(draft, english, identity)
+    finally:
+        prior.VERSION = old_version
+    return len(proposal_ids)
+
+
 def review(app: Path) -> tuple[dict, dict[str, dict]]:
     if app.is_symlink() or not app.is_dir():
         raise ValueError("official Claude source unavailable")
@@ -169,9 +211,33 @@ def review(app: Path) -> tuple[dict, dict[str, dict]]:
                                       set(plans["frontend"]["pending_ids"]))
     finally:
         prior.VERSION = old_version
+    desktop_proposals = (set(plans["desktop"]["official_proposals"])
+                         | set(plans["desktop"]["memory_proposals"]))
+    desktop_path = DESTINATION / "desktop-proposals-reviewed.json"
+    if desktop_path.is_symlink() or not desktop_path.is_file():
+        raise ValueError("new-version desktop proposals have not been reviewed")
+    desktop_reviewed = validate_desktop_proposals_review(
+        json.loads(desktop_path.read_text()), english["desktop"], identity,
+        desktop_proposals)
+    desktop_parts = (set(plans["desktop"]["reused"]),
+                     set(rebound_desktop["translations"]), desktop_proposals)
+    if (any(desktop_parts[a] & desktop_parts[b] for a, b in ((0, 1), (0, 2), (1, 2)))
+            or set().union(*desktop_parts) != set(english["desktop"])):
+        raise ValueError("new-version desktop catalog still has uncovered IDs")
     additional = validate_frontend_additions(
         DESTINATION, english["frontend"], identity,
         set(plans["frontend"]["pending_ids"]), set(rebound_frontend["translations"]))
+    memory_path = DESTINATION / "frontend-memory-reviewed.json"
+    if memory_path.is_symlink() or not memory_path.is_file():
+        raise ValueError("new-version memory proposals have not been reviewed")
+    memory_reviewed = validate_frontend_memory_review(
+        json.loads(memory_path.read_text()), english["frontend"], identity,
+        plans["frontend"]["memory_proposals"])
+    candidate_coverage = ensure_frontend_coverage(
+        set(plans["frontend"]["reused"]), set(plans["frontend"]["pending_ids"]),
+        set(plans["frontend"]["memory_proposals"]),
+        len(rebound_frontend["translations"]) + sum(additional.values()),
+        set(english["frontend"]))
     if update_guard.bundle_identity(app) != identity:
         raise ValueError("official app changed during review")
     report = {"version": VERSION, "status": "review_required_not_installable",
@@ -179,6 +245,10 @@ def review(app: Path) -> tuple[dict, dict[str, dict]]:
               "unchanged_gate_count": len(gates),
               "draft_counts": {"desktop": len(rebound_desktop["translations"]),
                                "frontend": len(rebound_frontend["translations"]) + sum(additional.values())},
+              "frontend_memory_reviewed_drafts": memory_reviewed,
+              "frontend_candidate_id_coverage": candidate_coverage,
+              "desktop_proposals_reviewed_drafts": desktop_reviewed,
+              "desktop_candidate_id_coverage": len(english["desktop"]),
               "additional_frontend_drafts": additional,
               "installed": False, "visual_ui_verified": False}
     return report, {"review.json": report,

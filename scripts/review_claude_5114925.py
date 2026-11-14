@@ -53,6 +53,35 @@ def rebind_draft(draft: dict, english: dict[str, str], archives: dict[str, str],
             "status": "draft_not_installable"}
 
 
+def validate_frontend_additions(root: Path, english: dict[str, str], identity: dict,
+                                pending_ids: set[str], covered: set[str]) -> dict[str, int]:
+    """Review additional batches without reusing an ID or weakening the gate."""
+    if not root.is_dir() or root.is_symlink():
+        return {}
+    result: dict[str, int] = {}
+    used = set(covered)
+    for path in sorted(root.glob("frontend-authored-draft-*.json")):
+        if path.name == "frontend-authored-draft-01.json":
+            continue
+        if path.is_symlink() or not path.is_file():
+            raise ValueError("incremental draft path is redirected")
+        draft = json.loads(path.read_text())
+        translations = draft.get("translations")
+        if (draft.get("version") != VERSION or draft.get("status") != "draft_not_installable"
+                or not isinstance(translations, dict) or not translations
+                or set(translations) & used):
+            raise ValueError("incremental draft is stale or overlaps an existing ID")
+        old_version = prior.VERSION
+        try:
+            prior.VERSION = VERSION
+            prior.validate_frontend_draft(draft, english, identity, pending_ids)
+        finally:
+            prior.VERSION = old_version
+        used.update(translations)
+        result[path.name] = len(translations)
+    return result
+
+
 def review(app: Path) -> tuple[dict, dict[str, dict]]:
     if app.is_symlink() or not app.is_dir():
         raise ValueError("official Claude source unavailable")
@@ -140,13 +169,17 @@ def review(app: Path) -> tuple[dict, dict[str, dict]]:
                                       set(plans["frontend"]["pending_ids"]))
     finally:
         prior.VERSION = old_version
+    additional = validate_frontend_additions(
+        DESTINATION, english["frontend"], identity,
+        set(plans["frontend"]["pending_ids"]), set(rebound_frontend["translations"]))
     if update_guard.bundle_identity(app) != identity:
         raise ValueError("official app changed during review")
     report = {"version": VERSION, "status": "review_required_not_installable",
               "source_archives_sha256": ARCHIVES, "groups": groups,
               "unchanged_gate_count": len(gates),
               "draft_counts": {"desktop": len(rebound_desktop["translations"]),
-                               "frontend": len(rebound_frontend["translations"])},
+                               "frontend": len(rebound_frontend["translations"]) + sum(additional.values())},
+              "additional_frontend_drafts": additional,
               "installed": False, "visual_ui_verified": False}
     return report, {"review.json": report,
                     "language-whitelist-review.json": {"version": VERSION,

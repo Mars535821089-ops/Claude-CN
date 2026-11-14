@@ -1,7 +1,10 @@
 {
+  "additional_frontend_drafts": {
+    "frontend-authored-draft-02.json": 23
+  },
   "draft_counts": {
     "desktop": 4,
-    "frontend": 16
+    "frontend": 39
   },
   "groups": {
     "desktop": {

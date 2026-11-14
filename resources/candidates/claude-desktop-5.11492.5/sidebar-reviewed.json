@@ -1,0 +1,15 @@
+{
+  "installed": false,
+  "native_toggle_unchanged": true,
+  "patched_sha256": "070129c3719e6ce472c9bcf57904412fbac02847238c7643c581951d2b03cf2f",
+  "persistence_fields_unchanged": true,
+  "resource": "assets/v1/shared-98-CG0W8eqd.js",
+  "source_archives_sha256": {
+    "Contents/Resources/app.asar": "2c515441d5d0504a96ac3e49bcc4c1244085c0e76ad23ae58ddd8f736100479e",
+    "Contents/Resources/ion-dist.asar": "1d55d633d14aede748af3cb22c244f4ddc2f795d9b1153b175b993ae5d46aa1b"
+  },
+  "source_sha256": "6a54cf575da69d4539e9157f97a0fef36d5f87edbd5d9617656e3ca7e2f8a9f7",
+  "status": "review_required_not_installable",
+  "version": "5.11492.5",
+  "visual_ui_verified": false
+}

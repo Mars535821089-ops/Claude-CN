@@ -25,6 +25,11 @@ ARCHIVES = {
 }
 SOURCE = ROOT / "resources/candidates/claude-desktop-5.11492.2"
 DESTINATION = ROOT / "resources/candidates/claude-desktop-5.11492.5"
+REUSED_ICU_CORRECTIONS = {
+    "desktop": {"PLSMnl9zeJ", "aZynSqBUGv"},
+    "frontend": {"FXwrFVyeYY", "MaXzl46L9f", "PGKbECBwIw", "RbpU5T0BsV",
+                 "SLEyC6eeQl", "YQ6jL67z2e", "pXKNm8hSna", "rRvonVlblb"},
+}
 
 
 def digest(value: bytes) -> str:
@@ -122,6 +127,39 @@ def validate_desktop_proposals_review(draft: dict, english: dict[str, str],
     finally:
         prior.VERSION = old_version
     return len(proposal_ids)
+
+
+def validate_reused_corrections(draft: dict, *, english: dict[str, dict[str, str]],
+                                previous: dict[str, dict[str, str]], identity: dict,
+                                expected: dict[str, set[str]]) -> dict[str, int]:
+    """Keep old version untouched; correct only individually reviewed new-build IDs."""
+    if (not isinstance(draft, dict) or draft.get("version") != VERSION
+            or draft.get("status") != "draft_not_installable"
+            or draft.get("source_archives_sha256") != identity.get("archives")
+            or not isinstance(draft.get("groups"), dict)
+            or set(draft["groups"]) != set(expected)):
+        raise ValueError("reused ICU correction identity differs")
+    results = {}
+    for group, keys in expected.items():
+        item = draft["groups"][group]
+        if (not isinstance(item, dict)
+                or not isinstance(item.get("translations"), dict)
+                or not isinstance(item.get("source_english_sha256"), dict)
+                or set(item["translations"]) != keys
+                or set(item["source_english_sha256"]) != keys
+                or any(previous[group].get(key) != english[group].get(key)
+                       or key not in english[group] for key in keys)):
+            raise ValueError("reused ICU correction source or ID set differs")
+        old_version = prior.VERSION
+        try:
+            prior.VERSION = VERSION
+            prior.validate_desktop_draft({"version": VERSION,
+                "status": draft["status"], "source_archives_sha256": draft["source_archives_sha256"],
+                **item}, english[group], identity)
+        finally:
+            prior.VERSION = old_version
+        results[group] = len(keys)
+    return results
 
 
 def review(app: Path) -> tuple[dict, dict[str, dict]]:
@@ -233,6 +271,12 @@ def review(app: Path) -> tuple[dict, dict[str, dict]]:
     memory_reviewed = validate_frontend_memory_review(
         json.loads(memory_path.read_text()), english["frontend"], identity,
         plans["frontend"]["memory_proposals"])
+    correction_path = DESTINATION / "reused-icu-corrections-reviewed.json"
+    if correction_path.is_symlink() or not correction_path.is_file():
+        raise ValueError("new-version old-ID ICU corrections have not been reviewed")
+    reused_corrections = validate_reused_corrections(
+        json.loads(correction_path.read_text()), english=english,
+        previous=old_english, identity=identity, expected=REUSED_ICU_CORRECTIONS)
     candidate_coverage = ensure_frontend_coverage(
         set(plans["frontend"]["reused"]), set(plans["frontend"]["pending_ids"]),
         set(plans["frontend"]["memory_proposals"]),
@@ -246,6 +290,7 @@ def review(app: Path) -> tuple[dict, dict[str, dict]]:
               "draft_counts": {"desktop": len(rebound_desktop["translations"]),
                                "frontend": len(rebound_frontend["translations"]) + sum(additional.values())},
               "frontend_memory_reviewed_drafts": memory_reviewed,
+              "reused_icu_corrections": reused_corrections,
               "frontend_candidate_id_coverage": candidate_coverage,
               "desktop_proposals_reviewed_drafts": desktop_reviewed,
               "desktop_candidate_id_coverage": len(english["desktop"]),

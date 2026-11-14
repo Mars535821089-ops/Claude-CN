@@ -17,6 +17,11 @@ Claude macOS 桌面端简体中文界面资源与上游变更检查工具；不�
 详见 `docs/5.11492.5-update-compatibility-2026-11-14.md`。不要把下方旧版本
 记录或旧签名包当作当前已安装状态。
 
+当前三套译文可在**不修改应用**的前提下组装为版本绑定的离线 JSON 候选：
+`/opt/homebrew/bin/python3 scripts/assemble_5114925_catalogs.py --output-dir <外置盘01-编译与构建/Claude-CN/下全新目录>`。
+该输出明确是 `candidate_not_installable`；硬编码 UI、Cowork、侧栏、签名和
+图形界面的完整验收仍不可省略。
+
 ### 2026-11-10：官方 4.23118.1 只读迁移审查
 
 官方 `RELEASES.json` 当前发布版为 4.23118.1；已在本机外置构建区下载并对

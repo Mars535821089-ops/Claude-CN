@@ -51,6 +51,10 @@
     }
   },
   "installed": false,
+  "reused_icu_corrections": {
+    "desktop": 2,
+    "frontend": 8
+  },
   "source_archives_sha256": {
     "Contents/Resources/app.asar": "2c515441d5d0504a96ac3e49bcc4c1244085c0e76ad23ae58ddd8f736100479e",
     "Contents/Resources/ion-dist.asar": "1d55d633d14aede748af3cb22c244f4ddc2f795d9b1153b175b993ae5d46aa1b"

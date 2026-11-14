@@ -1,0 +1,42 @@
+{
+  "groups": {
+    "desktop": {
+      "source_english_sha256": {
+        "PLSMnl9zeJ": "7b1d14a978e2f691e6b9a91c1ae32ad3dd6023daf20bcdd86667a9e09774c402",
+        "aZynSqBUGv": "b1c03ad3cc3a699cfd9a4755b3f31a2b7fb7acaf75a81106ce2d8df2652b5f99"
+      },
+      "translations": {
+        "PLSMnl9zeJ": "{count, plural, one {安全检查阻止了一个步骤} other {安全检查阻止了 # 个步骤}}",
+        "aZynSqBUGv": "{count, plural, one {无法从快速输入附加文件；将发送不含此文件的消息。} other {无法从快速输入附加 # 个文件；将发送不含这些文件的消息。}}"
+      }
+    },
+    "frontend": {
+      "source_english_sha256": {
+        "FXwrFVyeYY": "32d9d853db2e2d533050561ec4a2669d61f910d29389a85a14fbf88db871c7b3",
+        "MaXzl46L9f": "68fc54d0333dec0e1ec47a8660f5abf829ab4f583382a66cb497d3b13f970ddf",
+        "PGKbECBwIw": "cf0ffcec7d3022c8be2a02a2dac7adf4302a2e80fba98f47b1b4584eee15dff6",
+        "RbpU5T0BsV": "0656df00b69bad5d2e5ac7f208c06f7e634e741a2ac8f97c34c8eb4c617d0772",
+        "SLEyC6eeQl": "dc195565ece29587ee451426310864e845dfe6fd38d2069d35b730bf0e0b53cf",
+        "YQ6jL67z2e": "50b4f081f77dcbbc940b336b79d07d08e644044a0d6d7627339436cccba40d69",
+        "pXKNm8hSna": "aea8fbd5c1acc8a6f240fe4c1b55061edbba522dae61f324a5d44093f5fcdefd",
+        "rRvonVlblb": "2aa4056576f600a7272812f082bff2ef2fe38e15c87d638763d98f5be3998d46"
+      },
+      "translations": {
+        "FXwrFVyeYY": "凡允许 {currentModel} 的位置都将允许 {newModel}，凡将 {currentModel} 设为默认的位置也会将它设为默认。若想单独管理，可在模型设置中退出此安排；此后可随时自行设置 {newModel} 的访问权限和默认状态。",
+        "MaXzl46L9f": "{count, plural, one {已审核来自 {marketplaceName} 的 # 个插件} other {已审核来自 {marketplaceName} 的 # 个插件}}，其中{flagged, plural, one {# 个} other {# 个}}被标记。使用前请检查。",
+        "PGKbECBwIw": "允许 Claude <b>离开 {from} 并前往</b> <meta>{site}</meta> 吗？",
+        "RbpU5T0BsV": "此会话有{count, plural, one {一个嵌套会话} other {# 个嵌套会话}}。仅归档当前会话，{count, plural, one {它会} other {它们会}}移到顶层。",
+        "SLEyC6eeQl": "{count, plural, one {在 GitHub 上查看 # 个提交} other {在 GitHub 上查看全部 # 个提交}}",
+        "YQ6jL67z2e": "{count, plural, one {已忽略连接器请求} other {已忽略 # 个连接器请求}}",
+        "pXKNm8hSna": "{currentModel, select, Opus {凡允许 {currentModel} 系列模型的位置都将允许 {newModel}；凡以 {currentModel} 系列模型为默认的位置都将把它设为默认。} Sonnet {凡允许 {currentModel} 系列模型的位置都将允许 {newModel}；凡以 {currentModel} 系列模型为默认的位置都将把它设为默认。} Haiku {凡允许 {currentModel} 系列模型的位置都将允许 {newModel}；凡以 {currentModel} 系列模型为默认的位置都将把它设为默认。} Fable {凡允许 {currentModel} 系列模型的位置都将允许 {newModel}；凡以 {currentModel} 系列模型为默认的位置都将把它设为默认。} other {凡允许任何 {currentModel} 模型的位置都将允许 {newModel}；凡以任何 {currentModel} 模型为默认的位置都将把它设为默认。}}若想单独管理，请在模型设置中退出此安排。之后可随时自行设置 {newModel} 的访问权限和默认状态。",
+        "rRvonVlblb": "“{sessionTitle}”有{count, plural, one {一个嵌套会话} other {# 个嵌套会话}}。仅归档当前会话，{count, plural, one {它会} other {它们会}}移到顶层。"
+      }
+    }
+  },
+  "source_archives_sha256": {
+    "Contents/Resources/app.asar": "2c515441d5d0504a96ac3e49bcc4c1244085c0e76ad23ae58ddd8f736100479e",
+    "Contents/Resources/ion-dist.asar": "1d55d633d14aede748af3cb22c244f4ddc2f795d9b1153b175b993ae5d46aa1b"
+  },
+  "status": "draft_not_installable",
+  "version": "5.11492.5"
+}

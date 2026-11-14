@@ -11,6 +11,33 @@ import review_claude_5114925 as candidate
 
 
 class LatestClaudeDraftTests(unittest.TestCase):
+    def test_old_icu_corrections_require_pinned_source_and_exact_ids(self):
+        source = "{n, plural, one {One} other {# others}}"
+        translated = "{n, plural, one {一个} other {# 个}}"
+        archives = {"Contents/Resources/app.asar": "a" * 64,
+                    "Contents/Resources/ion-dist.asar": "b" * 64}
+        group = {"source_english_sha256": {"old": hashlib.sha256(source.encode()).hexdigest()},
+                 "translations": {"old": translated}}
+        draft = {"version": candidate.VERSION, "status": "draft_not_installable",
+                 "source_archives_sha256": archives, "groups": {"desktop": group}}
+        kwargs = {"english": {"desktop": {"old": source}},
+                  "previous": {"desktop": {"old": source}},
+                  "identity": {"version": candidate.VERSION, "archives": archives},
+                  "expected": {"desktop": {"old"}}}
+        self.assertEqual(candidate.validate_reused_corrections(draft, **kwargs),
+                         {"desktop": 1})
+        with self.assertRaises(ValueError):
+            candidate.validate_reused_corrections(
+                {**draft, "groups": {"desktop": {**group,
+                    "translations": {"old": "{n, plural, other {# 个}}"}}}}, **kwargs)
+        with self.assertRaises(ValueError):
+            candidate.validate_reused_corrections(
+                {**draft, "groups": {"desktop": {**group,
+                    "source_english_sha256": {"old": "0" * 64}}}}, **kwargs)
+        with self.assertRaises(ValueError):
+            candidate.validate_reused_corrections(
+                draft, **{**kwargs, "previous": {"desktop": {"old": "Changed"}}})
+
     def test_desktop_proposals_require_all_ids_and_valid_icu(self):
         english = {"official": "{n, plural, one {Open one} other {Open #}}",
                    "memory": "Keep {name}"}

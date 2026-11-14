@@ -50,6 +50,61 @@ function unorderedStructure(nodes) {
   }).sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
 }
 
+function localeStructure(nodes, pruneUnavailable = false) {
+  return nodes.flatMap(node => {
+    if (node.type === 0) return [];
+    if (node.options) {
+      const reachable = node.type === 6
+        ? new Set(new Intl.PluralRules('zh-CN', {
+            type: node.pluralType === 'ordinal' ? 'ordinal' : 'cardinal',
+          }).resolvedOptions().pluralCategories)
+        : null;
+      return [[node.type, node.value, node.offset ?? 0, node.pluralType ?? null,
+        Object.entries(node.options)
+          .filter(([key]) => !pruneUnavailable || !reachable ||
+            key.startsWith('=') || reachable.has(key))
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([key, branch]) => [key, localeStructure(branch.value, pruneUnavailable)])]];
+    }
+    if (node.children) return [[node.type, node.value,
+      localeStructure(node.children, pruneUnavailable)]];
+    return [[node.type, node.value, node.style ?? null]];
+  }).sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+}
+
+function retainsUnreachablePluralCategory(nodes) {
+  for (const node of nodes) {
+    if (node.options) {
+      if (node.type === 6) {
+        const reachable = new Set(new Intl.PluralRules('zh-CN', {
+          type: node.pluralType === 'ordinal' ? 'ordinal' : 'cardinal',
+        }).resolvedOptions().pluralCategories);
+        if (Object.keys(node.options).some(key => !key.startsWith('=') &&
+            !reachable.has(key))) return true;
+      }
+      for (const branch of Object.values(node.options)) {
+        if (retainsUnreachablePluralCategory(branch.value)) return true;
+      }
+    }
+    if (node.children && retainsUnreachablePluralCategory(node.children)) return true;
+  }
+  return false;
+}
+
+function equivalentForChinese(source, translated) {
+  const original = parse(source), result = parse(translated);
+  if (JSON.stringify(localeStructure(original)) ===
+      JSON.stringify(localeStructure(result))) return true;
+  // Chinese cardinal and ordinal plural rules select only `other`. A source
+  // `one` branch may be absent from the translated catalog; explicit =n and
+  // select branches always remain reachable. If the translation keeps a
+  // non-reachable branch, still validate it strictly rather than hiding a
+  // changed placeholder inside that branch.
+  if (retainsUnreachablePluralCategory(result)) return false;
+  return JSON.stringify(localeStructure(original, true)) ===
+    JSON.stringify(localeStructure(result, true));
+}
+
 function compose(source, replacements) {
   const spans = literals(source);
   if (!Array.isArray(replacements) || replacements.length !== spans.length ||
@@ -71,7 +126,11 @@ if (require.main === module) {
   try {
     const request = JSON.parse(fs.readFileSync(0, "utf8"));
     let result;
-    if (request?.operation === "validate-batch") {
+    if (request?.operation === "validate-batch" ||
+        request?.operation === "validate-batch-locale") {
+      if (request.operation === "validate-batch-locale" && request.locale !== "zh-CN") {
+        throw new Error("unsupported locale for semantic ICU check");
+      }
       const source = request.source;
       const translated = request.translated;
       if (!source || !translated || Array.isArray(source) || Array.isArray(translated) ||
@@ -84,8 +143,10 @@ if (require.main === module) {
       const invalid = [];
       for (const [key, original] of Object.entries(source)) {
         try {
-          if (JSON.stringify(unorderedStructure(parse(original))) !==
-              JSON.stringify(unorderedStructure(parse(translated[key])))) invalid.push(key);
+          if (request.operation === "validate-batch-locale") {
+            if (!equivalentForChinese(original, translated[key])) invalid.push(key);
+          } else if (JSON.stringify(unorderedStructure(parse(original))) !==
+                     JSON.stringify(unorderedStructure(parse(translated[key])))) invalid.push(key);
         } catch { invalid.push(key); }
       }
       result = { checked: Object.keys(source).length, invalid };

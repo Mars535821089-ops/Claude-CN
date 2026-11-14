@@ -1,10 +1,11 @@
 {
   "additional_frontend_drafts": {
-    "frontend-authored-draft-02.json": 23
+    "frontend-authored-draft-02.json": 23,
+    "frontend-authored-draft-03.json": 30
   },
   "draft_counts": {
     "desktop": 4,
-    "frontend": 39
+    "frontend": 69
   },
   "groups": {
     "desktop": {

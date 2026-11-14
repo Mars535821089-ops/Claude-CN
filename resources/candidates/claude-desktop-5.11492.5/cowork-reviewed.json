@@ -1,0 +1,22 @@
+{
+  "installed": false,
+  "native_global_scope_unmodified": true,
+  "owner": {
+    "path": ".vite/build/index.chunk-xV3fJhc7.js",
+    "sha256": "6b4474d1c0e0c0f0a6dc0c92c0205994b2e91d2073b457a28db3cbe199b45c95"
+  },
+  "per_session_policy_requires_explicit_configuration": true,
+  "policy_module_sha256": "dfbcc716a0ec33a6d2d7fe21cc6d36c99f56efa12d3639e5a479e13ac872830b",
+  "source_archives_sha256": {
+    "Contents/Resources/app.asar": "2c515441d5d0504a96ac3e49bcc4c1244085c0e76ad23ae58ddd8f736100479e",
+    "Contents/Resources/ion-dist.asar": "1d55d633d14aede748af3cb22c244f4ddc2f795d9b1153b175b993ae5d46aa1b"
+  },
+  "status": "review_required_not_installable",
+  "version": "5.11492.5",
+  "visual_ui_verified": false,
+  "worker": {
+    "patched_sha256": "594c68053d91d29eec5a051ee1c12211f32173a3084b3d94ecdc3ccd756cf9d8",
+    "path": ".vite/build/index.chunk-BqZKACTO.js",
+    "sha256": "be53e2ca65f39dae7c3cbb7358d309cb27be2a1f6a93c46e9f63d4b97dfb9939"
+  }
+}

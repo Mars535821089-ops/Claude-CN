@@ -137,6 +137,10 @@ def validate_desktop_draft(draft: dict, english: dict[str, str], identity: dict)
                 or not translated.strip()
                 or hashlib.sha256(source.encode()).hexdigest() != source_digests[key]):
             raise ValueError("desktop draft source text differs")
+        product_names = ("Claude Code", "Claude Duet", "Claude", "Google Drive",
+                         "GitHub", "Worktree", "macOS", "MCP")
+        if any(name in source and name not in translated for name in product_names):
+            raise ValueError("desktop draft product name changed")
         tags = lambda value: sorted(re.findall(r"</?[A-Za-z][^>]*>", value))
         # ICU's parser below owns argument/selector/branch validation. A regex
         # sees a Chinese branch such as one {一个产物} as an argument, even

@@ -2,11 +2,17 @@
   "additional_frontend_drafts": {
     "frontend-authored-draft-02.json": 23,
     "frontend-authored-draft-03.json": 30,
-    "frontend-authored-draft-04.json": 61
+    "frontend-authored-draft-04.json": 61,
+    "frontend-authored-draft-05.json": 87,
+    "frontend-authored-draft-06.json": 97,
+    "frontend-authored-draft-07.json": 95,
+    "frontend-authored-draft-08.json": 91,
+    "frontend-authored-draft-09.json": 85,
+    "frontend-authored-draft-10.json": 9
   },
   "draft_counts": {
     "desktop": 4,
-    "frontend": 130
+    "frontend": 594
   },
   "groups": {
     "desktop": {

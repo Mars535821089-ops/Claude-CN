@@ -1,0 +1,31 @@
+{
+  "group": "frontend",
+  "source_archives_sha256": {
+    "Contents/Resources/app.asar": "2c515441d5d0504a96ac3e49bcc4c1244085c0e76ad23ae58ddd8f736100479e",
+    "Contents/Resources/ion-dist.asar": "1d55d633d14aede748af3cb22c244f4ddc2f795d9b1153b175b993ae5d46aa1b"
+  },
+  "source_english_sha256": {
+    "2sCoLm482I": "d7abb0e842bfcd46e1e490533a485d3fc8363c04bf42f2c820df4a34046f865a",
+    "3AeUUeon38": "54f74e31892008b07ff0c3bbf1787af76c77c0b7ad71e96a02e8d86b519c75b7",
+    "9H+KDLF6Oj": "aff0766a5290e117b8433c351bae7b7b23bed682b2369bd822d88a647cc58512",
+    "C6ki4Zmldy": "ee3fb626a036c5e3c32af874db129b0ef8bbfa8e728fb4305c11079d5850c88e",
+    "CHGpxkyOsd": "efd93ddaa4f69e9f017fdc148eb7112a56c68cf3b26df54de3074113cf507571",
+    "CwJtYrVQ1u": "e3961f40dbb0410a749e9dab7f956a8a36557a0d9ae4c7fb85aa827cac92910e",
+    "Kbe2aLzVFP": "dc9ed5dba29c2595e6b0c6131b62e41e0795257d103dd735abe9d7273eabc0ce",
+    "KfRKE7AQhp": "bfdd510698ef3ccbf17f2c67fc47790e1ba72894fb74fe284bbc136b47ef73e6",
+    "b4uzMeZtXw": "f4b06ef6d3c81436f60a318c81c42f8f7e2d774d45a22f3b9b5f3b6980d28146"
+  },
+  "status": "draft_not_installable",
+  "translations": {
+    "2sCoLm482I": "{action} {metaText}",
+    "3AeUUeon38": "同时清除标志开关，但 Ant tools 顶部实验室中的第一个开关除外。部分工具会保留各自的开关，直到你关闭这些工具。",
+    "9H+KDLF6Oj": "代码评审",
+    "C6ki4Zmldy": "丢弃以下会话的{trees, plural, one {# 个保留工作树} other {# 个保留工作树}}：",
+    "CHGpxkyOsd": "此功能目前不适用于面向科研人员的 Team 套餐，也没有确定的上线日期。你现有的月度套餐不受影响。",
+    "CwJtYrVQ1u": "仅剩工具自行设置的覆盖项，以及与 Ant tools 顶部实验室中第一个开关关联的覆盖项。请关闭对应工具，或在上方删除这些覆盖项。",
+    "Kbe2aLzVFP": "填写格式为 name@marketplace、且需要读取 design-system 文件夹的插件。第一个插件为默认项。请在“插件市场”中固定相应的市场。",
+    "KfRKE7AQhp": "录制",
+    "b4uzMeZtXw": "至"
+  },
+  "version": "5.11492.5"
+}

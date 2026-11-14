@@ -164,6 +164,19 @@ class NewClaudeVersionReviewTests(unittest.TestCase):
                 module.validate_desktop_draft(
                     {**draft, "translations": {"id": bad}}, {"id": source}, identity)
 
+    def test_authored_draft_does_not_translate_product_name(self):
+        module = __import__("review_claude_511492")
+        source = "Claude Code is ready in {host}."
+        archives = {"Contents/Resources/app.asar": "a" * 64,
+                    "Contents/Resources/ion-dist.asar": "b" * 64}
+        draft = {"version": module.VERSION, "status": "draft_not_installable",
+                 "source_archives_sha256": archives,
+                 "source_english_sha256": {"id": hashlib.sha256(source.encode()).hexdigest()},
+                 "translations": {"id": "Claude 代码已在 {host} 就绪。"}}
+        with self.assertRaisesRegex(ValueError, "product name"):
+            module.validate_desktop_draft(
+                draft, {"id": source}, {"version": module.VERSION, "archives": archives})
+
 
 if __name__ == "__main__":
     unittest.main()

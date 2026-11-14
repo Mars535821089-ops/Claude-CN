@@ -21,6 +21,9 @@ Claude macOS 桌面端简体中文界面资源与上游变更检查工具；不�
 `/opt/homebrew/bin/python3 scripts/assemble_5114925_catalogs.py --output-dir <外置盘01-编译与构建/Claude-CN/下全新目录>`。
 该输出明确是 `candidate_not_installable`；硬编码 UI、Cowork、侧栏、签名和
 图形界面的完整验收仍不可省略。
+`scripts/review_hardcoded_5114925.py` 另按当前签名资源核对六处硬编码 UI、
+71 次替换；这只是只读补丁预检，未写入正在运行的应用。新版侧栏、Cowork
+及新聊天标题的行为锚点变化仍单独待适配。
 
 ### 2026-11-10：官方 4.23118.1 只读迁移审查
 

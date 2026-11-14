@@ -1,0 +1,47 @@
+{
+  "draft_counts": {
+    "desktop": 4,
+    "frontend": 16
+  },
+  "groups": {
+    "desktop": {
+      "changed_english_ids": 0,
+      "current_ids": 1310,
+      "official_new_proposals": 29,
+      "old_ids": 1279,
+      "pending_review_ids": 4,
+      "removed_ids": 4,
+      "unchanged_id_candidates": 1275,
+      "unique_memory_new_proposals": 2
+    },
+    "dynamic": {
+      "changed_english_ids": 0,
+      "current_ids": 51,
+      "official_new_proposals": 0,
+      "old_ids": 51,
+      "pending_review_ids": 0,
+      "removed_ids": 0,
+      "unchanged_id_candidates": 51,
+      "unique_memory_new_proposals": 0
+    },
+    "frontend": {
+      "changed_english_ids": 0,
+      "current_ids": 44218,
+      "official_new_proposals": 0,
+      "old_ids": 43833,
+      "pending_review_ids": 594,
+      "removed_ids": 272,
+      "unchanged_id_candidates": 43561,
+      "unique_memory_new_proposals": 63
+    }
+  },
+  "installed": false,
+  "source_archives_sha256": {
+    "Contents/Resources/app.asar": "2c515441d5d0504a96ac3e49bcc4c1244085c0e76ad23ae58ddd8f736100479e",
+    "Contents/Resources/ion-dist.asar": "1d55d633d14aede748af3cb22c244f4ddc2f795d9b1153b175b993ae5d46aa1b"
+  },
+  "status": "review_required_not_installable",
+  "unchanged_gate_count": 3,
+  "version": "5.11492.5",
+  "visual_ui_verified": false
+}

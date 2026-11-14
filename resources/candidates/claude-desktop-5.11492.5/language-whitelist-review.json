@@ -1,0 +1,40 @@
+{
+  "files": {
+    "assets/v1/c6fce776d-BO8Z2Pee.js": {
+      "expected": 1,
+      "locales": [
+        "zh-CN",
+        "zh-Hans"
+      ],
+      "patched_sha256": "17503adcc8bc3fb2a65c9ac4c2f942dc69b9df481a5bcd6977ef9a8399ef3388",
+      "sha256": "b6f822f7806bee714eb509edbbaae8cc51b38cf446e652ab3c1b17a795729012",
+      "status": "review_required_not_installable"
+    },
+    "assets/v1/shared-130-B8XvJbHi.js": {
+      "expected": 1,
+      "locales": [
+        "zh-CN",
+        "zh-Hans"
+      ],
+      "patched_sha256": "fa987c789ffd77b44cd43ff720b646b9d89855f91efc89034babfd956b1141b4",
+      "sha256": "73fc2111340f4669b2beffb080d3f8dfd142413747f37f9cd5d34b5632dbf1ff",
+      "status": "review_required_not_installable"
+    },
+    "assets/v1/shared-25-CjQz8_zS.js": {
+      "expected": 1,
+      "locales": [
+        "zh-CN",
+        "zh-Hans"
+      ],
+      "patched_sha256": "18e84f8c0fb69f806063390b65d8aeae0f5f8e4887110730e98c2e8039844cd8",
+      "sha256": "d7c8282546928975e93e07c03fd13f8ae869f96279b00a50f8c3eed5f2861298",
+      "status": "review_required_not_installable"
+    }
+  },
+  "source_archives_sha256": {
+    "Contents/Resources/app.asar": "2c515441d5d0504a96ac3e49bcc4c1244085c0e76ad23ae58ddd8f736100479e",
+    "Contents/Resources/ion-dist.asar": "1d55d633d14aede748af3cb22c244f4ddc2f795d9b1153b175b993ae5d46aa1b"
+  },
+  "status": "review_required_not_installable",
+  "version": "5.11492.5"
+}

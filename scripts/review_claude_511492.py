@@ -137,10 +137,13 @@ def validate_desktop_draft(draft: dict, english: dict[str, str], identity: dict)
                 or not translated.strip()
                 or hashlib.sha256(source.encode()).hexdigest() != source_digests[key]):
             raise ValueError("desktop draft source text differs")
-        args = lambda value: sorted(re.findall(r"\{([\w.$-]+)(?:\s*[,}])", value))
         tags = lambda value: sorted(re.findall(r"</?[A-Za-z][^>]*>", value))
-        if args(source) != args(translated) or tags(source) != tags(translated):
-            raise ValueError("desktop draft placeholders or markup changed")
+        # ICU's parser below owns argument/selector/branch validation. A regex
+        # sees a Chinese branch such as one {一个产物} as an argument, even
+        # though the English one {an artifact} is correctly treated as text.
+        # Keep exact HTML attributes as a separate check; ICU omits them.
+        if tags(source) != tags(translated):
+            raise ValueError("desktop draft markup changed")
         try:
             result = subprocess.run(["node", str(script)], input=json.dumps({
                 "operation": "validate", "source": source, "translated": translated,

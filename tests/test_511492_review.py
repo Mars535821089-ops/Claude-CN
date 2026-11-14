@@ -143,6 +143,27 @@ class NewClaudeVersionReviewTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate(draft, english, identity, {"another"})
 
+    def test_icu_branch_literal_is_not_mistaken_for_an_argument(self):
+        module = __import__("review_claude_511492")
+        source = "Took {out, plural, one {an artifact out of its folder} other {# artifacts out of their folders}}"
+        translated = "已将{out, plural, one {一个产物移出其文件夹} other {# 个产物移出各自的文件夹}}"
+        archives = {"Contents/Resources/app.asar": "a" * 64,
+                    "Contents/Resources/ion-dist.asar": "b" * 64}
+        draft = {"version": module.VERSION, "status": "draft_not_installable",
+                 "source_archives_sha256": archives,
+                 "source_english_sha256": {"id": hashlib.sha256(source.encode()).hexdigest()},
+                 "translations": {"id": translated}}
+        identity = {"version": module.VERSION, "archives": archives}
+        self.assertEqual(module.validate_desktop_draft(
+            draft, {"id": source}, identity)["draft_count"], 1)
+        # Real argument or branch loss remains invalid under the ICU parser.
+        for bad in (translated.replace("{out,", "{other,"),
+                    translated.replace("# 个", "多个"),
+                    translated.replace("one {", "few {")):
+            with self.subTest(translation=bad), self.assertRaises(ValueError):
+                module.validate_desktop_draft(
+                    {**draft, "translations": {"id": bad}}, {"id": source}, identity)
+
 
 if __name__ == "__main__":
     unittest.main()

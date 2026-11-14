@@ -21,6 +21,10 @@ MEMORY = json.loads((ROOT / "memory.json").read_text()) if (ROOT / "memory.json"
 OUTPUT = ROOT / "translated.json"
 MODEL = args.model
 SCRIPT_ROOT = Path(__file__).resolve().parents[1]
+IMMUTABLE_PRODUCT_NAMES = (
+    "Claude Code", "Claude Duet", "Claude", "Google Drive", "GitHub",
+    "Worktree", "macOS", "MCP",
+)
 
 
 def write_progress(data: dict[str, str]) -> None:
@@ -64,6 +68,8 @@ def parse_response(raw: str, batch: dict[str, str]) -> dict[str, str]:
         if not isinstance(zh, str) or not zh.strip():
             raise ValueError(f"empty or non-string translation: {key}")
         original = batch[key]
+        if any(name in original and name not in zh for name in IMMUTABLE_PRODUCT_NAMES):
+            raise ValueError(f"product name changed in translation: {key}")
         if re.search(r"\{[\w.$-]+\s*,\s*(?:plural|select|selectordinal)\s*,", original):
             valid = valid_icu_structure(original, zh)
             if args_and_tags(zh)[1] != args_and_tags(original)[1]:

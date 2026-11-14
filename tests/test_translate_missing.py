@@ -39,6 +39,16 @@ class TranslationSafetyTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "placeholders"):
             parse_response(json.dumps({"id": bad}), {"id": original})
 
+    def test_rejects_lost_product_name_even_when_placeholders_survive(self):
+        parse_response = self.load_parser()
+        original = "Claude Code reviews {action} in GitHub."
+        bad = "Claude 代码在 GitHub 中审查 {action}。"
+        with self.assertRaisesRegex(ValueError, "product name"):
+            parse_response(json.dumps({"id": bad}), {"id": original})
+        good = "Claude Code 在 GitHub 中审查 {action}。"
+        self.assertEqual(parse_response(json.dumps({"id": good}), {"id": original}),
+                         {"id": good})
+
     def test_accepts_translated_text_with_original_placeholders(self):
         parse_response = self.load_parser()
         original = "{count, plural, one {# item} other {# items}}"

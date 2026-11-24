@@ -124,6 +124,30 @@ def apply_review(catalogs: dict, results: dict, review: dict, target_version: st
             results[group]["missing"].pop(key, None)
 
 
+def validate_draft_batch(draft: dict, english: dict[str, str], target_version: str,
+                         group: str, expected_ids: set[str]) -> dict[str, str]:
+    """Check one worker draft's identity/coverage; never promote it to reviewed.
+
+    ICU and semantic review are separate required gates. The caller supplies
+    assigned IDs from the immutable input, not from the draft's own claims.
+    """
+    if (not isinstance(draft, dict) or draft.get("version") != target_version
+            or draft.get("group") != group or draft.get("status") != "draft_not_installable"
+            or not isinstance(english, dict) or not expected_ids
+            or not isinstance(expected_ids, set) or not expected_ids <= english.keys()):
+        raise ValueError("Draft batch identity or assignment mismatch")
+    hashes, translations = draft.get("source_english_sha256"), draft.get("translations")
+    if (not isinstance(hashes, dict) or not isinstance(translations, dict)
+            or hashes.keys() != expected_ids or translations.keys() != expected_ids):
+        raise ValueError("Draft batch coverage differs from its assignment")
+    for key in expected_ids:
+        if (not isinstance(english[key], str)
+                or hashes[key] != hashlib.sha256(english[key].encode()).hexdigest()
+                or not isinstance(translations[key], str) or not translations[key].strip()):
+            raise ValueError(f"Draft source changed or translation missing: {key}")
+    return dict(translations)
+
+
 def load_review(path: Path) -> dict:
     def unique_object(pairs):
         result = {}

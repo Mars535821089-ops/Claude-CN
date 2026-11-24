@@ -1,0 +1,35 @@
+{
+  "version": "7.37095.0",
+  "status": "source_gate_review_only_not_installable",
+  "source_archives": {
+    "Contents/Resources/app.asar": "8c10482076f72213de7127d261fb1467041bccb4df058259fd82ca799cf0209a",
+    "Contents/Resources/ion-dist.asar": "dfa83d8118169adfd3d7932b015b841f570a4229948607886592520f95cc1098"
+  },
+  "files": {
+    "assets/v1/c6fce776d-B4n2p96p.js": {
+      "sha256": "47b1cf98684e85574e3bd7f4554b1cc0dd4cbadd681bfce0dee3973c24e4b65a",
+      "patched_sha256": "6516aa45e902c62cbbce5d77b142217675aa722c2050e11e99e4868c8169874e",
+      "expected": 1,
+      "locales": [
+        "zh-CN",
+        "zh-Hans"
+      ],
+      "syntax_check_exit": 0
+    },
+    "assets/v1/shared-25-Bdv6xZNv.js": {
+      "sha256": "9c3209d7331769a49ecdc292329ce4cc07418de4e8f47aa50888e107098923b4",
+      "patched_sha256": "66c2a007c713c5633d98af44f6353034e5c4381f745deda8299b90b7c985320f",
+      "expected": 2,
+      "locales": [
+        "zh-CN",
+        "zh-Hans"
+      ],
+      "syntax_check_exit": 0
+    }
+  },
+  "scope": "URL locale handling and supported-locale/locale-negotiation arrays; source-only dual aliases",
+  "app_modified": false,
+  "installed": false,
+  "visual_verified": false,
+  "checked_utc": "2026-11-24T23:54:33.257544+00:00"
+}

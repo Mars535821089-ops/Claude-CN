@@ -12,6 +12,23 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 
 class MigrationAuditTests(unittest.TestCase):
+    def test_draft_batch_requires_exact_coverage_source_and_draft_status(self):
+        audit = self.implementation()
+        english = {"new": "Open {name}", "other": "Close"}
+        draft = {"version": "7.37095.0", "group": "frontend", "status": "draft_not_installable",
+                 "source_english_sha256": {"new": hashlib.sha256(english["new"].encode()).hexdigest()},
+                 "translations": {"new": "打开 {name}"}}
+        before = json.loads(json.dumps(draft))
+        self.assertEqual(audit.validate_draft_batch(draft, english, "7.37095.0", "frontend", {"new"}),
+                         {"new": "打开 {name}"})
+        self.assertEqual(draft, before)
+        for update in ({"status": "draft_in_progress"}, {"version": "5.1231.2"},
+                       {"translations": {"other": "关闭"}}, {"source_english_sha256": {"new": "0" * 64}}):
+            with self.subTest(update=update), self.assertRaises(ValueError):
+                audit.validate_draft_batch({**draft, **update}, english, "7.37095.0", "frontend", {"new"})
+        with self.assertRaises(ValueError):
+            audit.validate_draft_batch(draft, {**english, "new": "Delete {name}"}, "7.37095.0", "frontend", {"new"})
+
     def test_plural_shape_review_preserves_native_text_and_source_choices(self):
         audit = self.implementation()
         english = {"id": "{count, plural, one {# item} other {# items}}"}

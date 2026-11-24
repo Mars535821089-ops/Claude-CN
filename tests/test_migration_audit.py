@@ -12,6 +12,33 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 
 class MigrationAuditTests(unittest.TestCase):
+    def test_plural_shape_review_preserves_native_text_and_source_choices(self):
+        audit = self.implementation()
+        english = {"id": "{count, plural, one {# item} other {# items}}"}
+        native = "已处理 {count} 项"
+        catalogs = {"desktop": {"en": english}}
+        results = {"desktop": {"translations": {"id": native}, "provenance": {}, "missing": {}}}
+        review = {"version": "7.37095.0", "catalogs": {"desktop": {
+            "english_sha256": audit.catalog_fingerprint(english), "translations": {},
+            "plural_shapes": {"id": {"argument": "count",
+                "english_sha256": hashlib.sha256(english["id"].encode()).hexdigest(),
+                "translation_sha256": hashlib.sha256(native.encode()).hexdigest()}}}}}
+        audit.apply_review(catalogs, results, review, "7.37095.0")
+        self.assertEqual(results["desktop"]["translations"]["id"],
+            "{count, plural, one {已处理 {count} 项} other {已处理 {count} 项}}")
+        self.assertEqual(results["desktop"]["provenance"]["id"], "reviewed_plural_shape")
+        results["desktop"]["translations"]["id"] = native + "变化"
+        with self.assertRaises(ValueError):
+            audit.apply_review(catalogs, results, review, "7.37095.0")
+        self.assertEqual(results["desktop"]["translations"]["id"], native + "变化")
+        results["desktop"]["translations"]["id"] = native
+        english["id"] = english["id"].replace(" other {", " =0 {none} other {")
+        review["catalogs"]["desktop"]["english_sha256"] = audit.catalog_fingerprint(english)
+        review["catalogs"]["desktop"]["plural_shapes"]["id"]["english_sha256"] = hashlib.sha256(english["id"].encode()).hexdigest()
+        with self.assertRaises(ValueError):
+            audit.apply_review(catalogs, results, review, "7.37095.0")
+        self.assertEqual(results["desktop"]["translations"]["id"], native)
+
     def implementation(self):
         self.assertIsNotNone(importlib.util.find_spec("audit_migration"),
                              "Exact-English migration audit is missing")

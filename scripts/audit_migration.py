@@ -12,6 +12,7 @@ import json
 import os
 from pathlib import Path
 import plistlib
+import re
 import subprocess
 import tempfile
 
@@ -80,6 +81,7 @@ def apply_review(catalogs: dict, results: dict, review: dict, target_version: st
     """Apply authored additions only to their exact reviewed English input."""
     if review.get("version") != target_version or not isinstance(review.get("catalogs"), dict):
         raise ValueError("Reviewed additions target a different version or have invalid catalogs")
+    shapes = {}
     for group, pack in review["catalogs"].items():
         if (group not in catalogs or not isinstance(pack, dict)
                 or pack.get("english_sha256") != catalog_fingerprint(catalogs[group]["en"])):
@@ -90,8 +92,32 @@ def apply_review(catalogs: dict, results: dict, review: dict, target_version: st
             for key, value in translations.items()
         ):
             raise ValueError(f"Invalid reviewed message IDs or translations: {group}")
+        rules = pack.get("plural_shapes", {})
+        if not isinstance(rules, dict):
+            raise ValueError("Invalid plural-shape review")
+        shapes[group] = {}
+        for key, rule in rules.items():
+            source = catalogs[group]["en"].get(key)
+            current = results[group]["translations"].get(key)
+            argument = rule.get("argument") if isinstance(rule, dict) else None
+            if (key in translations or not isinstance(source, str)
+                    or not isinstance(current, str) or not isinstance(argument, str)
+                    or re.fullmatch(r"[A-Za-z_][A-Za-z_0-9]*", argument) is None
+                    or hashlib.sha256(source.encode()).hexdigest() != rule.get("english_sha256")
+                    or hashlib.sha256(current.encode()).hexdigest() != rule.get("translation_sha256")
+                    or f"{{{argument}, plural, one {{" not in source
+                    or " other {" not in source or "plural," in current
+                    or len(re.findall(r",\s*(?:plural|select|selectordinal)\s*,", source)) != 1
+                    or re.search(r"(?:offset:\s*\d|=\d+\s*\{)", source)
+                    or current.count("{" + argument + "}") != 1):
+                raise ValueError(f"Plural-shape source or translation changed: {group}/{key}")
+            shapes[group][key] = ("{" + argument + ", plural, one {" + current
+                                  + "} other {" + current + "}}")
     # All groups are checked before changing any provisional result.
     for group, pack in review["catalogs"].items():
+        for key, value in shapes[group].items():
+            results[group]["translations"][key] = value
+            results[group]["provenance"][key] = "reviewed_plural_shape"
         for key, value in pack["translations"].items():
             results[group]["translations"][key] = value
             results[group]["provenance"][key] = "reviewed_pinned_source"

@@ -1,0 +1,186 @@
+{
+  "version": "7.37095.0",
+  "status": "desktop_source_review_only_not_installable",
+  "catalogs": {
+    "desktop": {
+      "english_sha256": "f4e538d5105c12125ac8b8fe124001eabec44ef329c5c798797146637cc75125",
+      "translations": {
+        "3KbALjoPbx": "Claude 需要修复文件所有权，以便自动更新正常运行。",
+        "DLwCsMd5iw": "列出你在 {browser} 中已登录的网站",
+        "KWmT+sHQrn": "以“{login}”身份登录 {host}",
+        "LEublMzjXI": "Claude 将{reason}。macOS 可能还会要求你输入登录密码，以解锁该浏览器保存的数据。",
+        "PbhDLsWQf4": "列出你在 {browser} 中已登录的网站，以便将其导入 Cowork 的浏览器",
+        "QoBk0vsDtW": "登录 {host}",
+        "dnkjLC8+rK": "在 $1 验证你的身份",
+        "wNsAXQmnVH": "Claude 将{reason}。"
+      },
+      "plural_shapes": {
+        "0Cs12/GF/H": {
+          "argument": "skipped",
+          "english_sha256": "05ef879ea87b85befe59593a5d74aadf2d44ef1d3acadde7af7ae6d7c240e8f9",
+          "translation_sha256": "b8be071d1829289d82caa09420c91c815dbdd6f7b0aeda09afe94d67a65c8d5e"
+        },
+        "1iM5Q6x+Ie": {
+          "argument": "count",
+          "english_sha256": "ae4e16e3dedba1b76ca23f50b4c29e87d836b81195dc03e9702b97efb11229ff",
+          "translation_sha256": "eb2bcc8afbac02033d90ee72272f5da1d50bf5fb4dfeecc6bb56996eb27545f2"
+        },
+        "90s52n346j": {
+          "argument": "count",
+          "english_sha256": "b02ce98327d9f153327035f42d78f0d8cf9a79bf72b4ae2eb02887bed5152e48",
+          "translation_sha256": "f872ec2c1e4b4a1f9eaf54bc8ce5313d8ab484b4f7b0e3c1c6969cb8e32e3d2d"
+        },
+        "AmxvHBTo/A": {
+          "argument": "count",
+          "english_sha256": "401e9ee8616da345c407a76d372afe8733dcab4b95d4ec064219ac72d3f9c43b",
+          "translation_sha256": "79c08252be9d46f59b4c58c46b976e0ce71b1b81042678c63be4f839d47c20e8"
+        },
+        "LseQnSrOQJ": {
+          "argument": "count",
+          "english_sha256": "54a7296197c118958d636a2aaad93245d13e52ccba2533f138898d48f8f18d01",
+          "translation_sha256": "13428ffa7ec73f71f5df64dfa278a49787d2a8bbf5985b54bf62037cb0f44e5d"
+        },
+        "RIKHqJ1dVI": {
+          "argument": "count",
+          "english_sha256": "2acd9137c6fb2aa6367d796d27bed2115616c6b6007080f8976a5d93acfc3789",
+          "translation_sha256": "d98782dd8873f0dc6ff4bb2d7d1936158780dee7e16aeb5854d20b01f4dd8a78"
+        },
+        "Tf81lRS02H": {
+          "argument": "count",
+          "english_sha256": "7db1213b53c46d7b7cd17203a56b9281b086f6cb4e31c4439ddcd85f49a59240",
+          "translation_sha256": "64c49d7dc2d2b3373e1064c56a4868efc4e1d19cd9a9e4c054bce5ae7224e841"
+        },
+        "TzOPwpBRke": {
+          "argument": "count",
+          "english_sha256": "e6742066d3aa3ade6983feaf10e177f723ce9ed0119e3bd999ddce61fd6401a8",
+          "translation_sha256": "9a5640a9369e4b34b009462f8f7727bb175e76b990f4d829aa9c2e48d301b5c0"
+        },
+        "UqFkRNeQTA": {
+          "argument": "skipped",
+          "english_sha256": "83a170f2425510fde1ae8f52d157a868889db9bf5e14bbf558767b2a1f792d2f",
+          "translation_sha256": "d8a957691dcea2076515fc8914bc9dd9290ca8afd217680a3d2643e6d66859a8"
+        },
+        "Uyt8TrwniO": {
+          "argument": "n",
+          "english_sha256": "84c98d592451fcc381bbdb08f612fef3dd842f2d8746464b67ec775916866594",
+          "translation_sha256": "d49b09b785c88af60f125f25a5171deb28be500f87294c7dc5694bed62c3ba0c"
+        },
+        "V1LCXkUdgY": {
+          "argument": "others",
+          "english_sha256": "05d66d28fd017eb0780df39f6ca3c12b5997a73aabd3c133d9782cea323abaab",
+          "translation_sha256": "75da7b219c47d054473423a51268581407578f36934e9243f5c491d242c957ca"
+        },
+        "V9Eb08nwTF": {
+          "argument": "count",
+          "english_sha256": "d5872e48be2b6adc75b5084d6badca674e0593b8fec83d625b3cc35a1ba61e50",
+          "translation_sha256": "344964683daf241a65e11b8fc8f71cb4d011be17e9ac46b917c6d0d5c33bd224"
+        },
+        "XeEMmzO4Bf": {
+          "argument": "count",
+          "english_sha256": "facb13b2710d5e623c77b62cf75c0909161db42923dbb805eee3e05ff3723148",
+          "translation_sha256": "b84a6a45eba5a7d085fb59c8dfc5e8ecbfad669de501a2dc5bec9226dd7b63a8"
+        },
+        "Yo4am8YWM3": {
+          "argument": "count",
+          "english_sha256": "59399f5556f342493bdb0a612f572ecdbb768d6efd985573be60c990d7890332",
+          "translation_sha256": "9b94e7e33e5bc195a0dbfdee7ae2deaa70d8fd127de24cc087cb72dbdc0c2508"
+        },
+        "Yr1WF0YFg2": {
+          "argument": "n",
+          "english_sha256": "5b699938b7f8475ffa63a09f96b0580e06d94c547d54cf59975af51df99fd304",
+          "translation_sha256": "ec8fb11ddff2eaa327f48ad27125d4c52390084fc7a16cf3b142ce9d5c3ce011"
+        },
+        "aZynSqBUGv": {
+          "argument": "count",
+          "english_sha256": "b1c03ad3cc3a699cfd9a4755b3f31a2b7fb7acaf75a81106ce2d8df2652b5f99",
+          "translation_sha256": "de921e1c2e95cbb8a25c2e85604232052b5ef679bed56fd03dfebb7f4c985b95"
+        },
+        "b5Oviwj/IF": {
+          "argument": "count",
+          "english_sha256": "c64393529aef0c414f4ada5a5ffc6941dfc4a9085b533b0d6a1190bf8c338665",
+          "translation_sha256": "86946847bc77197094308193e3feead56d30f7542630a00eaaa73366bb2e5940"
+        },
+        "fsazUB4LPP": {
+          "argument": "k",
+          "english_sha256": "a5fcdef3103ddd783e541f174b84151c6a36eb3ce5becbfb3917f381e6499cb6",
+          "translation_sha256": "22903d85e980a6ff6c8995cc5f8235e8de1b35e22272d7746e6a2b6305cfafce"
+        },
+        "h0Q1qYPJq/": {
+          "argument": "count",
+          "english_sha256": "53455ad0313fca71986ce9125e32af2b2a97020491c979beef2489e6a5fe7d38",
+          "translation_sha256": "0b215c7e670407e8b79249282c650443971a84a752ec1f129532e549c874e0de"
+        },
+        "ht0qbee0r6": {
+          "argument": "count",
+          "english_sha256": "5359b0cb98f80cf68eaa48c3a27f2877582c00a5cd2a0681406aeb8cafab59c0",
+          "translation_sha256": "a7af185ea9370c5cb8856531763872dc1eea8760032e2a67caca3bbd029ac37f"
+        },
+        "i+UgiwdsuK": {
+          "argument": "count",
+          "english_sha256": "acac42967bfa6a168771ac36e189391b5219ad8111805b200a0b34d625a980c1",
+          "translation_sha256": "b15088f25173ab0f04c4606650d8fcf261a31f9fa1c5f6b0e2ea8329533574a0"
+        },
+        "iS7qIeuAFv": {
+          "argument": "count",
+          "english_sha256": "c582cd8f343cf70e26c327c25c82c3be2b4396e2f582b776cd8a276e96bb0b81",
+          "translation_sha256": "16b6b7bebdc91d6f01f4619c91cce40407fda1cc4b6aa56a523e2330b0722174"
+        },
+        "j4ih4+6F9S": {
+          "argument": "count",
+          "english_sha256": "6b8d88421caf8b4b4a24bed5ab2692be9434c5b9892ac814291f572d278ef8d5",
+          "translation_sha256": "ec8b309c830e2decf098bccb51f4ff7e4c12f83a90b2d48d671147c3cb936f40"
+        },
+        "jo1SFYmkSJ": {
+          "argument": "skipped",
+          "english_sha256": "c81a701e3332433f0efb2a61d009f566b57ddd779f64f1a3448f5307bd72c93c",
+          "translation_sha256": "e815d7448402cb2d468754ee65f326ef9a0ee21e4281fada68ef5f030b0c475c"
+        },
+        "ksKtZnaqrO": {
+          "argument": "count",
+          "english_sha256": "75b6a93acf116bb3ba51b8c5b649032a0891268c92f40bce11067bba97d538e0",
+          "translation_sha256": "1517f88a4b35c69a0ddf20122eeef711a7ceebf7550a0538dba830ce3495a4b6"
+        },
+        "pkPJ8qzQR3": {
+          "argument": "count",
+          "english_sha256": "1e01c8a53f805d689b170758069419b2e3f99b778a8b19d7f4060a7858330325",
+          "translation_sha256": "1ca3b52f4708d1fb70e8dfc3628d7ebddd52121d95f88a9d5f440fc4d95bef98"
+        },
+        "sD7YanpzLD": {
+          "argument": "count",
+          "english_sha256": "8545af42231c207196d1f2f847d7c3698d15c39894af0e80f7709fdb147c2750",
+          "translation_sha256": "f396814b648a6a5fcd3a515a25dd436bfe8ab9dd1af4a9775b43dee6cd302397"
+        },
+        "sEOEdRjBYH": {
+          "argument": "count",
+          "english_sha256": "04bd2644508e272bb294e7dc743f751a718a7c903f581db597846f548883d856",
+          "translation_sha256": "0fbcb29394e18e3dd085a0e4b7be54e108bd1aa5728da3d17c66a142e2850be5"
+        },
+        "tQ/pZQzgIy": {
+          "argument": "k",
+          "english_sha256": "a270223a810f692acc625d6ee4a0b2a30126a615c8af6ac1acc1f3cf72695337",
+          "translation_sha256": "71b48d8a1a795a61a3f0dd11b60dd3ca0c800bc229a8011910db0a08dbe47dad"
+        },
+        "tt2DO6Xlme": {
+          "argument": "failed",
+          "english_sha256": "f6df118ccfef3163c0c1c5bf4f2a0706b03bd867d60dd7dd68ca90f78682f8c2",
+          "translation_sha256": "e90a3e3ec6ee4364f5d5bcc30ae796dec34f0bb70d9ea4a5e37c9c736127e4f8"
+        },
+        "v6lKjlTR2a": {
+          "argument": "k",
+          "english_sha256": "1afa98468ff921a3c6ab88821e1113187dd1c3ffb71d067f9d1f29e4ac1d93a8",
+          "translation_sha256": "bacac46b48868f7783bd0bd17d2d2b7da3986931fd6174c0e78b8889be77ad78"
+        },
+        "vrrmlc/b1v": {
+          "argument": "recovered",
+          "english_sha256": "1e9a93a89231be85b5b61b599331af03b19ad4c5c5142712da4e8dd5d3fc6ca9",
+          "translation_sha256": "d7f1d7859ccca0d715a0f2b3a98be38ebca4044b08c20e6f7d0b7f0a0a0fb812"
+        },
+        "xnWuJqP1u6": {
+          "argument": "n",
+          "english_sha256": "810cbb4323fc5b8d2b293287ca80b024d87e35adac190365713d36a50b7ed921",
+          "translation_sha256": "77f9562c532bf22f874b94ebc49036199d580f19c4e2333adb15ab30980c7c18"
+        }
+      }
+    }
+  }
+}

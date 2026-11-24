@@ -41,7 +41,9 @@ class CompactionPatchTests(unittest.TestCase):
 
     def test_private_stage_slot_refuses_existing_session_artifacts(self):
         m = self.load()
-        with tempfile.TemporaryDirectory() as directory:
+        # This positive case specifically requires internal private staging;
+        # a process-wide external TMPDIR is deliberately rejected by production.
+        with tempfile.TemporaryDirectory(dir='/tmp') as directory:
             parent = Path(directory).resolve()
             destination = parent / 'Claude.app'
             self.assertIsNone(m.require_private_stage_parent(destination))

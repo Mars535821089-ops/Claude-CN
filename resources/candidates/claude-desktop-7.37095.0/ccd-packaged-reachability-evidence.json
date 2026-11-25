@@ -1,0 +1,73 @@
+{
+  "acorn_version": "8.19.0",
+  "baselines": [
+    {
+      "baseline": "installed-5.11492.5",
+      "archive_sha256": "2c515441d5d0504a96ac3e49bcc4c1244085c0e76ad23ae58ddd8f736100479e",
+      "entry": ".vite/build/index.chunk-xV3fJhc7.js",
+      "source_sha256": "6b4474d1c0e0c0f0a6dc0c92c0205994b2e91d2073b457a28db3cbe199b45c95",
+      "gate": "function tis(){return!u.app.isPackaged||!1}",
+      "gate_sha256": "51a0ddab9d610abb9ec61811483900215ff8da4b80e78dcb075e4fc5f48da11c",
+      "gate_packaged_result": false,
+      "gate_development_result": true,
+      "dialog_name": "sis",
+      "dialog_source_sha256": "0dabad1d79652c93ad5162c68e38b44b12e1f656402462b20a1193284a4d661b",
+      "dialog_references": 2,
+      "guarded_callers": [
+        {
+          "name": "uis",
+          "guard": "if(!tis())return F9(Cg.Unavailable);",
+          "guard_sha256": "9cedf9fc7272ed90341613001fc71cd5807ce3f651b37e74188074b1e12d5d0c"
+        },
+        {
+          "name": "fis",
+          "guard": "if(!tis())return F9(Cg.Unavailable);",
+          "guard_sha256": "9cedf9fc7272ed90341613001fc71cd5807ce3f651b37e74188074b1e12d5d0c"
+        }
+      ],
+      "no_guard_or_dialog_reassignment": true,
+      "scope": "static AST reachability under unmodified Electron packaged-app contract; no vendor code executed"
+    },
+    {
+      "baseline": "translation-baseline-5.1231.2",
+      "archive_sha256": "5e71c28e6e8e21f028811212144feebe45e6346b60645a25e2f1b6a72186999b",
+      "entry": ".vite/build/index.chunk-BV3uOqbK.js",
+      "source_sha256": "438297c7ba2bc7d3b9816fc16c12a078af08c524d30b8044861b49b6992d63c9",
+      "gate": "function B4o(){return!u.app.isPackaged||!1}",
+      "gate_sha256": "2da75eb04a4cab8b27978131ce4724ceae741ec7a71ca1a74b4d8d323ff16317",
+      "gate_packaged_result": false,
+      "gate_development_result": true,
+      "dialog_name": "K4o",
+      "dialog_source_sha256": "e9df1ca5d80e1b06be8bbe7f1c5ca0072912816f8d03abd96b457f5c44f1ad0a",
+      "dialog_references": 2,
+      "guarded_callers": [
+        {
+          "name": "Y4o",
+          "guard": "if(!B4o())return I9(wg.Unavailable);",
+          "guard_sha256": "00ac89c753ddb85b01deb9174cc8c6459fdd43018f76f53a98c6b34114ddb3c3"
+        },
+        {
+          "name": "Z4o",
+          "guard": "if(!B4o())return I9(wg.Unavailable);",
+          "guard_sha256": "00ac89c753ddb85b01deb9174cc8c6459fdd43018f76f53a98c6b34114ddb3c3"
+        }
+      ],
+      "no_guard_or_dialog_reassignment": true,
+      "scope": "static AST reachability under unmodified Electron packaged-app contract; no vendor code executed"
+    }
+  ],
+  "checked_utc": "2026-11-25T10:06:36.466305+00:00",
+  "electron_reference": "https://www.electronjs.org/docs/latest/api/app#appispackaged-readonly",
+  "legacy_rules": [
+    "legacy-15",
+    "legacy-16"
+  ],
+  "decision": "Original Install/Remove confirmation is unreachable in both packaged baselines; do not reintroduce a developer-only CLI installer to match labels. New-version feature/UI and signing remain unverified; no pending item changed to passed or waived.",
+  "status": "static_reachability_evidence_only_not_ui_acceptance",
+  "new_source_search": {
+    "archive_sha256": "8c10482076f72213de7127d261fb1467041bccb4df058259fd82ca799cf0209a",
+    "packed_entries_examined": 1148,
+    "matched_files": 0,
+    "scope": "app.asar JS/CJS/MJS/JSON only; absence does not prove retirement"
+  }
+}

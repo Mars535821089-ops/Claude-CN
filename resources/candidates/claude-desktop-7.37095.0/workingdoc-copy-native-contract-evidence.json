@@ -1,0 +1,54 @@
+{
+  "status": "source_and_catalog_verified_not_runtime_acceptance",
+  "checked_utc": "2026-11-25T10:25:02.047888+00:00",
+  "feature": "WorkingDoc ordinary code block native Copy, not legacy DOM toolbar Copy",
+  "inputs": {
+    "installed": {
+      "archive_sha256": "1d55d633d14aede748af3cb22c244f4ddc2f795d9b1153b175b993ae5d46aa1b",
+      "modules_sha256": {
+        "assets/v1/c8e31bf58-COho4Kng.js": "c874b9b2bd9fe08e8473499583049f2e1e01079e1042e8a45b9dfcb97d68b309",
+        "assets/v1/shared-41-DR3k7a1K.js": "c6ab0d7683714fd911b0e6f5cbb7c112560ac1a57757d8a3bbc552d4d17ed4e1",
+        "assets/v1/shared-1-DtdFVPvn.js": "6ec3bd68054d56a3380183450703bb5c5adcb13f8793ac4a1ca33e1400b02be0",
+        "assets/v1/ca2ef848d-D9ssoJyG.js": "9675070efd376d58509d5e5b475a1f1083f9a3070925a230f5e8bbbac5943e64"
+      },
+      "english": {
+        "aCdAsIsVv0": "Copy to clipboard",
+        "4l6vz1/eZ5": "Copy",
+        "p556q3uvbn": "Copied"
+      }
+    },
+    "candidate": {
+      "archive_sha256": "dfa83d8118169adfd3d7932b015b841f570a4229948607886592520f95cc1098",
+      "modules_sha256": {
+        "assets/v1/c8e31bf58-DTANqH4o.js": "74a08845a6cb896c46db953ed4a94c16685ce4a2591b11b569d81ffe74169992",
+        "assets/v1/shared-31-CYQoFefr.js": "4fe35da54001c191feb313ea532cb147e3a2c9f63f15b718496b62e67db47e0c",
+        "assets/v1/shared-1-BOAJW6uH.js": "06bc1341d218c4ccee4dcc3768cae148b4979889e3cb38c79f7857abdea2abde",
+        "assets/v1/ca2ef848d-DOvjzSiu.js": "6a4b970cb23468620fa7b82b569ffdde4589bad70f71ddba26dd709f69a0d3e4"
+      },
+      "english": {
+        "aCdAsIsVv0": "Copy to clipboard",
+        "4l6vz1/eZ5": "Copy",
+        "p556q3uvbn": "Copied"
+      }
+    }
+  },
+  "message_ids": {
+    "aCdAsIsVv0": "Copy to clipboard",
+    "4l6vz1/eZ5": "Copy",
+    "p556q3uvbn": "Copied"
+  },
+  "reviewed_translations": {
+    "aCdAsIsVv0": "复制到剪贴板",
+    "4l6vz1/eZ5": "复制",
+    "p556q3uvbn": "已复制"
+  },
+  "limits": [
+    "No Clipboard or vendor code executed",
+    "No GUI or installed-app loading proof",
+    "No legacy-33/34 item cleared",
+    "Scope excludes HTML clipboard, source-byte/line-ending fidelity and developer DOM toolbar",
+    "Final signing/Keychain/installation remain unresolved"
+  ],
+  "native_ui_node": "code-block-copy",
+  "source_lineage_report_sha256": "1ca0eb6d28d23e022f346ea35e4af923b2e62d17da461ba9010c6ea079d53cf6"
+}

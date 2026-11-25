@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "version": "7.37095.0",
+  "group": "frontend",
+  "status": "source_reviewed_not_installable",
+  "source": {
+    "file": "assets/v1/c49292835-Dur2vzuT.js",
+    "sha256": "25b2ea94d8f27ab45f96b177476b24d41dad59d1795cc8376b45551694c2d8f0"
+  },
+  "anchor": {
+    "expression": "n??(g||r?.listTitle||g)??(me(t)?\"New chat\":\"New task\")",
+    "sha256": "cff261915817fa848bf1b578e848ff7a1fa2b5605e3b9032de86fb1a52e69da7",
+    "expectedOccurrences": 1
+  },
+  "replacements": [
+    { "branch": "consequent", "from": "New chat", "to": "新建聊天" },
+    { "branch": "alternate", "from": "New task", "to": "新建任务" }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "format_version": 1,
+  "target_version": "7.37095.0",
+  "status": "source_reviewed_not_installable",
+  "target": {
+    "archive": "app.asar",
+    "path": ".vite/build/index.chunk-DIoOEPs5.js"
+  },
+  "source_archive_sha256": "8c10482076f72213de7127d261fb1467041bccb4df058259fd82ca799cf0209a",
+  "source_sha256": "ea6c4bf7ede1c028b7016517a12d38cb72b38573b052219da0480fb06825b287",
+  "module_path": ".vite/build/claude-cn-compaction-policy.cjs",
+  "policy_module_sha256": "dfbcc716a0ec33a6d2d7fe21cc6d36c99f56efa12d3639e5a479e13ac872830b",
+  "owner_function": "Bp",
+  "options_param": "e",
+  "session_binding": {
+    "parameter": "n",
+    "property": "sessionId",
+    "local": "r"
+  },
+  "logger": "t.OZt",
+  "anchor": "t.OZt.info(\"[HostLoop] sdkOptions after patch: %o\",",
+  "proposed_output_sha256": "e1ba8924b19f9b3ac9df46eacc8d5dcee4ee2596921b93b2834353d0e50ae806",
+  "native_scope_equivalence": false,
+  "threshold_80_90_equivalence": false,
+  "runtime_compaction_verified": false,
+  "installed": false,
+  "visual_ui_verified": false
+}

@@ -12,6 +12,22 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 
 class MigrationAuditTests(unittest.TestCase):
+    def test_draft_assembly_requires_disjoint_complete_unresolved_assignments(self):
+        audit = self.implementation()
+        english = {"kept": "Open", "new": "Close"}
+        resolved = {"translations": {"kept": "打开"}, "provenance": {"kept": "verified"},
+                    "missing": {"new": "Close"}}
+        draft = {"version": "7.37095.0", "group": "frontend", "status": "draft_not_installable",
+                 "source_english_sha256": {"new": hashlib.sha256(b"Close").hexdigest()},
+                 "translations": {"new": "关闭"}}
+        result = audit.merge_draft_batches(english, resolved, [(draft, {"new"})], "7.37095.0", "frontend")
+        self.assertEqual(result["translations"], {"kept": "打开", "new": "关闭"})
+        self.assertEqual(result["provenance"]["new"], "validated_draft_not_reviewed")
+        self.assertEqual(resolved["missing"], {"new": "Close"})
+        for batches in ([], [(draft, {"new"}), (draft, {"new"})], [(draft, {"kept"})]):
+            with self.subTest(batches=len(batches)), self.assertRaises(ValueError):
+                audit.merge_draft_batches(english, resolved, batches, "7.37095.0", "frontend")
+
     def test_draft_batch_requires_exact_coverage_source_and_draft_status(self):
         audit = self.implementation()
         english = {"new": "Open {name}", "other": "Close"}

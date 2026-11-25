@@ -1,0 +1,267 @@
+{
+  "catalogs": {
+    "frontend": {
+      "english_sha256": "c282210cd828837f89ae690f8f885c4e09605e0b12dd136cafd648d1bd9d6c7f",
+      "translations": {
+        "+/13tIqLEF": "插入",
+        "+LxWF2WOlr": "找不到此导出的文件。请申请新的导出。",
+        "0saWGFMAWe": "界面预览",
+        "3B1RPaBkuF": "请稍后再次打开邮件中的链接。",
+        "8wBXigJBy5": "无（公共客户端）",
+        "9R3ihCUCeW": "新建作品",
+        "Be6qv7vQca": "由安装者提供客户端密钥",
+        "CwpqRIzI4h": "Anthropic 保管的客户端凭据",
+        "D+pmmkaKL4": "读取了文件",
+        "E4WhwMoyYy": "无法创建环境。你可以重试。",
+        "EnjqtcGBvl": "十六进制颜色",
+        "EoQh1kmait": "引导插图",
+        "GU5AX7NBa7": "服务器接受已发布的客户端元数据 URL",
+        "HZZjfS3HmT": "你的导出应会自动开始下载。",
+        "Hz2uSft021": "已审查的 PR",
+        "J3+GvhpWQk": "描述一个想法，并将其变成设计",
+        "KJxGdqll2x": "这些工具是从你已连接的服务器实时读取的。请检查其描述、参数和注解，目录列表和 Claude 将看到的就是这些内容。",
+        "KU7pdVAokO": "重试",
+        "MTmSNnj/5k": "附加请求头",
+        "MblBzvI4tW": "提交详情",
+        "P4TkNT1cBp": "身份验证方式",
+        "Q27d2jMVBF": "验证你的机构邮箱",
+        "QgV4oAn8Nt": "每个组织提供自己在服务器上注册的客户端 ID",
+        "QjgCQuELJV": "共享",
+        "SjOZ2/SEfR": "暂不",
+        "SmAVharW8x": "请使用与你的实验室或机构关联的邮箱。",
+        "WLLOFJ+jav": "请先在“连接”步骤中选择服务器。",
+        "Xzrat+dmhn": "对此作品关闭",
+        "ZV5+HjHHlh": "由 Anthropic 保管客户端密钥",
+        "Zre1crE49F": "Anthropic 保存一个用于所有连接的客户端 ID",
+        "ZsebF6j2or": "插件信息",
+        "a+J04P+qGl": "删除市场",
+        "cTLm2JFGfy": "此链接已达到下载次数上限。请申请新的导出。",
+        "d4qr/k0Atx": "用户需先连接并登录，才能使用任何工具或资源。",
+        "dC1n81CUSM": "关闭此窗口，然后从桌面应用重试。",
+        "dxGVzcK/ux": "根据简介新建一个 Design Artifact",
+        "eTJfKY/v2m": "客户端向服务器自行注册（RFC 7591）",
+        "gCU3fmwZRy": "席位类型",
+        "gUiYyFziZo": "正在进行的下载过多。请稍后再次打开邮件中的链接。",
+        "hBhjpBLGFC": "所有 PR",
+        "iD94e8zkOD": "任何人都无需登录或提供凭据即可使用此服务器。",
+        "jNGq3PTKjS": "这将移除 Claude 的访问权限。你可以随时重新连接。",
+        "jpoenuIoRs": "启动 Claude",
+        "mdEpiX2Pr+": "警告图标",
+        "nh2OqTY2JR": "为保护你的安全，此账户暂时无法导出。请联系支持团队验证你的身份。",
+        "pjEa14B7NW": "无偏好",
+        "pmiQJElAQ5": "全部代码行数",
+        "q43lmWOtyN": "此页面必须从 claude.com 打开。请关闭此窗口并在那里登录。",
+        "qC5tBhqqN6": "重试",
+        "qgg5GteTxb": "关闭",
+        "rHfUnj2kPp": "查看 Claude 的 IP 范围",
+        "rTp8sYdKlM": "产品界面预览",
+        "sKd5PP3rWT": "从屏幕取色",
+        "suZez0dR/f": "Claude 会先在不使用凭据的情况下连接，如果服务器需要再提示登录。",
+        "tF3Uvre/3C": "请申请新的导出。如果再次发生，请联系支持团队。",
+        "ubHW9icpiV": "移除方式",
+        "yJllC1UcJ5": "身份验证要求",
+        "yJtZ6JDJiQ": "重试",
+        "yKq7EcqNov": "评论已解决",
+        "ynsG9Jcmxl": "粘贴你的想法，并将其变成幻灯片",
+        "z8fZZ675eU": "此链接是为其他用户或团队创建的。",
+        "zmkAJtwroX": "不需要（公共客户端）"
+      }
+    }
+  },
+  "reviewed_source_files": {
+    "+/13tIqLEF": [
+      "ui-reviewed-zh-CN.json"
+    ],
+    "+LxWF2WOlr": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "0saWGFMAWe": [
+      "ui-reviewed-zh-CN.json"
+    ],
+    "3B1RPaBkuF": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "8wBXigJBy5": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "9R3ihCUCeW": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "Be6qv7vQca": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "CwpqRIzI4h": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "D+pmmkaKL4": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "E4WhwMoyYy": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "EnjqtcGBvl": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "EoQh1kmait": [
+      "ui-reviewed-zh-CN.json"
+    ],
+    "GU5AX7NBa7": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "HZZjfS3HmT": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "Hz2uSft021": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "J3+GvhpWQk": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "KJxGdqll2x": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "KU7pdVAokO": [
+      "ui-reviewed-zh-CN.json"
+    ],
+    "MTmSNnj/5k": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "MblBzvI4tW": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "P4TkNT1cBp": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "Q27d2jMVBF": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "QgV4oAn8Nt": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "QjgCQuELJV": [
+      "ui-reviewed-zh-CN.json"
+    ],
+    "SjOZ2/SEfR": [
+      "ui-reviewed-zh-CN.json"
+    ],
+    "SmAVharW8x": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "WLLOFJ+jav": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "Xzrat+dmhn": [
+      "ui-reviewed-zh-CN.json"
+    ],
+    "ZV5+HjHHlh": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "Zre1crE49F": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "ZsebF6j2or": [
+      "current-reviewed-zh-CN.json",
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "a+J04P+qGl": [
+      "current-reviewed-zh-CN.json",
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "cTLm2JFGfy": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "d4qr/k0Atx": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "dC1n81CUSM": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "dxGVzcK/ux": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "eTJfKY/v2m": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "gCU3fmwZRy": [
+      "current-reviewed-zh-CN.json",
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "gUiYyFziZo": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "hBhjpBLGFC": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "iD94e8zkOD": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "jNGq3PTKjS": [
+      "ui-reviewed-zh-CN.json",
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "jpoenuIoRs": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "mdEpiX2Pr+": [
+      "ui-reviewed-zh-CN.json"
+    ],
+    "nh2OqTY2JR": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "pjEa14B7NW": [
+      "current-reviewed-zh-CN.json",
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "pmiQJElAQ5": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "q43lmWOtyN": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "qC5tBhqqN6": [
+      "ui-reviewed-zh-CN.json"
+    ],
+    "qgg5GteTxb": [
+      "ui-reviewed-zh-CN.json"
+    ],
+    "rHfUnj2kPp": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "rTp8sYdKlM": [
+      "ui-reviewed-zh-CN.json"
+    ],
+    "sKd5PP3rWT": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "suZez0dR/f": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "tF3Uvre/3C": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "ubHW9icpiV": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "yJllC1UcJ5": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "yJtZ6JDJiQ": [
+      "ui-reviewed-zh-CN.json"
+    ],
+    "yKq7EcqNov": [
+      "current-reviewed-zh-CN.json",
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "ynsG9Jcmxl": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "z8fZZ675eU": [
+      "frontend-hardcoded-zh-CN.json"
+    ],
+    "zmkAJtwroX": [
+      "frontend-hardcoded-zh-CN.json"
+    ]
+  },
+  "status": "exact_phrase_source_review_only_not_installable",
+  "version": "7.37095.0"
+}

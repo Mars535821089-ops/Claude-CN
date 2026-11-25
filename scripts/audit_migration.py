@@ -148,7 +148,32 @@ def validate_draft_batch(draft: dict, english: dict[str, str], target_version: s
     return dict(translations)
 
 
-def load_review(path: Path) -> dict:
+def merge_draft_batches(english: dict[str, str], resolved: dict,
+                        batches: list[tuple[dict, set[str]]], target_version: str,
+                        group: str) -> dict:
+    """Assemble complete assigned gaps without calling new drafts reviewed."""
+    translated, missing, provenance = (resolved.get(key) for key in
+                                       ("translations", "missing", "provenance"))
+    if (not all(isinstance(value, dict) for value in (translated, missing, provenance))
+            or translated.keys() & missing.keys()
+            or translated.keys() | missing.keys() != english.keys()
+            or provenance.keys() != translated.keys()
+            or any(english[key] != value for key, value in missing.items())):
+        raise ValueError("Resolved catalog does not partition the English source")
+    collected = {}
+    for draft, assigned in batches:
+        if (not isinstance(assigned, set) or not assigned <= missing.keys()
+                or assigned & collected.keys()):
+            raise ValueError("Draft assignments overlap or overwrite resolved messages")
+        collected.update(validate_draft_batch(draft, english, target_version, group, assigned))
+    if collected.keys() != missing.keys():
+        raise ValueError("Draft batches do not cover all unresolved messages")
+    return {"translations": {**translated, **collected}, "missing": {},
+            "provenance": {**provenance,
+                           **{key: "validated_draft_not_reviewed" for key in collected}}}
+
+
+def parse_review(raw: str | bytes) -> dict:
     def unique_object(pairs):
         result = {}
         for key, value in pairs:
@@ -157,7 +182,11 @@ def load_review(path: Path) -> dict:
             result[key] = value
         return result
 
-    return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique_object)
+    return json.loads(raw, object_pairs_hook=unique_object)
+
+
+def load_review(path: Path) -> dict:
+    return parse_review(path.read_bytes())
 
 
 def verify_old_stage(app: Path) -> str:

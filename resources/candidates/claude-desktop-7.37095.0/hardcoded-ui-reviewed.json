@@ -1,0 +1,636 @@
+{
+  "schema": 1,
+  "version": "7.37095.0",
+  "status": "source_reviewed_partial_not_installable",
+  "preview_only": true,
+  "source_archives": {
+    "app.asar": "8c10482076f72213de7127d261fb1467041bccb4df058259fd82ca799cf0209a",
+    "ion-dist.asar": "dfa83d8118169adfd3d7932b015b841f570a4229948607886592520f95cc1098"
+  },
+  "translation_inputs_sha256": {
+    "resources/ui-reviewed-zh-CN.json": "e35fc4ee332f70b033a83df1ec0b15118bba6bae15ee31c7bad76f6bc4468b7e",
+    "resources/candidates/claude-desktop-4.23118.1/hardcoded-ui-zh-CN.json": "a34767aef23525b2d512f02e107ff5273c4da32cb0977370dca844d737153f6c"
+  },
+  "files": {
+    "app.asar/.vite/build/index.chunk-sAs8ezlt.js": {
+      "sha256": "37e1ef3377f832f704e3d77cd5935ea598d53443bcfbaef1c79f13862917efba",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Model and effort selection",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Scheduled tasks",
+          "expected": 1
+        }
+      ],
+      "patched_sha256": "cfb2852031ccb7742876a68fcd5626a1b5e8695cd7f41aa175dbc56b4d25c97f"
+    },
+    "app.asar/.vite/build/index.chunk-zlLu4KiP.js": {
+      "sha256": "1e2b29b5dc5826c15709caf08e14f2854d22effb03bdbfeea8e0762b2b475287",
+      "rules": [
+        {
+          "context": "title",
+          "source": "Some models are currently unavailable.",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "Open System Settings",
+          "expected": 2
+        },
+        {
+          "context": "buttons",
+          "source": "Open Claude Settings",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Start Cowork VM",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Show Debug Window",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Hide Debug Window",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Stop Cowork VM",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Copy file to Claude",
+          "expected": 1
+        },
+        {
+          "context": "title",
+          "source": "Inspector",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "Run",
+          "expected": 1
+        }
+      ],
+      "patched_sha256": "7c43d669da5509edd5a87744f411429028a4e70fa7d6722e7f6956200691f45d"
+    },
+    "app.asar/.vite/build/index.chunk-DInhSYfR.js": {
+      "sha256": "44623434bfbb69552adaf4b2eb422db83f163012bc91fa19ffb4bf5b4e5be878",
+      "rules": [
+        {
+          "context": "buttons",
+          "source": "Clean up",
+          "expected": 1
+        },
+        {
+          "context": "buttons",
+          "source": "I'll clean up sessions myself",
+          "expected": 1
+        }
+      ],
+      "patched_sha256": "fdfb2be36f0bcbb2fdff80377d37feff7a92f3aa6504c41a5d9672970651f52a"
+    },
+    "ion-dist.asar/assets/v1/cde03b773-Di66aqNr.js": {
+      "sha256": "fb2192841534e037d4ab5187c5a70b4cdd92aa8940c4c349555e1ded63fa9bba",
+      "rules": [
+        {
+          "context": "label",
+          "source": "Default model",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Default effort level",
+          "expected": 2
+        }
+      ],
+      "patched_sha256": "9e4c380b574abe7aa571ec945e09919b9c40d2841e821749e0980c71d0bd5cbb"
+    },
+    "ion-dist.asar/assets/v1/c5a5d8e85-DvHtQwuw.js": {
+      "sha256": "b3f71dcb8a32bb07957eabee28c4478bd081097bd96d5c3a4bd032e6809eb444",
+      "rules": [
+        {
+          "context": "children",
+          "source": "Collapse all",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Expand all",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "No structured data available.",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Overview",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Message Structure",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Prompt Map",
+          "expected": 1
+        },
+        {
+          "context": "label",
+          "source": "Loading debug information",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Sends your note and this modal's debug data (conversation and API usage logs) to Anthropic.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Cancel",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Sending…",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Send feedback",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Feedback sent. Reference ID: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Failed to load debug information: ",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Cache Performance",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Data isn't persisted across browser sessions or for old messages to prevent leakage.",
+          "expected": 1
+        },
+        {
+          "context": "children",
+          "source": "Loading",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Read the transcript",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Send feedback",
+          "expected": 1
+        },
+        {
+          "context": "aria-label",
+          "source": "Feedback description",
+          "expected": 1
+        },
+        {
+          "context": "placeholder",
+          "source": "What's wrong with this response?",
+          "expected": 1
+        }
+      ],
+      "patched_sha256": "c6ce08fe1966d3d83472513170392f041f37c930f1df731fcf3b2454fbb8509e"
+    }
+  },
+  "coverage": {
+    "old_rule_count": 68,
+    "old_required_occurrences": 71,
+    "confirmed_rule_count": 36,
+    "confirmed_occurrences": 38,
+    "pending_rule_count": 32,
+    "pending_old_occurrences": 33
+  },
+  "pending": [
+    {
+      "id": "legacy-05",
+      "old_file": "app.asar/.vite/build/index.chunk-BV3uOqbK.js",
+      "context": "label",
+      "source": "Background Computer Use",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending."
+    },
+    {
+      "id": "legacy-12",
+      "old_file": "app.asar/.vite/build/index.chunk-BV3uOqbK.js",
+      "context": "label",
+      "source": "Reset Chrome Browser Pairing",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending."
+    },
+    {
+      "id": "legacy-13",
+      "old_file": "app.asar/.vite/build/index.chunk-BV3uOqbK.js",
+      "context": "label",
+      "source": "Browser Use",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending."
+    },
+    {
+      "id": "legacy-15",
+      "old_file": "app.asar/.vite/build/index.chunk-BV3uOqbK.js",
+      "context": "buttons",
+      "source": "Install",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "native_catalog_candidates_original_feature_unproved",
+      "reason": "Catalog/defaultMessage uses for the same word exist, with source and Chinese evidence attached. Their UI feature differs or is unbound to original editor/ccd control. No direct replacement is approved. Reviewed all new .vite hits: localized other-feature dialogs plus operational browser-profile Install prefix. Original ccd confirmation remains unresolved.",
+      "original_feature": "Old K4o ccd terminal-command install/remove confirmation, not extension/plugin/browser/environment dialogs."
+    },
+    {
+      "id": "legacy-16",
+      "old_file": "app.asar/.vite/build/index.chunk-BV3uOqbK.js",
+      "context": "buttons",
+      "source": "Remove",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "native_catalog_candidates_original_feature_unproved",
+      "reason": "Catalog/defaultMessage uses for the same word exist, with source and Chinese evidence attached. Their UI feature differs or is unbound to original editor/ccd control. No direct replacement is approved. Reviewed all new .vite hits: localized other-feature dialogs plus operational browser-profile Install prefix. Original ccd confirmation remains unresolved.",
+      "original_feature": "Old K4o ccd terminal-command install/remove confirmation, not extension/plugin/browser/environment dialogs."
+    },
+    {
+      "id": "legacy-21",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "label",
+      "source": "Quote",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "native_catalog_candidates_original_feature_unproved",
+      "reason": "Catalog/defaultMessage uses for the same word exist, with source and Chinese evidence attached. Their UI feature differs or is unbound to original editor/ccd control. No direct replacement is approved.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-22",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "label",
+      "source": "Open link",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "native_catalog_candidates_original_feature_unproved",
+      "reason": "Catalog/defaultMessage uses for the same word exist, with source and Chinese evidence attached. Their UI feature differs or is unbound to original editor/ccd control. No direct replacement is approved.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-23",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "label",
+      "source": "Block type",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-24",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "label",
+      "source": "Delete block",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-25",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "label",
+      "source": "List kind",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-26",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "label",
+      "source": "Indent",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "operational_homonyms_only",
+      "reason": "Exact hits are enum assignments or library/function names, not old editor UI/aria-label. Do not translate them. Same-word catalog presence is not feature replacement proof.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-27",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "label",
+      "source": "Outdent",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "operational_homonyms_only",
+      "reason": "Exact hits are enum assignments or library/function names, not old editor UI/aria-label. Do not translate them. Same-word catalog presence is not feature replacement proof.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-28",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "label",
+      "source": "Horizontal rule",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-29",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "label",
+      "source": "Code block",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-30",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "label",
+      "source": "Image",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "native_catalog_candidates_original_feature_unproved",
+      "reason": "Catalog/defaultMessage uses for the same word exist, with source and Chinese evidence attached. Their UI feature differs or is unbound to original editor/ccd control. No direct replacement is approved.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-31",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "setAttribute:aria-label",
+      "source": "Selection",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "operational_homonyms_only",
+      "reason": "Exact hits are enum assignments or library/function names, not old editor UI/aria-label. Do not translate them. Same-word catalog presence is not feature replacement proof.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-32",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "setAttribute:aria-label",
+      "source": "Code block actions",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-33",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "textContent",
+      "source": "Copy",
+      "expected": 2,
+      "status": "pending_original_feature_binding",
+      "classification": "native_catalog_candidates_original_feature_unproved",
+      "reason": "Catalog/defaultMessage uses for the same word exist, with source and Chinese evidence attached. Their UI feature differs or is unbound to original editor/ccd control. No direct replacement is approved.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-34",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "setAttribute:aria-label",
+      "source": "Copy code",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "native_catalog_candidates_original_feature_unproved",
+      "reason": "Catalog/defaultMessage uses for the same word exist, with source and Chinese evidence attached. Their UI feature differs or is unbound to original editor/ccd control. No direct replacement is approved.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-35",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "textContent",
+      "source": "Wrap",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "other_feature_or_data_homonyms_original_feature_unproved",
+      "reason": "Same text occurs in different data/features. Required original UI context is not established, so no raw replacement or unrelated native localization is substituted.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-36",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "setAttribute:aria-label",
+      "source": "Toggle line wrap",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-37",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "setAttribute:aria-label",
+      "source": "Insert block",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-38",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "setAttribute:aria-label",
+      "source": "Editor actions",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-39",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "textContent",
+      "source": "…and {…} more",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-40",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "textContent",
+      "source": "Dismiss",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "native_catalog_candidates_original_feature_unproved",
+      "reason": "Catalog/defaultMessage uses for the same word exist, with source and Chinese evidence attached. Their UI feature differs or is unbound to original editor/ccd control. No direct replacement is approved.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-41",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "setAttribute:aria-label",
+      "source": "Dismiss import fidelity notes",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-42",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "textContent",
+      "source": " ({…} occurrences)",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-43",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "textContent",
+      "source": "Show",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "native_catalog_candidates_original_feature_unproved",
+      "reason": "Catalog/defaultMessage uses for the same word exist, with source and Chinese evidence attached. Their UI feature differs or is unbound to original editor/ccd control. No direct replacement is approved.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-44",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "setAttribute:aria-label",
+      "source": "Show the affected content: {…}{…}",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-45",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "textContent",
+      "source": "Show ({…}/{…})",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-46",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "setAttribute:aria-label",
+      "source": "Show the affected content: {…}{…} — showing {…} of {…}",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    },
+    {
+      "id": "legacy-47",
+      "old_file": "ion-dist.asar/assets/v1/c4517f799-DhULzHGF.js",
+      "context": "textContent",
+      "source": "Showing occurrence {…} of {…}",
+      "expected": 1,
+      "status": "pending_original_feature_binding",
+      "classification": "old_text_removed_or_reworded_in_full_script_scope",
+      "reason": "Exact legacy literal/template is absent across every declared source script, not merely a limited prefilter. Feature retirement or equivalent replacement is unproved; retain pending.",
+      "original_feature": "Old rich-text editor/block controls and import-fidelity occurrence navigation."
+    }
+  ],
+  "composition": {
+    "checked_profiles": [
+      {
+        "profile": "resources/candidates/claude-desktop-7.37095.0/sidebar-reviewed.json",
+        "sha256": "74734bbdad9a0aece15ecc10cf411a6b55ec391ebfa1dc4283a37a66202e1524",
+        "targets": [
+          "ion-dist.asar/assets/v1/shared-25-Bdv6xZNv.js"
+        ]
+      },
+      {
+        "profile": "resources/candidates/claude-desktop-7.37095.0/title-fallback-reviewed.json",
+        "sha256": "844944abc2ef17937e30f6d530872e7ea7b0889927c6416a3b38be25f11694b4",
+        "targets": [
+          "ion-dist.asar/assets/v1/c49292835-Dur2vzuT.js"
+        ]
+      },
+      {
+        "profile": "resources/candidates/claude-desktop-7.37095.0/cowork-reviewed.json",
+        "sha256": "3db751021f75389223ee0d737600afb554c742c83178a745ddf861a07a81d68e",
+        "targets": [
+          "app.asar/.vite/build/index.chunk-DIoOEPs5.js"
+        ]
+      },
+      {
+        "profile": "resources/candidates/claude-desktop-7.37095.0/language-whitelist-reviewed.json",
+        "sha256": "15bbbafabcdaf65ca3b887c6f45917da020670812a19a63817293528f206a5d8",
+        "targets": [
+          "ion-dist.asar/assets/v1/c6fce776d-B4n2p96p.js",
+          "ion-dist.asar/assets/v1/shared-25-Bdv6xZNv.js"
+        ]
+      }
+    ],
+    "overlaps": [],
+    "require_recheck_at_assembly": true,
+    "hash_semantics": "sha256 binds ORIGINAL official7 source. patched_sha256 is hardcoded-UI-only output from original, never a composed final hash. Any future overlap requires reviewed order and step/final hashes; no last-writer replacement. Current5files do not overlap sidebar/title/Cowork/gate targets."
+  },
+  "validation": {
+    "strictSelections": true,
+    "icu": {
+      "catalogs": {
+        "hardcoded_ui": 36
+      },
+      "changedJavaScript": 0,
+      "errors": []
+    },
+    "dollar_placeholder_errors": [],
+    "ast_preserved": true
+  },
+  "installed": false,
+  "app_modified": false,
+  "visual_ui_verified": false
+}

@@ -1,0 +1,110 @@
+{
+  "version": "7.37095.0",
+  "status": "source_reviewed_composed_preview_not_installable",
+  "file": "assets/v1/shared-25-Bdv6xZNv.js",
+  "source_sha256": "9c3209d7331769a49ecdc292329ce4cc07418de4e8f47aa50888e107098923b4",
+  "composed_sha256": "2b79555314a717586919cdb9e0b274b1e2ab8e08b3a098804fbfce9aafa36846",
+  "offsets": "JavaScript UTF-16 code units",
+  "steps": [
+    {
+      "name": "locale-gates",
+      "sourceSha256": "9c3209d7331769a49ecdc292329ce4cc07418de4e8f47aa50888e107098923b4",
+      "patchedSha256": "66c2a007c713c5633d98af44f6353034e5c4381f745deda8299b90b7c985320f",
+      "edits": [
+        {
+          "start": 148621,
+          "end": 148711,
+          "before": "[\"en-US\",\"de-DE\",\"fr-FR\",\"ko-KR\",\"ja-JP\",\"es-419\",\"es-ES\",\"it-IT\",\"hi-IN\",\"pt-BR\",\"id-ID\"]",
+          "after": "[\"en-US\",\"de-DE\",\"fr-FR\",\"ko-KR\",\"ja-JP\",\"es-419\",\"es-ES\",\"it-IT\",\"hi-IN\",\"pt-BR\",\"id-ID\",\"zh-CN\",\"zh-Hans\"]"
+        },
+        {
+          "start": 578823,
+          "end": 578913,
+          "before": "[\"en-US\",\"de-DE\",\"fr-FR\",\"ko-KR\",\"ja-JP\",\"es-419\",\"es-ES\",\"it-IT\",\"hi-IN\",\"pt-BR\",\"id-ID\"]",
+          "after": "[\"en-US\",\"de-DE\",\"fr-FR\",\"ko-KR\",\"ja-JP\",\"es-419\",\"es-ES\",\"it-IT\",\"hi-IN\",\"pt-BR\",\"id-ID\",\"zh-CN\",\"zh-Hans\"]"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-lifecycle",
+      "sourceSha256": "9c3209d7331769a49ecdc292329ce4cc07418de4e8f47aa50888e107098923b4",
+      "patchedSha256": "c6a261bae2c177c91f86a2c096e8f49e9a864086fbb596122e0927162a3de455",
+      "edits": [
+        {
+          "start": 534803,
+          "end": 534841,
+          "before": "var M$={collapsed:!1,sidebarWidth:288}",
+          "after": "var M$={collapsed:!0,sidebarWidth:288}"
+        },
+        {
+          "start": 535136,
+          "end": 535180,
+          "before": "return{collapsed:!!r.collapsed,sidebarWidth:",
+          "after": "return{collapsed:!0,sidebarWidth:"
+        },
+        {
+          "start": 548879,
+          "end": 548911,
+          "before": "Z=Io()(jo((e,t)=>({collapsed:!1,",
+          "after": "Z=Io()(jo((e,t)=>({collapsed:!0,"
+        },
+        {
+          "start": 566802,
+          "end": 566837,
+          "before": "return{...t,...n}}}));function H1()",
+          "after": "return{...t,...n,collapsed:!0,composedSidebarOpen:!1,composedSidebarMounted:!1}}}));function H1()"
+        }
+      ]
+    }
+  ],
+  "edits": [
+    {
+      "start": 148621,
+      "end": 148711,
+      "before": "[\"en-US\",\"de-DE\",\"fr-FR\",\"ko-KR\",\"ja-JP\",\"es-419\",\"es-ES\",\"it-IT\",\"hi-IN\",\"pt-BR\",\"id-ID\"]",
+      "after": "[\"en-US\",\"de-DE\",\"fr-FR\",\"ko-KR\",\"ja-JP\",\"es-419\",\"es-ES\",\"it-IT\",\"hi-IN\",\"pt-BR\",\"id-ID\",\"zh-CN\",\"zh-Hans\"]"
+    },
+    {
+      "start": 534803,
+      "end": 534841,
+      "before": "var M$={collapsed:!1,sidebarWidth:288}",
+      "after": "var M$={collapsed:!0,sidebarWidth:288}"
+    },
+    {
+      "start": 535136,
+      "end": 535180,
+      "before": "return{collapsed:!!r.collapsed,sidebarWidth:",
+      "after": "return{collapsed:!0,sidebarWidth:"
+    },
+    {
+      "start": 548879,
+      "end": 548911,
+      "before": "Z=Io()(jo((e,t)=>({collapsed:!1,",
+      "after": "Z=Io()(jo((e,t)=>({collapsed:!0,"
+    },
+    {
+      "start": 566802,
+      "end": 566837,
+      "before": "return{...t,...n}}}));function H1()",
+      "after": "return{...t,...n,collapsed:!0,composedSidebarOpen:!1,composedSidebarMounted:!1}}}));function H1()"
+    },
+    {
+      "start": 578823,
+      "end": 578913,
+      "before": "[\"en-US\",\"de-DE\",\"fr-FR\",\"ko-KR\",\"ja-JP\",\"es-419\",\"es-ES\",\"it-IT\",\"hi-IN\",\"pt-BR\",\"id-ID\"]",
+      "after": "[\"en-US\",\"de-DE\",\"fr-FR\",\"ko-KR\",\"ja-JP\",\"es-419\",\"es-ES\",\"it-IT\",\"hi-IN\",\"pt-BR\",\"id-ID\",\"zh-CN\",\"zh-Hans\"]"
+    }
+  ],
+  "review": {
+    "disjoint": true,
+    "gate_changes_retained": 2,
+    "sidebar_changes_retained": 4,
+    "no_other_bytes_changed": true,
+    "syntax_parsed": true
+  },
+  "profile_dependencies": [
+    "language-whitelist-reviewed.json",
+    "sidebar-reviewed.json"
+  ],
+  "scope": "Six disjoint edits against the same official source; no last-writer-wins replacement"
+}

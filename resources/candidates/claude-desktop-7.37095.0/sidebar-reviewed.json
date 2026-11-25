@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "version": "7.37095.0",
+  "status": "source_reviewed_not_installable",
+  "installed": false,
+  "visual_ui_verified": false,
+  "resource": {
+    "archive": "ion-dist.asar",
+    "path": "assets/v1/shared-25-Bdv6xZNv.js"
+  },
+  "source_archive_sha256": "dfa83d8118169adfd3d7932b015b841f570a4229948607886592520f95cc1098",
+  "source_sha256": "9c3209d7331769a49ecdc292329ce4cc07418de4e8f47aa50888e107098923b4",
+  "patched_sha256": "c6a261bae2c177c91f86a2c096e8f49e9a864086fbb596122e0927162a3de455",
+  "anchors": [
+    {
+      "name": "traditional_default",
+      "source": "var M$={collapsed:!1,sidebarWidth:288}",
+      "replacement": "var M$={collapsed:!0,sidebarWidth:288}",
+      "expected": 1
+    },
+    {
+      "name": "prepaint_readback",
+      "source": "return{collapsed:!!r.collapsed,sidebarWidth:",
+      "replacement": "return{collapsed:!0,sidebarWidth:",
+      "expected": 1
+    },
+    {
+      "name": "store_default",
+      "source": "Z=Io()(jo((e,t)=>({collapsed:!1,",
+      "replacement": "Z=Io()(jo((e,t)=>({collapsed:!0,",
+      "expected": 1
+    },
+    {
+      "name": "hydration_merge",
+      "source": "return{...t,...n}}}));function H1()",
+      "replacement": "return{...t,...n,collapsed:!0,composedSidebarOpen:!1,composedSidebarMounted:!1}}}));function H1()",
+      "expected": 1
+    }
+  ],
+  "protected_nodes": [
+    {
+      "property": "setCollapsedPref",
+      "sha256": "9fb155d142db983a8db883a180f577e34349508f1941fbdf3c69ddabc51e88ea"
+    },
+    {
+      "property": "partialize",
+      "sha256": "7296631c5ea85b3fdedbc202e0204f56b897e1acd3d01def17a8a00b3af88ca2"
+    }
+  ],
+  "review_notes": [
+    "Only initial collapsed defaults and final hydration collapse/transient fields change.",
+    "Native width, pins, normalizations, migrations, setCollapsedPref and partialize remain unchanged.",
+    "Keep this reusable adapter; future versions require new reviewed source/output and protected-node data.",
+    "Source-only profile; no app/configuration/network/signing/installation actions."
+  ]
+}

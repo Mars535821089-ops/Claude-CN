@@ -1,0 +1,225 @@
+{
+  "schema": 1,
+  "kind": "reviewed_extracted_native_state_fixture",
+  "version": "7.37095.0",
+  "original_resource": {
+    "archive": "ion-dist.asar",
+    "path": "assets/v1/shared-25-Bdv6xZNv.js"
+  },
+  "original_source_sha256": "9c3209d7331769a49ecdc292329ce4cc07418de4e8f47aa50888e107098923b4",
+  "reviewed_profile_sha256": "74734bbdad9a0aece15ecc10cf411a6b55ec391ebfa1dc4283a37a66202e1524",
+  "fixture_source_sha256": "11c2df19334e1063d03491c22855303dfba88e0e1bb11c4bfafb0c223c923ac8",
+  "fixture_patched_sha256": "04741b67d2042bd84849a13cfbb75a5da247ecb6ba8b230cfcb8225e3369f353",
+  "source": "var O$={MIN:200,MAX:420,DEFAULT:288};\nvar D$=[\"anthropic\",\"system\",\"dyslexic\",\"atkinson\"];\nvar W$=[0,1,3,7,30];\nvar M$={collapsed:!1,sidebarWidth:288};\nvar y1={hovering:!1,peeked:!1,peekSuppressedUntilLeave:!1,overflowMenuOpen:!1,sortMenuOpen:!1,showDragPinHint:!1,bulkSelectTip:null};\nvar v1={composedSidebarOpen:!1,composedSidebarMounted:!1,hovering:!1,peeked:!1,peekSuppressedUntilLeave:!1,isResizing:!1,sidebarFloor:O$.MIN,overflowMenuOpen:!1,sortMenuOpen:!1,isCuDocked:!1,isNarrowViewport:!1,isPhoneSheet:!1,isRouteDrilldown:!1,foldKeepsTitleRow:!1,clickKeepsTitleRow:!1,experimentFrameActive:!1,fullBleedBodyClaims:0,sidebarlessClaims:0,paneScrollClaims:0,stripLineClaims:0,pendingMode:null,resolvedMode:null,discoveryPreviewFeature:null,showDragPinHint:!1,bulkSelectTip:null};\nfunction k$(e){return Math.min(O$.MAX,Math.max(O$.MIN,e))}\nfunction A$(e){return Math.max(700,Math.ceil(e)+330-1)}\nfunction j$(e){return`(max-width: ${A$(e)}px)`}\nfunction Vpe(e){if(e===null)return M$;try{let t=JSON.parse(e);if(typeof t!=\"object\"||!t)return M$;let n=t.state;if(typeof n!=\"object\"||!n)return M$;let r=n;return{collapsed:!!r.collapsed,sidebarWidth:typeof r.sidebarWidth==\"number\"?k$(r.sidebarWidth):M$.sidebarWidth}}catch{return M$}}\nfunction g1(){try{return typeof window.matchMedia==\"function\"&&window.matchMedia(j$(Vpe(SJ.getItem(\"dframe-store\")).sidebarWidth)).matches}catch{return!1}}\nfunction x1(e,t){return e.composedSidebarOpen===t||t&&g1()?e:t?{composedSidebarOpen:!0,composedSidebarMounted:!0,...y1}:{composedSidebarOpen:!1}}\nfunction S1(e){return e.isCuDocked||e.isNarrowViewport}\nfunction C1(e){return e.experimentFrameActive||e.sidebarlessClaims>0||!1}\nfunction U1(e){return b1?e.composedSidebarOpen!==!0:e.collapsed||S1(e)||e.isRouteDrilldown}\nfunction yQ(e){return Array.isArray(e)?e.filter(e=>typeof e==\"string\"):[]}\nfunction AQ(e){if(!X(e))return{};let t={};for(let[n,r]of Object.entries(e)){if(!X(r))continue;let e=kQ(r.sections);e&&(t[n]={sections:e,...r.migratedFrom===1?{migratedFrom:1}:{},...r.prefsSeeded===!0?{prefsSeeded:!0}:{}})}return t}\nfunction t1(e){if(!X(e))return{};let t={};for(let[n,r]of Object.entries(e)){let e=e1(r);e&&(!Z$(e)||X(r)&&Array.isArray(r.groups)&&r.groups.length===0&&X(r.assignments)&&Object.keys(r.assignments).length===0&&X(r.order)&&Object.keys(r.order).length===0)&&(t[n]=e)}return t}\nfunction H$(e){return e===\"all\"||e===\"mine\"?e:null}\nfunction U$(e){return e===\"hidden\"||e===\"grouped\"?e:\"shown\"}\nfunction G$(e){return e===\"inline\"||e===\"section\"}\nfunction lme(e){return D$.includes(e)}\nfunction m1(e,t){let n={...e,...t};return n.icon===void 0&&delete n.icon,n.color===void 0&&delete n.color,n}\nfunction vme(e){if(!X(e))return{};let t={};for(let[n,r]of Object.entries(e)){if(!X(r))continue;let e=typeof r.icon==\"string\"?r.icon:void 0,i=typeof r.color==\"string\"?r.color:void 0;(e!==void 0||i!==void 0)&&(t[n]=m1({},{icon:e,color:i}))}return t}\nfunction hme(e){if(!X(e))return{};let t={};for(let[n,r]of Object.entries(e)){if(!l1(n)||!X(r))continue;let e={};for(let[t,n]of Object.entries(r))typeof n==\"number\"&&Number.isInteger(n)&&n>=0&&n<=50&&(e[t]=n);t[n]=e}return t}\nfunction l1(e){let t=e.split(\"/\");return t.length===2&&t[0].length>0&&t[1].length>0}\nvar Z=Io()(jo((e,t)=>({collapsed:!1,setCollapsedPref:t=>e(e=>b1?x1(e,!t):C1(e)||e.collapsed===t&&!e.isRouteDrilldown?e:(E1(),{collapsed:t,isRouteDrilldown:!1,...y1}))}),{partialize:e=>({collapsed:e.collapsed,sidebarWidth:e.sidebarWidth,lastKnownMode:e.lastKnownMode,pinnedOrder:e.pinnedOrder,homeProjectsPinnedOrder:e.homeProjectsPinnedOrder,groupByByMode:e.groupByByMode,sortByByMode:e.sortByByMode,recentsTypeFilter:e.recentsTypeFilter,recentsStatusFilter:e.recentsStatusFilter,coworkActivityDays:e.coworkActivityDays,recentsOwnerPick:e.recentsOwnerPick,recentsScheduledFilter:e.recentsScheduledFilter,routinesSidebarPlacement:e.routinesSidebarPlacement,interfaceFont:e.interfaceFont,systemFont:e.interfaceFont===\"system\",collapsedGroups:e.collapsedGroups,openedGroups:e.openedGroups,collapsedFamilies:e.collapsedFamilies,customGroupsByScope:e.customGroupsByScope,codeSidebarByScope:e.codeSidebarByScope,pendingLegacyGroupMigration:e.pendingLegacyGroupMigration,seenDragPinHint:e.seenDragPinHint,navPinnedIds:e.navPinnedIds,navSeedHere:e.navSeedHere,navPinV:e.navPinV,navSeenBadgeIds:e.navSeenBadgeIds,navHasCodeRoutinesByOrg:e.navHasCodeRoutinesByOrg,navProjectsHeldByOrg:e.navProjectsHeldByOrg,sidebarRowCountsByScope:e.sidebarRowCountsByScope,folderAppearanceByKey:e.folderAppearanceByKey,lastSidebarScopeKey:e.lastSidebarScopeKey}),merge:(e,t)=>{let n=X(e)?e:{};if(n.customGroupsByScope===void 0){let e=n1({groups:n.customGroups,assignments:n.customGroupAssignments,order:n.customGroupOrder});e&&!n.pendingLegacyGroupMigration&&(n.pendingLegacyGroupMigration=e)}if(delete n.customGroups,delete n.customGroupAssignments,delete n.customGroupOrder,n.customGroupsByScope!==void 0&&(n.customGroupsByScope=t1(n.customGroupsByScope)),n.pendingLegacyGroupMigration&&=n1(n.pendingLegacyGroupMigration),n.codeSidebarByScope===void 0?\"sidebarWidth\"in n&&yme():n.codeSidebarByScope=AQ(n.codeSidebarByScope),delete n.activeGroupScope,n.groupBy&&!n.groupByByMode){let e=n.groupBy;e===\"type\"&&(e=\"date\"),n.groupByByMode={chat:e,cowork:e,code:e}}if(delete n.groupBy,delete n.mergedExperience,delete n.lastUnmergedMode,delete n.coworkOnly,n.lastKnownMode===\"home\"&&(n.lastKnownMode=\"chat\"),n.groupByByMode!==void 0&&!X(n.groupByByMode)&&delete n.groupByByMode,n.sortByByMode!==void 0&&!X(n.sortByByMode)&&delete n.sortByByMode,n.groupByByMode){let e={};for(let[t,r]of Object.entries(n.groupByByMode)){let n=r;n===\"coder\"&&(n=\"date\"),(n===\"date\"||n===\"project\"||n===\"coder\"||n===\"state\"||n===\"custom\"||n===\"unread\"||n===\"type\"||n===\"folder\"||n===\"none\")&&(e[t]=n)}n.groupByByMode=e}if(n.sortByByMode){let e={};for(let[t,r]of Object.entries(n.sortByByMode))(r===\"recency\"||r===\"alpha\"||r===\"created\")&&(e[t]=r);n.sortByByMode=e}if(n.recentsTypeFilter===\"archived\"&&(n.recentsTypeFilter=\"all\",n.recentsStatusFilter===void 0&&(n.recentsStatusFilter=\"archived\")),n.recentsTypeFilter!==void 0&&n.recentsTypeFilter!==\"all\"&&n.recentsTypeFilter!==\"chat\"&&n.recentsTypeFilter!==\"task\"&&n.recentsTypeFilter!==\"code\"&&(n.recentsTypeFilter=\"all\"),n.recentsStatusFilter!==void 0&&n.recentsStatusFilter!==\"active\"&&n.recentsStatusFilter!==\"archived\"&&n.recentsStatusFilter!==\"all\"&&(n.recentsStatusFilter=\"active\"),n.coworkActivityDays!==void 0&&!W$.includes(n.coworkActivityDays)&&(n.coworkActivityDays=0),n.recentsOwnerPick!==void 0&&(n.recentsOwnerPick=H$(n.recentsOwnerPick)),delete n.recentsOwnerFilter,n.recentsScheduledFilter!==void 0&&(n.recentsScheduledFilter=U$(n.recentsScheduledFilter)),n.routinesSidebarPlacement!==void 0&&!G$(n.routinesSidebarPlacement)&&(n.routinesSidebarPlacement=\"inline\"),n.interfaceFont===void 0&&n.systemFont===!0&&(n.interfaceFont=\"system\"),delete n.systemFont,n.interfaceFont!==void 0&&!lme(n.interfaceFont)&&delete n.interfaceFont,n.navPinnedIds!==void 0&&n.navPinnedIds!==null&&(n.navPinnedIds=Array.isArray(n.navPinnedIds)?yQ(n.navPinnedIds):null),\"navSeenBadgeIds\"in n&&(n.navSeenBadgeIds=yQ(n.navSeenBadgeIds)),n.navSeedHere){let{scope:e,pins:t}=n.navSeedHere;n.navSeedHere=Array.isArray(t)?{scope:typeof e==\"string\"?e:null,pins:yQ(t)}:null}if((n.navPinV??0)<1&&(Array.isArray(n.navPinnedIds)&&!n.navPinnedIds.includes(\"epitaxy-projects\")&&(n.navPinnedIds=[\"epitaxy-projects\",...n.navPinnedIds]),n.navPinV=1),(n.navPinV??0)<2&&(n.navPinV=2),n.navHasCodeRoutinesByOrg!==void 0&&(n.navHasCodeRoutinesByOrg=typeof n.navHasCodeRoutinesByOrg==\"object\"&&n.navHasCodeRoutinesByOrg!==null?Object.fromEntries(Object.entries(n.navHasCodeRoutinesByOrg).filter(([,e])=>e===!0)):{}),n.navProjectsHeldByOrg!==void 0&&(n.navProjectsHeldByOrg=typeof n.navProjectsHeldByOrg==\"object\"&&n.navProjectsHeldByOrg!==null?Object.fromEntries(Object.entries(n.navProjectsHeldByOrg).filter(([,e])=>e===!0)):{}),n.folderAppearanceByKey!==void 0&&(n.folderAppearanceByKey=vme(n.folderAppearanceByKey)),n.sidebarRowCountsByScope!==void 0&&(n.sidebarRowCountsByScope=hme(n.sidebarRowCountsByScope)),n.lastSidebarScopeKey!==void 0&&!(typeof n.lastSidebarScopeKey==\"string\"&&l1(n.lastSidebarScopeKey))&&(n.lastSidebarScopeKey=null),typeof n.sidebarWidth==\"number\"&&(n.sidebarWidth=k$(n.sidebarWidth)),\"pinnedOrder\"in n&&(n.pinnedOrder=yQ(n.pinnedOrder)),\"collapsedGroups\"in n&&(n.collapsedGroups=yQ(n.collapsedGroups)),\"openedGroups\"in n&&(n.openedGroups=yQ(n.openedGroups)),\"collapsedFamilies\"in n&&(n.collapsedFamilies=yQ(n.collapsedFamilies)),\"homeProjectsPinnedOrder\"in n&&(n.homeProjectsPinnedOrder=yQ(n.homeProjectsPinnedOrder)),n.customGroupsByScope!==void 0||n.codeSidebarByScope!==void 0){let e={codeSidebarByScope:n.codeSidebarByScope??t.codeSidebarByScope,customGroupsByScope:n.customGroupsByScope??t.customGroupsByScope,groupByByMode:X(n.groupByByMode)?n.groupByByMode:t.groupByByMode,sortByByMode:X(n.sortByByMode)?n.sortByByMode:t.sortByByMode},r={...e.codeSidebarByScope};for(let t of new Set([...Object.keys(e.customGroupsByScope??{}),...Object.keys(e.codeSidebarByScope??{})]))r[t]=d1(e,t);n.codeSidebarByScope=r}return{...t,...n}}}));function H1(){}",
+  "original_ast_slices": [
+    {
+      "kind": "function",
+      "name": "yQ",
+      "original_char_start": 516942,
+      "original_char_end": 517016,
+      "sha256": "4df84948d664f4d5ade358b2183b6b30b5a506f12b024922fc5c5a06eebacd94"
+    },
+    {
+      "kind": "function",
+      "name": "AQ",
+      "original_char_start": 520058,
+      "original_char_end": 520289,
+      "sha256": "abd7fd1e0c68a9d73bf610c39e4602bccbc5ceffd9896246214e4fde2e936727"
+    },
+    {
+      "kind": "initializer",
+      "name": "D$",
+      "original_char_start": 534495,
+      "original_char_end": 534539,
+      "sha256": "01b76360fed710847a2bfdea426c9f0411f5f4231433ac9533b546b83aa24160"
+    },
+    {
+      "kind": "initializer",
+      "name": "O$",
+      "original_char_start": 534568,
+      "original_char_end": 534597,
+      "sha256": "3c2b5415d502d19892c062b89dd3d21b6865b407bb0de4c358e13f527f6718e3"
+    },
+    {
+      "kind": "function",
+      "name": "k$",
+      "original_char_start": 534598,
+      "original_char_end": 534656,
+      "sha256": "b69a0a6b42d8265c6303655580625f457435b74c5bdb4d625259e9242edf695a"
+    },
+    {
+      "kind": "function",
+      "name": "A$",
+      "original_char_start": 534656,
+      "original_char_end": 534711,
+      "sha256": "72d222d359b821e8c27dfcf0dc4f87a4c75643d41941b1e5f8c5c09c5cbc05f0"
+    },
+    {
+      "kind": "function",
+      "name": "j$",
+      "original_char_start": 534711,
+      "original_char_end": 534758,
+      "sha256": "81a62abb34ee5411f51ac543b5a139ade9567016a7ec9e5b1b08337fb645f934"
+    },
+    {
+      "kind": "initializer",
+      "name": "M$",
+      "original_char_start": 534810,
+      "original_char_end": 534841,
+      "sha256": "96ae013d94bb1985b6327c192c898dfde565310b219930bb9bbb67b4ebea6ad5"
+    },
+    {
+      "kind": "function",
+      "name": "Vpe",
+      "original_char_start": 534980,
+      "original_char_end": 535265,
+      "sha256": "d3f6c5e2aabdfabc0e662171f216c600961a8d7ef6cd13c6f8f6a260f688e1e4"
+    },
+    {
+      "kind": "function",
+      "name": "H$",
+      "original_char_start": 537708,
+      "original_char_end": 537759,
+      "sha256": "f41302159bac413042bf76d9055dd2811e265c82e8e5d11041ae964733b16827"
+    },
+    {
+      "kind": "function",
+      "name": "U$",
+      "original_char_start": 537759,
+      "original_char_end": 537819,
+      "sha256": "35bae826b0f133dd34cbec398ee3b5d1feb07d26ce7d8c5437dee7e349c695e5"
+    },
+    {
+      "kind": "initializer",
+      "name": "W$",
+      "original_char_start": 537826,
+      "original_char_end": 537838,
+      "sha256": "d44c85f0f1beebf46c54b063042b07001204db8fb8fd28ce5bdb915b94ccba60"
+    },
+    {
+      "kind": "function",
+      "name": "G$",
+      "original_char_start": 537839,
+      "original_char_end": 537889,
+      "sha256": "5b91554417968bdcaca17457d3f93daccc5a1c8b64a65756791aa4bb3aada5da"
+    },
+    {
+      "kind": "function",
+      "name": "lme",
+      "original_char_start": 537889,
+      "original_char_end": 537927,
+      "sha256": "9e4b967df28f7bd0375efe59e76ae342b0e61df7d77581025d03f60fb227b92d"
+    },
+    {
+      "kind": "function",
+      "name": "t1",
+      "original_char_start": 539905,
+      "original_char_end": 540178,
+      "sha256": "8c57d521b55f331f90a067c84c20b7586daaa3c83abbef1b8b09c473cab6e50e"
+    },
+    {
+      "kind": "function",
+      "name": "hme",
+      "original_char_start": 541236,
+      "original_char_end": 541460,
+      "sha256": "919a2df478d4bbec055d7eb14bb895eb3b568eed0e18c68bb1ba60b6fdb8d206"
+    },
+    {
+      "kind": "function",
+      "name": "l1",
+      "original_char_start": 541460,
+      "original_char_end": 541544,
+      "sha256": "0eea52576ccd5eb04cf1ad18b3b50f037ec4aba15d5751466e6c778586a6aa81"
+    },
+    {
+      "kind": "function",
+      "name": "m1",
+      "original_char_start": 543399,
+      "original_char_end": 543507,
+      "sha256": "da06b4b716b24fff6d2213de7086d30cb24c1414907f3cf62b22b4714d1bc8f1"
+    },
+    {
+      "kind": "function",
+      "name": "vme",
+      "original_char_start": 543507,
+      "original_char_end": 543754,
+      "sha256": "9e44d7465076dc79c677c4b5839a1d260f42e5e64b0dbe08f2cbd1661a009f50"
+    },
+    {
+      "kind": "function",
+      "name": "g1",
+      "original_char_start": 543886,
+      "original_char_end": 544041,
+      "sha256": "b0238bddcb3d8d078450f2a97b6ab029cb21db63623e62d28c4a0f704c8f6057"
+    },
+    {
+      "kind": "initializer",
+      "name": "v1",
+      "original_char_start": 544221,
+      "original_char_end": 544710,
+      "sha256": "449d16af86f6dc48d4fc9b98d09613b2e568f4f791ea90ee5fea204c6fc2fe67"
+    },
+    {
+      "kind": "initializer",
+      "name": "y1",
+      "original_char_start": 544714,
+      "original_char_end": 544839,
+      "sha256": "16a27672bccdefbc62418c5d30237a51b634208323c282be1b4fcf03c886d06b"
+    },
+    {
+      "kind": "function",
+      "name": "x1",
+      "original_char_start": 544848,
+      "original_char_end": 544993,
+      "sha256": "17db94a1befae22d977ed9385c49a40f2289bc548e9243f34e65b8682c579a30"
+    },
+    {
+      "kind": "function",
+      "name": "S1",
+      "original_char_start": 545105,
+      "original_char_end": 545160,
+      "sha256": "30d1858c3d8a3818534852fc35eaa95d734eff3c9ae6ff02af857577acf1435a"
+    },
+    {
+      "kind": "function",
+      "name": "C1",
+      "original_char_start": 545160,
+      "original_char_end": 545233,
+      "sha256": "90fea1561474ea0db103e7182292c29f775d661a9c59b6e93cb23f7532979986"
+    },
+    {
+      "kind": "property",
+      "name": "setCollapsedPref",
+      "original_char_start": 550098,
+      "original_char_end": 550228,
+      "sha256": "9fb155d142db983a8db883a180f577e34349508f1941fbdf3c69ddabc51e88ea"
+    },
+    {
+      "kind": "property",
+      "name": "partialize",
+      "original_char_start": 561056,
+      "original_char_end": 562223,
+      "sha256": "7296631c5ea85b3fdedbc202e0204f56b897e1acd3d01def17a8a00b3af88ca2"
+    },
+    {
+      "kind": "property",
+      "name": "merge",
+      "original_char_start": 562224,
+      "original_char_end": 566820,
+      "sha256": "69cf8847bfe2ddc938c3a094a234642192773ac33fbe78742e2e9432d5a356ae"
+    },
+    {
+      "kind": "function",
+      "name": "U1",
+      "original_char_start": 567046,
+      "original_char_end": 567137,
+      "sha256": "586951044412aa58c741cb9ba9e8b253496e356c3680eab46461a505047a8c1b"
+    }
+  ],
+  "notes": [
+    "Only 20 native state/helper functions, six constant initializers and three state properties are retained. No catalog, unrelated module or whole vendor bundle.",
+    "The minimal store wrapper is a parse-only synthetic scaffold; tests execute isolated reviewed functions only.",
+    "Fixture output pin was calculated from the four manually enumerated audited edits, without calling the adapter.",
+    "No user storage or app runtime is needed. Empty modern group maps avoid unrelated nonempty legacy migration dependencies."
+  ]
+}
